@@ -9,7 +9,7 @@ color:#333333;
 
 #page {
 width:900px;
-background-image:url(images/page.png);
+background-image:url('../images/page.png');
 margin:auto;
 padding:auto;
 }
@@ -18,7 +18,7 @@ padding:auto;
 clear:both;
 width:900px;
 height:50px;
-background-image:url(images/header.png);
+background-image:url('../images/header.png');
 }
 
 #headerleft {
@@ -49,14 +49,14 @@ background-image:url(images/header.png);
   }
   
 #menulinks a:hover {
-	background-image:url(images/menuhover.png);
+	background-image:url('../images/menuhover.png');
 	background-position:top right;
 	text-decoration:none;
 	color:#FFFFFF;
 }
 
 #menulinks a.active, #menulinks a:hover.active {
-	background-image:url(images/menuactive.png);
+	background-image:url('../images/menuactive.png');
 	background-position:top right;
 	text-decoration:none;
 	color:#FFFFFF;
@@ -89,7 +89,7 @@ height:35px;
 padding-top:23px;
 text-align:right;
 line-height:14pt;
-background-image:url(images/footer.png);
+background-image:url('../images/footer.png');
 background-repeat:no-repeat;
 color:#FFFFFF;
 }
@@ -112,7 +112,8 @@ color:#FFFFFF;
 h2 {
 font-size:12pt;
 color:#333333;
-padding-top:6px;}
+padding-top:6px;
+}
 
 a {
 color:#555555;
