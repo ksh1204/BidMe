@@ -1,0 +1,38 @@
+<head>
+  <%= stylesheet_link_tag 'base.css'%>
+  <%= javascript_include_tag :defaults %>
+  
+  <%= yield :head %>
+</head>
+
+<body>
+
+<div id="page">
+	<div id="header"></div>
+	
+	<div id="mainarea">
+	<div id="sidebar">
+		<div id="headerleft">
+			<h1><a href="#">BidMe</a></h1>
+		</div>
+		<div id="menulinks">
+		<a class="active" href="#">Home</a>
+		<a href="#">Services</a>
+		<a href="#">Pricing</a>
+		<a href="#">Contact Us</a>
+		</div>
+	</div>
+		
+	
+	<div id="contentarea">
+		<%= yield %>
+	</div>
+	
+	
+	
+	<div id="footer">
+		<a href="http://www.templatesold.com/" target="_blank">Website Templates</a> by <a href="http://www.free-css-templates.com/" target="_blank">Free CSS Templates</a>	</div>
+
+</div>
+
+</body>
