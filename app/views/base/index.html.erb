@@ -12,14 +12,7 @@
             <li><a href="#" title="ABOUT US">ABOUT US</a></li>
             <li><span>HOME</span></li>
       </ul>
-  <form action="" method="post" enctype="multipart/form-data">
-        	<h2>Members login</h2>            
-            <label for="name">name</label>
-            <input name="name" type="text" class="txtBox" id="name" />
-            <label for="email">email</label>
-            <input name="email" type="text" class="txtBox" id="email" />
-            <input type="image" src="images/submit_btn.gif" name="Submit" class="submitBtn" />
-      </form>
+  <%= render :partial => 'sessions/login'%>
 </div>
 <!-- HEADER ENDS -->
 <!-- BODY STARTS -->

@@ -24,7 +24,8 @@ class SessionsController < ApplicationController
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]
-      render :action => 'new'
+      #render :action => 'new'
+      redirect_back_or_default('/')
     end
   end
 

@@ -48,12 +48,12 @@ img {border:none;}
 	font:bold 10px/13px Verdana, Arial, Helvetica, sans-serif;
 	padding:0 0 0 10px; height:13px; display:block;
 }
-#header form input.txtBox {
+#header form input {
 	width:116px; padding:1px 0 0 1px; margin:0 0 0 9px;
 }
-#header form input.submitBtn {
+/*#header form input.submitBtn {
 	margin:9px 0 0 76px;
-}
+}*/
 /*----------------------- BODY ----------------------*/
 #body {
 	width:721px; padding:9px 0 0 59px; margin:0 auto;
