@@ -136,7 +136,7 @@ class UsersController < ApplicationController
       redirect_to :controller => 'base', :action => 'all_users'
     end
     
-    def show_received_messages
+    def messagebox
       @user = current_user
       @messages = @user.received_messages
     end

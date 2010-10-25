@@ -7,7 +7,12 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
   map.send_message '/users/send_message', :controller => 'users', :action => 'send_message'
-  map.show_received_messages '/users/show_received_messages', :controller => 'users', :action => 'show_received_messages'
+  map.forgot    '/forgot',                    :controller => 'users',     :action => 'forgot'
+  map.reset     'reset/:reset_code',          :controller => 'users',     :action => 'reset'
+  map.change_password 'users/change_password', :controller => 'users', :action => 'change_password'
+  map.edit_user 'users/edit', :controller => 'users', :action => 'edit'
+  map.home '/users/home', :controller => 'users', :action => 'home'
+  map.messagebox '/users/messagebox', :controller => 'users', :action => 'messagebox'
   map.resources :users
 
   map.resource :session
