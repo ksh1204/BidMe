@@ -6,6 +6,8 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
+  map.send_message '/users/send_message', :controller => 'users', :action => 'send_message'
+  map.show_received_messages '/users/show_received_messages', :controller => 'users', :action => 'show_received_messages'
   map.resources :users
 
   map.resource :session

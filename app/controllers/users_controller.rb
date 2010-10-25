@@ -128,4 +128,16 @@ class UsersController < ApplicationController
         redirect_to :action => 'list'
       end
     end
+    
+    def send_message
+      @user = current_user
+      @message = @user.sent_messages.build(:receiver_id => params[:receiver_id], :description => "Hi")
+      @message.save
+      redirect_to :controller => 'base', :action => 'all_users'
+    end
+    
+    def show_received_messages
+      @user = current_user
+      @messages = @user.received_messages
+    end
 end

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :user_comments
   has_many :commentees, :through => :user_comments
   
-  has_many :sent_messages, :class_name => "Message"
+  has_many :sent_messages, :class_name => "Message", :foreign_key => "sender_id"
   has_many :receivers, :through => :sent_messages
   has_many :received_messages, :class_name => "Message", :foreign_key => "receiver_id"
   has_many :senders, :through => :received_messages, :source => :user

@@ -1,0 +1,6 @@
+<ul>
+  <% for message in @messages %>
+    <li><%=h message.sender.login %></li>
+	<%= message.description%>
+  <% end %>
+</ul>
