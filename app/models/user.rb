@@ -6,7 +6,15 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   
   has_many :user_ratings
+  has_many :ratees, :through => :user_ratings
+  
   has_many :user_comments
+  has_many :commentees, :through => :user_comments
+  
+  has_many :sent_messages, :class_name => "Message"
+  has_many :receivers, :through => :sent_messages
+  has_many :received_messages, :class_name => "Message", :foreign_key => "receiver_id"
+  has_many :senders, :through => :received_messages, :source => :user
 
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
