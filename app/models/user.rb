@@ -57,15 +57,10 @@ class User < ActiveRecord::Base
     # the existence of an activation code means they have not activated yet
     activation_code.nil?
   end
-  
-  def recently_activated?
-    @activated
-  end
-  
+
   def is_admin?
     self.is_admin
   end
-
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.  
@@ -93,18 +88,25 @@ class User < ActiveRecord::Base
       #save(false)
     end 
 
-    def recently_reset?
-      @reset
-    end 
+  def recently_reset?
+    @reset
+  end 
     
-    def delete_reset_code
-      self.update_attribute(:reset_code, nil)
-      #save(false)
-    end
+  def delete_reset_code
+    self.update_attribute(:reset_code, nil)
+    #save(false)
+  end
+  
+  def make_message_notification(sender)
+    #flash[:new_message] = "You have received a new message from #{sender.login}"
+  end
 
-    protected
-      def make_activation_code
-            self.activation_code = self.class.make_token
-      end
+
+  protected
+    
+    def make_activation_code
+        self.activation_code = self.class.make_token
+    end
+ 
   
 end

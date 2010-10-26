@@ -131,9 +131,25 @@ class UsersController < ApplicationController
     
     def send_message
       @user = current_user
-      @message = @user.sent_messages.build(:receiver_id => params[:receiver_id], :description => "Hi")
-      @message.save
-      redirect_to :controller => 'base', :action => 'all_users'
+      @receiver = User.find_by_login(params[:receiver])
+      if @receiver
+        @message = @user.sent_messages.build(:receiver => @receiver, :description => params[:description])
+        @message.save
+      end
+      render :juggernaut => {:type => :send_to_client, :client_id => @receiver.id} do |page|
+        page.alert("You received a new message from #{@message.sender.login}")
+      end
+      
+      render :nothing => true
+    end
+    
+    def write_message
+      @user = current_user
+      @message = Message.new
+      @message.sender = current_user
+      if params[:receiver]
+        @message.receiver = User.find_by_login(params[:receiver])
+      end
     end
     
     def messagebox
