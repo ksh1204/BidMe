@@ -56,7 +56,7 @@
      # You shouldn't authenticate broadcasts from subscribed clients using this method
      # since the secret_key will be easily visible in the page (and not so secret any more)!
      # 
-     # :secret_key: b0ccdb89583feab820d2e2aa443b9073192f3ce4
+     # :secret_key: d63012c5fb15ccf135f2e73218c4629c8671d943
 
      # == Subscription Logout ==
 

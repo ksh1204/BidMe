@@ -137,9 +137,7 @@ class UsersController < ApplicationController
         @message.save
       end
       render :juggernaut => {:type => :send_to_client, :client_id => @receiver.id} do |page|
-        page.insert_html :top, :main_content, '<script type="text/javascript" language="javascript">
-          Growl4Rails.showGrowl({image_path:"/images/download.png", title:"Foo Bar.pdf", message:"File is ready for download."});
-        </script>'
+        page.insert_html :top, :main_content, :partial => 'base/new_message', :object => @message
       end
       render :nothing => true
     end

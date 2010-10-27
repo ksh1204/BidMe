@@ -144,7 +144,7 @@ module Juggernaut
         def render_with_juggernaut(options = nil, old_local_assigns={}, &block)
           if options == :juggernaut or (options.is_a?(Hash) and options[:juggernaut])
             reset_variables_added_to_assigns
-             @template.send(:_evaluate_assigns_and_ivars)
+            @template.send(:_evaluate_assigns_and_ivars)
 
             generator = ActionView::Helpers::PrototypeHelper::JavaScriptGenerator.new(@template, &block)
             render_for_juggernaut(generator.to_s, options.is_a?(Hash) ? options[:juggernaut] : nil)
