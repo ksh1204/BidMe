@@ -1,0 +1,22 @@
+<h2>Write Message</h2>
+<%=form_tag :action=>'send_message'%>
+  <%=label_tag :sender_id%>
+  <br/>
+  <%=label_tag @message.sender.login%>
+  <br/>
+  <br/>
+
+  <%=label_tag :receiver%>
+  <br/>
+  <%=text_field_tag :receiver, (@message.receiver.login if @message.receiver)%>
+  <br/>
+  <br/>
+
+  <%=label_tag :description%>
+  <br/>
+  <%=text_area_tag :description%>
+  <br/>
+  <br/>	
+
+  <%=submit_tag 'Send'%>
+</form>
