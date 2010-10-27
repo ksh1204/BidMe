@@ -243,6 +243,15 @@ li.highlightable a{
 	-webkit-border-radius: 5px;
 }
 
+#popup{
+	width:200px;
+	height:80px;
+	border:1px solid #ff9900;
+	position: absolute;
+    bottom: 2px;
+	left: 20;
+}
+
 .awesome{
 display: inline-block;
 padding: 5px 10px 6px;

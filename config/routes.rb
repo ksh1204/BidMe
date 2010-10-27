@@ -12,7 +12,8 @@ ActionController::Routing::Routes.draw do |map|
   map.change_password 'users/change_password', :controller => 'users', :action => 'change_password'
   map.edit_user 'users/edit', :controller => 'users', :action => 'edit'
   map.home '/users/home', :controller => 'users', :action => 'home'
-  map.messagebox '/users/messagebox', :controller => 'users', :action => 'messagebox'
+  map.messagebox 'messagebox', :controller => 'users', :action => 'messagebox'
+  map.write_message 'write_message', :controller => 'users', :action => 'write_message'
   map.resources :users
 
   map.resource :session

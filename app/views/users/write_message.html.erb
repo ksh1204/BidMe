@@ -1,7 +1,4 @@
 <h2>Write Message</h2>
-
-<%= juggernaut(:client_id => current_user.id)%>
-
 <%=form_tag :action=>'send_message'%>
   <%=label_tag :sender_id%>
   <br/>
@@ -11,7 +8,7 @@
 
   <%=label_tag :receiver%>
   <br/>
-  <%=text_field_tag :receiver, (@message.receiver.login unless !@message.receiver)%>
+  <%=text_field_tag :receiver, (@message.receiver.login if @message.receiver)%>
   <br/>
   <br/>
 
