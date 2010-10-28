@@ -264,3 +264,27 @@ border-bottom: 1px solid #222;
 position: relative;
 cursor: pointer;
 }
+
+#columns {
+  background: #141;
+}
+
+#main {
+  margin-left: 13em;
+  padding-top: 4ex;
+  padding-left: 2em;
+  background: white;
+}
+
+#side {
+  float: left;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+  width: 12em;
+  background: #141;
+}
+
+#side a{
+	background:transparent;color:#999;font-weight:700;text-decoration:underline;
+}

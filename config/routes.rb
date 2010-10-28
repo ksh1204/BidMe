@@ -13,6 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_user 'users/edit', :controller => 'users', :action => 'edit'
   map.home '/users/home', :controller => 'users', :action => 'home'
   map.messagebox 'messagebox', :controller => 'users', :action => 'messagebox'
+  map.sent_messages 'sent_messages', :controller => 'users', :action => 'sent_messages'
   map.write_message 'write_message', :controller => 'users', :action => 'write_message'
   map.resources :users
 

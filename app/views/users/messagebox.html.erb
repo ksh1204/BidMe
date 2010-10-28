@@ -1,8 +1,33 @@
-<ul>
-  <% for message in @messages %>
-	<%if message%>
-    <li><%=h message.sender.login %></li>
-	<%= message.description%>
-	<%end%>
-  <% end %>
-</ul>
+<div id="columns">
+	<div id="side">
+  		<%=link_to "Write Message", :action => 'write_message'%><br/>
+		<%=link_to "Inbox", :action => 'messagebox'%><br/>
+      	<%=link_to "Sent Messages", :action => 'sent_messages'%><br/>
+    </div>
+    <div id="main">
+		<table id="message_box">
+		  <thead>
+			<th>Sender</th>
+			<th>Message</th>
+			<th>Date/Time</th>
+		  </thead>
+		  <tbody>
+		  <% if @messages.count > 0 %>
+		  	<% for message in @messages %>
+		    	<tr>
+					<%if message%>
+		    			<td><%= message.sender.login %></td>
+						<td><%= link_to truncate(message.description,40,'...'), :action => 'show_message', :id => message.id %></td>
+						<td><%= message.created_at %></td>
+					<%end%>
+				</tr>
+			<% end %>
+		  <% else %>
+			<tr>
+				<td><b><center>You have no messages in your inbox!</center></b></td>
+			</tr>
+		  <% end %>
+		  </tbody>
+		</table>
+    </div>
+</div>

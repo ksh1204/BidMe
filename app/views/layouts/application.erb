@@ -37,6 +37,12 @@
   </div>
 </div>
 <div id='main_content' class='content'>
+  <%if current_user%>
+  	<div id='user_#{current_user.id}'>
+	</div>
+  <%end%>
+  <%=render :partial => 'base/notification'%>
+
   <%=yield%>
 </div>
 </body>

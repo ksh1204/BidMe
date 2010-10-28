@@ -1,0 +1,33 @@
+<div id="columns">
+	<div id="side">
+  		<%=link_to "Write Message", :action => 'write_message'%><br/>
+		<%=link_to "Inbox", :action => 'messagebox'%><br/>
+      	<%=link_to "Sent Messages", :action => 'sent_messages'%><br/>
+    </div>
+    <div id="main">
+		<table id="sent_messages">
+		  <thead>
+			<th>Receiver</th>
+			<th>Message</th>
+			<th>Date/Time</th>
+		  </thead>
+		  <tbody>
+		  	<% if @sent_messages.count > 0 %>
+			  	<% for message in @sent_messages %>
+			    	<tr>
+						<%if message%>
+			    			<td><%= message.receiver.login %></td>
+							<td><%= truncate(message.description,40,'...') %></td>
+							<td><%= message.created_at %></td>
+						<%end%>
+					</tr>
+				<% end %>
+			  <% else %>
+				<tr>
+					<td><b><center>You have no sent messages!</center></b></td>
+				</tr>
+			  <% end %>
+		  </tbody>
+		</table>
+    </div>
+</div>
