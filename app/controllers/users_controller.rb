@@ -133,14 +133,13 @@ class UsersController < ApplicationController
       @user = current_user
       @receiver = User.find_by_login(params[:receiver])
       if @receiver
-        @message = @user.sent_messages.build(:receiver => @receiver, :description => params[:description])
+        @message = @user.sent_messages.build(:receiver_id => @receiver.id, :description => params[:description])
         @message.save
         render :juggernaut => {:type => :send_to_client, :client_id => @receiver.id} do |page|
           page.insert_html :top, :main_content, :partial => 'base/new_message', :object => @message
-          page.visual_effect :fade, :no_message, :duration => 1
+          page.visual_effect :fade, :no_message, :duration => 2
           page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
-          page.visual_effect :highlight, "message_#{@message.id}", :duration => 3
-          #page.insert_html :top, :main_content, "<script type=javascript/text>$('#message_box').effect('shake', { times:3 }, 200);</script>" 
+          page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
         end
         gflash :progress => "Your message is being sent"
       end
@@ -194,5 +193,20 @@ class UsersController < ApplicationController
     def remove_profile_photo
       @user = current_user
       @user.update_attribute(:profile_photo_file_name, nil)
+    end
+    
+    def report_user
+      @reporter = current_user
+      @reportee = User.find_by_login(params[:username])
+      @admin = User.find_by_login('admin')
+      @message = @reporter.sent_messages.build(:receiver_id => @admin.id, :description => "#{@reporter.login} has reported #{@reportee.login}! Do something about it!")
+      @message.save
+      render :juggernaut => {:type => :send_to_client, :client_id => @admin.id} do |page|
+        page.insert_html :top, :main_content, :partial => 'base/new_message', :object => @message
+        page.visual_effect :fade, :no_message, :duration => 2
+        page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
+        page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
+      end
+      gflash :progress => "Your report is being sent to Administrator"
     end
 end

@@ -2,3 +2,4 @@
 <%= @user.email %><br/>
 <%= @user.address %><br/>
 <%= @user.phone %><br/>
+<%= link_to "Report this user", :action => 'report_user', :username => @user.login%>

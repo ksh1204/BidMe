@@ -5,3 +5,4 @@ config/development.sphinx.conf
 db/sphinx/
 log/searchd.development.pid
 config/initializers/site_keys.rb
+public/system/
