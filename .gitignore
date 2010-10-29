@@ -1,0 +1,7 @@
+log/*.log
+tmp/**/*
+config/database.yml
+config/development.sphinx.conf
+db/sphinx/
+log/searchd.development.pid
+config/initializers/site_keys.rb
