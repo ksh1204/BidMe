@@ -15,6 +15,10 @@ ActionController::Routing::Routes.draw do |map|
   map.messagebox 'messagebox', :controller => 'users', :action => 'messagebox'
   map.sent_messages 'sent_messages', :controller => 'users', :action => 'sent_messages'
   map.write_message 'write_message', :controller => 'users', :action => 'write_message'
+  map.show_message 'message', :controller => 'users', :action => 'show_message'
+  map.show_sent_message 'sent_message', :controller => 'users', :action => 'show_sent_message'
+  map.profile 'profile', :controller => 'users', :action => 'profile'
+  map.remove_profile_photo 'remove_profile_photo', :controller => 'users', :action => 'remove_profile_photo'
   map.resources :users
 
   map.resource :session

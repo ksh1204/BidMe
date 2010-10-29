@@ -3,7 +3,7 @@
 <%else%>
 	<h2>Edit Your Profile Information</h2>
 <%end%>
-<%form_for @user, :url => {:action=>'update', :id=>@user.id} do |f|%>
+<%form_for @user, :url => {:action=>'update', :id=>@user.id}, :html => { :multipart => true } do |f|%>
 <%=f.error_messages%>
   
   <%=f.label :password%>
@@ -11,6 +11,14 @@
   <%=link_to 'Change Password', :action => 'change_password', :id => @user.id%>
   <br/>
   <br/>
+
+  <%= render :partial => 'profile_photo'%>
+  <%=link_to_remote "Remove Photo", :url => {:action => 'remove_profile_photo'}%>
+  <p>
+	  <%= f.label :profile_photo %><br />
+	  <%= f.file_field :profile_photo %>
+  </p>
+ 
 
   <%=f.label :email%>
   <br/>

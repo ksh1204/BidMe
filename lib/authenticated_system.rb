@@ -150,6 +150,7 @@ module AuthenticatedSystem
     # otherwise the request forgery protection fails. It's only really necessary
     # when you cross quarantine (logged-out to logged-in).
     def logout_killing_session!
+      #self.current_user.update_attribute(:logged_in,'false')
       logout_keeping_session!
       reset_session
     end

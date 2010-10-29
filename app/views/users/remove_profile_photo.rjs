@@ -1,0 +1,3 @@
+page['profile_photo'].hide
+page['profile_photo'].replace_html :partial => 'profile_photo'
+page['profile_photo'].slide_down(2500)

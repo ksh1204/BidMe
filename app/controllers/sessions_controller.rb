@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   def create
     logout_keeping_session!
     user = User.authenticate(params[:login], params[:password])
-    if user
+    if user && !user.logged_in
       # Protects against session fixation attacks, causes request forgery
       # protection if user resubmits an earlier form using back
       # button. Uncomment if you understand the tradeoffs.
@@ -18,8 +18,12 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
+      user.update_attribute(:logged_in, 'true')
       redirect_back_or_default('/')
       gflash :notice => "Logged in successfully"
+    elsif user && user.logged_in
+      gflash :error => "You are already logged in from a different browser/computer"
+      render :action => 'new'
     else
       note_failed_signin
       @login       = params[:login]
@@ -30,6 +34,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    current_user.update_attribute(:logged_in, 'false')
     logout_killing_session!
     gflash :notice => "You have been logged out."
     redirect_back_or_default('/')

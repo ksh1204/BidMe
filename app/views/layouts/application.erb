@@ -5,11 +5,11 @@
   <%= stylesheet_link_tag 'blueprint/print.css'%>
   <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
   <%= stylesheet_link_tag 'style'%>
-  <%= javascript_include_tag 'jquery', 'jquery-ui'%>
   <%= include_gritter_and_jquery %>
   <%= javascript_include_tag :juggernaut %>
   <%= juggernaut(:client_id => (current_user.id if current_user)) %>
-  
+  <%= javascript_include_tag 'jquery-ui' %>
+
   
 
 
@@ -18,6 +18,7 @@
 </head>
 
 <body>
+
 <div id='header'>
   <div class='content'>
     <a href='/' class='span-4'>

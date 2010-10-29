@@ -1,0 +1,23 @@
+<div id="columns">
+	<div id="side">
+  		<%=link_to "Write Message", :action => 'write_message'%><br/>
+		<%=link_to "Inbox", :action => 'messagebox'%><br/>
+      	<%=link_to "Sent Messages", :action => 'sent_messages'%><br/>
+    </div>
+    <div id="main">
+		<h2>Message to <%= @message.receiver.login %></h2>
+		  <table>
+			<tr>
+				<td>Receiver</td>
+				<td><%= @message.receiver.login %></td>
+			</tr>
+		    <tr>
+				<td>Description</td>
+				<td><%= @message.description %></td>
+			</tr>
+		    <tr>
+				<td><%= button_to 'Write', :action => 'write_message', :receiver => @message.receiver.login%></td>
+		  		<td><%= button_to "Back", request.env["HTTP_REFERER"] %></td>
+			</tr>
+    </div>
+</div>

@@ -11,19 +11,19 @@
 			<th>Message</th>
 			<th>Date/Time</th>
 		  </thead>
-		  <tbody>
+		  <tbody id="messages">
 		  <% if @messages.count > 0 %>
 		  	<% for message in @messages %>
-		    	<tr>
+		    	<tr id="message_<%=message.id%>">
 					<%if message%>
-		    			<td><%= message.sender.login %></td>
+		    			<td><%= link_to message.sender.login, :action => 'profile', :username => message.sender.login %></td>
 						<td><%= link_to truncate(message.description,40,'...'), :action => 'show_message', :id => message.id %></td>
 						<td><%= message.created_at %></td>
 					<%end%>
 				</tr>
 			<% end %>
 		  <% else %>
-			<tr>
+			<tr id="no_message">
 				<td><b><center>You have no messages in your inbox!</center></b></td>
 			</tr>
 		  <% end %>

@@ -1,0 +1,7 @@
+<tr id="message_<%=@message.id%>">
+	<%if @message%>
+		<td><%= link_to @message.sender.login, :action => 'profile', :username => @message.sender.login %></td>
+		<td><%= link_to truncate(@message.description,40,'...'), :action => 'show_message', :id => @message.id %></td>
+		<td><%= @message.created_at %></td>
+	<%end%>
+</tr>

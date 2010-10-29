@@ -137,6 +137,10 @@ class UsersController < ApplicationController
         @message.save
         render :juggernaut => {:type => :send_to_client, :client_id => @receiver.id} do |page|
           page.insert_html :top, :main_content, :partial => 'base/new_message', :object => @message
+          page.visual_effect :fade, :no_message, :duration => 1
+          page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
+          page.visual_effect :highlight, "message_#{@message.id}", :duration => 3
+          #page.insert_html :top, :main_content, "<script type=javascript/text>$('#message_box').effect('shake', { times:3 }, 200);</script>" 
         end
         gflash :progress => "Your message is being sent"
       end
@@ -164,7 +168,31 @@ class UsersController < ApplicationController
     end
     
     def show_message
-      @user = current_user
       @message = Message.find(params[:id])
+      if current_user.id == @message.receiver.id
+        render :action => 'show_message'
+      else
+        gflash :error => "Unknown request."
+        redirect_back_or_default('/')
+      end
+    end
+    
+    def show_sent_message
+      @message = Message.find(params[:id])
+      if current_user.id == @message.sender.id
+        render :action => 'show_sent_message'
+      else
+        gflash :error => "Unknown request."
+        redirect_back_or_default('/')
+      end
+    end
+    
+    def profile
+      @user = User.find_by_login(params[:username])
+    end
+    
+    def remove_profile_photo
+      @user = current_user
+      @user.update_attribute(:profile_photo_file_name, nil)
     end
 end

@@ -2,7 +2,7 @@
 <% @user.password = @user.password_confirmation = nil %>
 
 <%= error_messages_for :user %>
-<% form_for :user, :url => users_path do |f| -%>
+<% form_for :user, :url => users_path, :html => {:multipart => true} do |f| -%>
 <p><%= f.label :login %><br/>
 <%= f.text_field :login %></p>
 
@@ -26,6 +26,11 @@
 
 <p><%= f.label :phone, 'Phone Number' %><br/>
 <%= f.text_field :phone %></p>
+
+<p>
+  <%= f.label :profile_photo %><br />
+  <%= f.file_field :profile_photo %>
+</p>
 
 <p><%= submit_tag 'Sign up' %></p>
 <% end -%>

@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :receivers, :through => :sent_messages
   has_many :received_messages, :class_name => "Message", :foreign_key => "receiver_id"
   has_many :senders, :through => :received_messages, :source => :user
+  
 
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
@@ -33,11 +34,18 @@ class User < ActiveRecord::Base
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
   before_create :make_activation_code 
+  
+  has_attached_file :profile_photo, :default_url => "/images/default.jpg",
+  :styles => {
+    :thumb=> "50x50#",
+    :small  => "150x150>",
+    :medium => "300x300>",
+    :large =>   "400x400>" }
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :first_name, :last_name, :address, :phone, :password, :password_confirmation
+  attr_accessible :login, :email, :first_name, :last_name, :address, :phone, :password, :password_confirmation, :profile_photo
 
 
   # Activates the user in the database.
@@ -60,7 +68,8 @@ class User < ActiveRecord::Base
 
   def is_admin?
     self.is_admin
-  end
+  end 
+  
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.  
