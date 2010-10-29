@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
   has_many :received_messages, :class_name => "Message", :foreign_key => "receiver_id"
   has_many :senders, :through => :received_messages, :source => :user
   
+  has_many :follow_followers, :class_name => "Follow", :foreign_key => "follower_id"
+  has_many :followers, :through => :follow_followers
+  has_many :follow_followings, :class_name => "Follow", :foreign_key => "following_id"
+  has_many :followings, :through => :follow_followings, :source => :user
+  
 
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40

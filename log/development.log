@@ -54051,3 +54051,36 @@ Processing UsersController#remove_profile_photo (for 127.0.0.1 at 2010-10-28 23:
 Rendering users/remove_profile_photo
 Rendered users/_profile_photo (0.5ms)
 Completed in 13ms (View: 2, DB: 3) | 200 OK [http://localhost/remove_profile_photo]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (44.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20101022020957)
+Migrating to AddColumnsToUsers (20101022022834)
+Migrating to AddUserFields (20101022024315)
+Migrating to CreateUserRatings (20101023045220)
+Migrating to CreateUserComments (20101023052453)
+Migrating to CreateMessages (20101025025302)
+Migrating to AddIsLoggedInField (20101028215825)
+Migrating to AddAttachmentsProfilePhotoToUser (20101029034900)
+Migrating to CreateFollows (20101029063254)
+  [4;36;1mSQL (145.7ms)[0m   [0;1mCREATE TABLE `follows` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (4.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20101029063254')[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.7ms)[0m   [0mSHOW FIELDS FROM `follows`[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mdescribe `follows`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW KEYS FROM `follows`[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mSHOW FIELDS FROM `messages`[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mdescribe `messages`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW KEYS FROM `messages`[0m
+  [4;35;1mSQL (1.8ms)[0m   [0mSHOW FIELDS FROM `user_comments`[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mdescribe `user_comments`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW KEYS FROM `user_comments`[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSHOW FIELDS FROM `user_ratings`[0m
+  [4;35;1mSQL (2.5ms)[0m   [0mdescribe `user_ratings`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW KEYS FROM `user_ratings`[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW KEYS FROM `users`[0m
