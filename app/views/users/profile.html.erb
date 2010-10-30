@@ -1,10 +1,55 @@
-<%= @user.login %><br/>
-<%= @user.email %><br/>
-<%= @user.address %><br/>
-<%= @user.phone %><br/>
-<%= link_to "Report this user", :action => 'report_user', :username => @user.login%>
-<% if Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
-	<%= link_to "Unfollow", :action => 'unfollow_user', :username => @user.login %>
-<% else %>
-	<%= link_to "Follow", :action => 'follow_user', :username => @user.login %>
-<% end %>
+<div class="profile">
+	<div id="profile_head">
+		<div id="profile_head_photo">
+		<div id="user_profile_photo">
+			<%= image_tag @user.profile_photo.url(:small) %>
+		</div>
+		</div>
+		
+		<div id="profile_head_login">
+		<div id="user_profile_login">
+			<%= @user.login %><br/>
+		</div>
+		</div>
+	</div>
+	<div id="user_profile_report">
+		<%= link_to "Report this user", :action => 'report_user', :username => @user.login%>
+	</div>
+	<div id="user_profile_follow">
+		<% if Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
+			<%= link_to "Unfollow", :action => 'unfollow_user', :username => @user.login %>
+		<% else %>
+			<%= link_to "Follow", :action => 'follow_user', :username => @user.login %>
+		<% end %>
+	</div>
+	<hr class="horiz_line">
+	
+	<div id="profile_info">
+		<div id="basic_info_col1">
+		<h2>Basic Info</h2>
+		</div>
+		<div id="basic_info_col2">
+				<div id="email_label">
+					Email:
+				</div>
+				<div id="address_label">
+					Address:
+				</div>
+				<div id="phone_label">
+					Phone:
+				</div>
+		</div>
+		<div id="basic_info_col3">
+			<div id="user_profile_email">
+				<%= @user.email %><br/>
+			</div>
+			<div id="user_profile_address">
+				<%= @user.address %><br/>
+			</div>
+			<div id="user_profile_phone">
+				<%= @user.phone %><br/>
+			</div>
+		</div>
+	</div>
+	<hr class="horiz_line">
+</div>

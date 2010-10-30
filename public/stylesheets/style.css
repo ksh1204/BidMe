@@ -288,3 +288,74 @@ cursor: pointer;
 #side a{
 	background:transparent;color:#999;font-weight:700;text-decoration:underline;
 }
+
+#profile_head{
+	height:200px;
+}
+
+#profile_head_photo{
+	width: 30%;
+	float:left;
+}
+
+#profile_head_login{
+	width: 70%;
+	float:right;
+}
+
+#profile_info{
+	align:center;
+}
+
+#basic_info_col1{
+	float:left;
+	width: 20%;
+}
+
+#basic_info_col2{
+	float:left;
+	width: 10%;
+}
+
+#basic_info_col3{
+	float:left;
+	width:40%;
+}
+
+#user_profile_photo{
+	position: relative;
+	padding-top: 2px;
+	padding-left: 2px;
+	padding-right: 1px;
+	padding-bottom: 2px;
+}
+
+#user_profile_login{
+	position: relative;
+	font-family:"Lucida Console";
+	font-size: 1.0cm;
+}
+
+#user_profile_email{
+	position: relative;
+}
+
+#user_profile_address{
+	position: relative;
+}
+
+#user_profile_phone{
+	position: relative;
+}
+
+#user_profile_report{
+	position: relative;
+}
+
+#user_profile_follow{
+	position: relative;
+}
+
+.horiz_line{
+	color: red;
+}

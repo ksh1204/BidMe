@@ -208,7 +208,7 @@ class UsersController < ApplicationController
         page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
       end
       gflash :progress => "Your report is being sent to Administrator"
-      redirect_back_or_default('/')
+      redirect_to :action => 'profile', :username => @reportee.login
     end
     
     def follow_user
