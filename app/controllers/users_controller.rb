@@ -208,5 +208,43 @@ class UsersController < ApplicationController
         page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
       end
       gflash :progress => "Your report is being sent to Administrator"
+      redirect_back_or_default('/')
+    end
+    
+    def follow_user
+      @follower = current_user
+      @following = User.find_by_login(params[:username])
+      @user = @following
+      exist = Follow.find(:first, :conditions => {:follower_id => @follower.id, :following_id => @following.id})
+      if !exist
+        @follow = @follower.follow_followings.build(:following_id => @following.id)
+        @follow.save
+        @message = @follower.sent_messages.build(:receiver_id => @following.id, :description => "#{@follower.login} is following you!")
+        @message.save
+        render :juggernaut => {:type => :send_to_client, :client_id => @following.id} do |page|
+          page.insert_html :top, :main_content, :partial => 'base/new_message', :object => @message
+          page.visual_effect :fade, :no_message, :duration => 2
+          page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
+          page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
+        end
+        gflash :success => "You are now following #{@following.login}!"
+      else
+        gflash :error => "You are already following #{@following.login}!"
+      end
+      redirect_to :action => 'profile', :username => @following.login
+    end
+    
+    def unfollow_user
+      @follower = current_user
+      @following = User.find_by_login(params[:username])
+      @user = @following
+      exist = Follow.find(:first, :conditions => {:follower_id => @follower.id, :following_id => @following.id})
+      if exist
+        exist.destroy
+        gflash :success => "You are no longer following #{@following.login}!"
+      else
+        gflash :error => "You are already not following #{@following.login}!"
+      end
+      redirect_to :action => 'profile', :username => @following.login
     end
 end

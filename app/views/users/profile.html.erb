@@ -3,3 +3,8 @@
 <%= @user.address %><br/>
 <%= @user.phone %><br/>
 <%= link_to "Report this user", :action => 'report_user', :username => @user.login%>
+<% if Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
+	<%= link_to "Unfollow", :action => 'unfollow_user', :username => @user.login %>
+<% else %>
+	<%= link_to "Follow", :action => 'follow_user', :username => @user.login %>
+<% end %>

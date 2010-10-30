@@ -7,7 +7,9 @@
   <%= stylesheet_link_tag 'style'%>
   <%= include_gritter_and_jquery %>
   <%= javascript_include_tag :juggernaut %>
-  <%= juggernaut(:client_id => (current_user.id if current_user)) %>
+  <% if current_user %>
+  	<%= juggernaut(:client_id => current_user.id) %>
+  <% end %>
   <%= javascript_include_tag 'jquery-ui' %>
 
   

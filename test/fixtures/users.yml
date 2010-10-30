@@ -1,38 +1,74 @@
 
-quentin:
+admin:
   id:                        1
-  login:                     quentin
-  email:                     quentin@example.com
-  salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
-  crypted_password:          b0550c3dc1c381a67600386105a115750bdc3b9b # 'monkey'
+  login:                     admin
+  email:                     bidme410@gmail.com
+  salt:                      79c46c3c4a04861bb7809cf0e26a1a3254c94cc7 # SHA1('0')
+  crypted_password:          833fa39b509db797ab061d77f1943256b882565c # 'qwer1234'
+  first_name:                Bid
+  last_name:                 Me
+  is_admin:                  true
+  address:                   89273 SDGDK.ave
+  phone:                     2930850
+  money:                     100
   created_at:                <%= 5.days.ago.to_s :db  %>
   remember_token_expires_at: <%= 1.days.from_now.to_s %>
-  remember_token:            77de68daecd823babbb58edb1c8e14d7106e83bb
+  remember_token:            
   activation_code:           
   activated_at:              <%= 5.days.ago.to_s :db %>
       
-aaron:
+nkim1204:
   id:                        2
-  login:                     aaron
-  email:                     aaron@example.com
-  salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
-  crypted_password:          96253e8b3e4a7e139510fd08cc66d7f92313a254 # 'monkey'
-  created_at:                <%= 1.days.ago.to_s :db %>
-  remember_token_expires_at: 
+  login:                     nkim1204
+  email:                     nkim1204@gmail.com
+  salt:                      79c46c3c4a04861bb7809cf0e26a1a3254c94cc7 # SHA1('0')
+  crypted_password:          833fa39b509db797ab061d77f1943256b882565c # 'qwer1234'
+  first_name:                Nick
+  last_name:                 Kim
+  is_admin:                  false
+  address:                   89273 SDGDK.ave
+  phone:                     2930850
+  money:                     100
+  created_at:                <%= 5.days.ago.to_s :db  %>
+  remember_token_expires_at: <%= 1.days.from_now.to_s %>
   remember_token:            
-  activation_code:           1b6453892473a467d07372d45eb05abc2031647a
-  activated_at:              
+  activation_code:           
+  activated_at:              <%= 5.days.ago.to_s :db %>          
 
 
-old_password_holder:
+test_user:
   id:                        3
-  login:                     old_password_holder
-  email:                     salty_dog@example.com
-  salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at:                <%= 1.days.ago.to_s :db %>
-
+  login:                     test_user
+  email:                     ksh1204@hotmail.com
+  salt:                      79c46c3c4a04861bb7809cf0e26a1a3254c94cc7 # SHA1('0')
+  crypted_password:          833fa39b509db797ab061d77f1943256b882565c # 'qwer1234'
+  first_name:                Test
+  last_name:                 User
+  is_admin:                  false
+  address:                   89273 SDGDK.ave
+  phone:                     2930850
+  money:                     100
+  created_at:                <%= 5.days.ago.to_s :db  %>
+  remember_token_expires_at: <%= 1.days.from_now.to_s %>
+  remember_token:            
   activation_code:           
   activated_at:              <%= 5.days.ago.to_s :db %>
 
+yelnil:
+  id:                        4
+  login:                     yelnil
+  email:                     yelnil@gmail.com
+  salt:                      79c46c3c4a04861bb7809cf0e26a1a3254c94cc7 # SHA1('0')
+  crypted_password:          833fa39b509db797ab061d77f1943256b882565c # 'qwer1234'
+  first_name:                Yelnil
+  last_name:                 Gabo
+  is_admin:                  false
+  address:                   89273 SDGDK.ave
+  phone:                     2930850
+  money:                     100
+  created_at:                <%= 5.days.ago.to_s :db  %>
+  remember_token_expires_at: <%= 1.days.from_now.to_s %>
+  remember_token:            
+  activation_code:           
+  activated_at:              <%= 5.days.ago.to_s :db %>
 

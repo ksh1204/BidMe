@@ -20,6 +20,8 @@ ActionController::Routing::Routes.draw do |map|
   map.profile 'profile', :controller => 'users', :action => 'profile'
   map.remove_profile_photo 'remove_profile_photo', :controller => 'users', :action => 'remove_profile_photo'
   map.report_user 'report', :controller => 'users', :action => 'report_user'
+  map.follow_user 'follow', :controller => 'users', :action => 'follow_user'
+  map.unfollow_user 'unfollow', :controller => 'users', :action => 'unfollow_user'
   map.resources :users
 
   map.resource :session
