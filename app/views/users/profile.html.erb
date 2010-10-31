@@ -8,7 +8,7 @@
 		
 		<div id="profile_head_login">
 		<div id="user_profile_login">
-			<%= @user.login %><br/>
+			<%=@user.login%><br/>
 		</div>
 		</div>
 	</div>
@@ -66,8 +66,8 @@
 	<h2>User Comments</h2>
 	<%=form_tag :action => 'write_comment' %>
 	<%=hidden_field_tag :commentee_id, @user.id %>
-	<%=text_area_tag :description %>
-	<%=submit_tag "Comment"%>254:i
+	<%=text_area_tag :description %><br/>
+	<%=submit_tag "Comment"%>
 	</form>
 		<table id ="comments_table">
 			<thead>
@@ -79,9 +79,9 @@
 				<% for comment in @comments %>
 					<tr id="comment_<%=comment.id%>">
 					<td><%= image_tag comment.user.profile_photo.url(:thumb) %>
-					    <%= link_to comment.user.login,
-						:action => 'profile',
-					 	:user => comment.user.login%></td>
+					    <%= facebox_link_to comment.user.login,
+						:url => {:action => 'profile',
+					 	:username => comment.user.login}%></td>
 					<td><%= comment.description %></td>
 					</tr>
 				<% end %>

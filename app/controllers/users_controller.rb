@@ -199,6 +199,11 @@ class UsersController < ApplicationController
     def profile
       @user = User.find_by_login(params[:username])
 		  @comments = @user.user_comments
+		  respond_to do |format|
+		    format.html
+        format.js { render_to_facebox }
+      end
+      
     end
     
     def remove_profile_photo

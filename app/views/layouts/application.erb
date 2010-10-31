@@ -5,7 +5,9 @@
   <%= stylesheet_link_tag 'blueprint/print.css'%>
   <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
   <%= stylesheet_link_tag 'style'%>
-  <%= include_gritter_and_jquery %>
+  <%= stylesheet_link_tag 'facebox' %>
+  <%= include_gritter%>
+  <%= javascript_include_tag 'jquery-1.4.2', 'facebox'%>
   <%= javascript_include_tag :juggernaut %>
   <% if current_user %>
   	<%= juggernaut(:client_id => current_user.id) %>
