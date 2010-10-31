@@ -188,6 +188,7 @@ class UsersController < ApplicationController
     
     def profile
       @user = User.find_by_login(params[:username])
+		  @comments = @user.user_comments
     end
     
     def remove_profile_photo
@@ -247,4 +248,15 @@ class UsersController < ApplicationController
       end
       redirect_to :action => 'profile', :username => @following.login
     end
+
+		def write_comment
+			@user = current_user
+			@commentee = User.find(params[:commentee_id])
+			@comment = UserComment.new(:user_id => @user.id,
+																 :commentee_id => params[:commentee_id],
+																 :description => params[:description] )
+			@comment.save
+			redirect_to :action => 'profile', :username => @commentee.login
+		end
+
 end

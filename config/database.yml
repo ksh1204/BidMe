@@ -20,9 +20,9 @@ development:
   reconnect: false
   database: BidMe_development
   pool: 5
-  username: ksh
-  password: kshmelong
-  socket: /tmp/mysql.sock
+  username: root
+  password: qwe123qwe
+  socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -33,9 +33,9 @@ test:
   reconnect: false
   database: BidMe_test
   pool: 5
-  username: ksh
-  password: kshmelong
-  socket: /tmp/mysql.sock
+  username: root
+  password: qwe123qwe
+  socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql
@@ -43,6 +43,6 @@ production:
   reconnect: false
   database: BidMe_production
   pool: 5
-  username: ksh
-  password: kshmelong
-  socket: /tmp/mysql.sock
+  username: root
+  password: qwe123qwe
+  socket: /var/run/mysqld/mysqld.sock

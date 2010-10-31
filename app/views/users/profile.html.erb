@@ -52,4 +52,36 @@
 		</div>
 	</div>
 	<hr class="horiz_line">
+
+	<div id ="comment_section">
+	<h2>User Comments</h2>
+	<%=form_tag :action => 'write_comment' %>
+	<%=hidden_field_tag :commentee_id, @user.id %>
+	<%=text_area_tag :description %>
+	<%=submit_tag "Comment"%>254:i
+	</form>
+		<table id ="comments_table">
+			<thead>
+				<th>User</th>
+				<th>Comment</th>
+			</thead>
+			<tbody id="comments_body">
+			<% if @comments.count > 0 %>
+				<% for comment in @comments %>
+					<tr id="comment_<%=comment.id%>">
+					<td><%= image_tag comment.user.profile_photo.url(:thumb) %>
+					    <%= link_to comment.user.login,
+						:action => 'profile',
+					 	:user => comment.user.login%></td>
+					<td><%= comment.description %></td>
+					</tr>
+				<% end %>
+			<% else %>
+				<tr id="no_comments">
+					<td><center>This user has no comments.</center></td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+	</div>
 </div>

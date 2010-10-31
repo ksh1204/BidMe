@@ -5,3 +5,12 @@
 #
 # two:
 #   column: value
+
+one:
+  id:                        1
+  user_id:                   4
+  commentee_id:              2
+  description:               "Hello sucker"
+  created_at:                <%= 5.days.ago.to_s :db  %>
+
+      

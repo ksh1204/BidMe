@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :user_ratings
   has_many :ratees, :through => :user_ratings
   
-  has_many :user_comments
+  has_many :user_comments, :foreign_key => "commentee_id"
   has_many :commentees, :through => :user_comments
   
   has_many :sent_messages, :class_name => "Message", :foreign_key => "sender_id"
