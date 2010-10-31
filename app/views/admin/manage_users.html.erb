@@ -1,0 +1,34 @@
+<div id="columns">
+	<div id="side">
+  		<%=link_to "Manage Users", :action => 'manage_users'%><br/>
+		<%=link_to "Manage Auctions", :action => 'manage_auctions'%><br/>
+    </div>
+    <div id="main">
+				<table id="manage_users">
+				  <thead>
+					<th>User</th>
+					<th>Email</th>
+					<th>Registered Date</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Address</th>
+					<th>Phone</th>
+					<th>Money</th>
+				  </thead>
+				  <tbody id="manage_users_tbody">
+					<% for user in @users %>
+						<tr class='highlightable'>
+							<td><%=link_to user.login, :controller => 'users', :action => 'profile', :username => user.login%></td>
+							<td><%=user.email%></td>
+							<td><%=user.created_at%></td>
+							<td><%=user.first_name%></td>
+							<td><%=user.last_name%></td>
+							<td><%=user.address%></td>
+							<td><%=user.phone%></td>
+							<td><%=user.money%></td>
+						</tr>
+					<% end %>
+				  </tbody>
+				</table>
+    </div>
+</div>

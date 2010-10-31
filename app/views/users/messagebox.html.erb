@@ -14,7 +14,7 @@
 		  <tbody id="messages">
 		  <% if @messages.count > 0 %>
 		  	<% for message in @messages %>
-		    	<tr id="message_<%=message.id%>">
+		    	<tr id="message_<%=message.id%>" class='highlightable'>
 					<%if message%>
 		    			<td><%= link_to message.sender.login, :action => 'profile', :username => message.sender.login %></td>
 						<td><%= link_to truncate(message.description,40,'...'), :action => 'show_message', :id => message.id %></td>

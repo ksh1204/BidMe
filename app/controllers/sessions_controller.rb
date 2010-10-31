@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   def create
     logout_keeping_session!
     user = User.authenticate(params[:login], params[:password])
-    if user && !user.logged_in
+    if user && !user.logged_in && !user.is_banned
       # Protects against session fixation attacks, causes request forgery
       # protection if user resubmits an earlier form using back
       # button. Uncomment if you understand the tradeoffs.
@@ -23,6 +23,9 @@ class SessionsController < ApplicationController
       gflash :notice => "Logged in successfully"
     elsif user && user.logged_in
       gflash :error => "You are already logged in from a different browser/computer"
+      render :action => 'new'
+    elsif user && user.is_banned
+      gflash :error => "You are banned from signing in! Please email BidMe Administrator!"
       render :action => 'new'
     else
       note_failed_signin

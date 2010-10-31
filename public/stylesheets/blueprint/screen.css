@@ -37,7 +37,7 @@ p {margin:0 0 1.5em;}
 p img.left {float:left;margin:1.5em 1.5em 1.5em 0;padding:0;}
 p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
 a:focus, a:hover {color:#666;}
-a {color:#444;text-decoration:underline;}
+a {color:#444;text-decoration:none;}
 blockquote {margin:1.5em;color:#000;font-style:italic;}
 strong {font-weight:bold;}
 em, dfn {font-style:italic;}

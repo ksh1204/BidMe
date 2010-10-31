@@ -252,10 +252,12 @@ class UsersController < ApplicationController
 		def write_comment
 			@user = current_user
 			@commentee = User.find(params[:commentee_id])
-			@comment = UserComment.new(:user_id => @user.id,
-																 :commentee_id => params[:commentee_id],
-																 :description => params[:description] )
-			@comment.save
+			if !(params[:description] == "")
+			  @comment = UserComment.new(:user_id => @user.id,
+																   :commentee_id => params[:commentee_id],
+																   :description => params[:description] )
+			  @comment.save
+			end
 			redirect_to :action => 'profile', :username => @commentee.login
 		end
 

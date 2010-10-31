@@ -286,7 +286,7 @@ cursor: pointer;
 }
 
 #side a{
-	background:transparent;color:#999;font-weight:700;text-decoration:underline;
+	background:transparent;color:#999;font-weight:700;text-decoration:none;
 }
 
 #profile_head{
@@ -358,4 +358,8 @@ cursor: pointer;
 
 .horiz_line{
 	color: red;
+}
+
+.no_underline{
+	text-decoration: none;
 }

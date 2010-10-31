@@ -25,6 +25,18 @@ class UserMailer < ActionMailer::Base
     @body[:url]  = "http://localhost:3000/"
   end
   
+  def ban_notification(user)
+    setup_email(user)
+    @subject += 'You have been banned!'
+    @body = "If you want to be unbanned, please send an email to BidMe Administrator bidme410@gmail.com"
+  end
+  
+  def unban_notification(user)
+    setup_email(user)
+    @subject += 'You have been unbanned!'
+    @body = "Congratulations! You just have been unbanned!"
+  end
+  
   protected
     def setup_email(user)
       @recipients  = "#{user.email}"
