@@ -18,7 +18,7 @@
 				  <tbody id="manage_users_tbody">
 					<% for user in @users %>
 						<tr class='highlightable'>
-							<td><%=link_to user.login, :controller => 'users', :action => 'profile', :username => user.login%></td>
+							<td><%=facebox_link_to user.login, :url => {:controller => 'users', :action => 'profile', :username => user.login}%></td>
 							<td><%=user.email%></td>
 							<td><%=user.created_at%></td>
 							<td><%=user.first_name%></td>
