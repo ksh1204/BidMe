@@ -1,8 +1,6 @@
 <div id="columns">
 	<div id="side">
-  		<%=link_to "Write Message", :action => 'write_message'%><br/>
-		<%=link_to "Inbox", :action => 'messagebox'%><br/>
-      	<%=link_to "Sent Messages", :action => 'sent_messages'%><br/>
+  		<%= render :partial => 'messagebox_menu' %>
     </div>
     <div id="main">
 		<h2>Message to <%= @message.receiver.login %></h2>
@@ -13,7 +11,7 @@
 			</tr>
 		    <tr>
 				<td>Description</td>
-				<td><%= @message.description %></td>
+				<td><pre><%= @message.description %></pre></td>
 			</tr>
 		    <tr>
 				<td><%= button_to 'Write', :action => 'write_message', :receiver => @message.receiver.login%></td>

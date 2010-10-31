@@ -1,8 +1,6 @@
 <div id="columns">
 	<div id="side">
-  		<%=link_to "Write Message", :action => 'write_message'%><br/>
-		<%=link_to "Inbox", :action => 'messagebox'%><br/>
-      	<%=link_to "Sent Messages", :action => 'sent_messages'%><br/>
+  		<%= render :partial => 'messagebox_menu' %>
     </div>
     <div id="main">
 		<table id="message_box">
@@ -14,11 +12,17 @@
 		  <tbody id="messages">
 		  <% if @messages.count > 0 %>
 		  	<% for message in @messages %>
-		    	<tr id="message_<%=message.id%>" class='highlightable'>
+		    	<tr id="message_<%=message.id%>" <%if message.unread%>class='highlightable unread_message' <%else%>class='highlightable'<%end%>>
 					<%if message%>
-		    			<td><%= link_to message.sender.login, :action => 'profile', :username => message.sender.login %></td>
-						<td><%= link_to truncate(message.description,40,'...'), :action => 'show_message', :id => message.id %></td>
-						<td><%= message.created_at %></td>
+						<%if message.unread%>
+		    				<td><%= link_to message.sender.login, {:action => 'profile', :username => message.sender.login}, {:class => 'unread_message'} %></td>
+							<td><%= link_to truncate(message.description,40,'...'), {:action => 'show_message', :id => message.id}, {:class => 'unread_message'} %></td>
+							<td class='unread_message'><%= message.created_at%></td>
+						<%else%>
+							<td><%= link_to message.sender.login, {:action => 'profile', :username => message.sender.login}, {} %></td>
+							<td><%= link_to truncate(message.description,40,'...'), {:action => 'show_message', :id => message.id},{} %></td>
+							<td><%= message.created_at %></td>
+						<%end%>
 					<%end%>
 				</tr>
 			<% end %>
@@ -29,5 +33,6 @@
 		  <% end %>
 		  </tbody>
 		</table>
+		<center><%= will_paginate @messages %></center>
     </div>
 </div>

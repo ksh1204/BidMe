@@ -41,6 +41,8 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
+require "will_paginate"
+
 ActionMailer::Base.smtp_settings = {
   :enable_starttls_auto => true,
   :address        => 'smtp.gmail.com',

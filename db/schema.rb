@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101029063254) do
+ActiveRecord::Schema.define(:version => 20101031094123) do
 
   create_table "follows", :force => true do |t|
     t.integer  "follower_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20101029063254) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "unread",      :default => true
   end
 
   create_table "user_comments", :force => true do |t|

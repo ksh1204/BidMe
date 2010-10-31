@@ -1,0 +1,5 @@
+<%if @num_unread == 0%>
+	<%=link_to "Inbox", {:action => 'messagebox'}, {:id => 'inbox_link'}%>
+<%else%>
+	<%=link_to "Inbox(#{@num_unread})", {:action => 'messagebox'}, {:id => 'inbox_link'}%>
+<%end%>

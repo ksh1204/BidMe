@@ -1,7 +1,7 @@
-<tr id="message_<%=@message.id%>">
+<tr id="message_<%=@message.id%>" class='highlightable'>
 	<%if @message%>
-		<td><%= link_to @message.sender.login, :action => 'profile', :username => @message.sender.login %></td>
-		<td><%= link_to truncate(@message.description,40,'...'), :action => 'show_message', :id => @message.id %></td>
-		<td><%= @message.created_at %></td>
+		<td><%= link_to @message.sender.login, {:action => 'profile', :username => @message.sender.login}, {:class => 'unread_message'} %></td>
+		<td><%= link_to truncate(@message.description,40,'...'), {:action => 'show_message', :id => @message.id}, {:class => 'unread_message'} %></td>
+		<td class='unread_message'><%= @message.created_at%></td>
 	<%end%>
 </tr>

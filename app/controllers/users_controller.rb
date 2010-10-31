@@ -135,9 +135,12 @@ class UsersController < ApplicationController
       if @receiver
         @message = @user.sent_messages.build(:receiver_id => @receiver.id, :description => params[:description])
         @message.save
+        @unread_messages = Message.find(:all, :conditions => {:receiver_id => @receiver.id, :unread => true})
+        @num_unread = @unread_messages.count
         render :juggernaut => {:type => :send_to_client, :client_id => @receiver.id} do |page|
           page.insert_html :top, :main_content, :partial => 'base/new_message', :object => @message
           page.visual_effect :fade, :no_message, :duration => 2
+          page.replace :inbox_link, :partial => 'update_inbox_link', :object => @num_unread
           page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
           page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
         end
@@ -151,6 +154,7 @@ class UsersController < ApplicationController
       @user = current_user
       @message = Message.new
       @message.sender = current_user
+      @unread_messages = Message.find(:all, :conditions => {:receiver_id => current_user.id, :unread => true})
       if params[:receiver]
         @message.receiver = User.find_by_login(params[:receiver])
       end
@@ -158,16 +162,21 @@ class UsersController < ApplicationController
     
     def messagebox
       @user = current_user
-      @messages = @user.received_messages.sort_by{|m| m.created_at}.reverse
+      @messages = Message.paginate_by_receiver_id @user.id, :page => params[:page], :order => 'created_at DESC', :per_page => 10
+      #@messages = @user.received_messages.sort_by{|m| m.created_at}.reverse
+      @unread_messages = Message.find(:all, :conditions => {:receiver_id => current_user.id, :unread => true})
     end
     
     def sent_messages
       @user = current_user
       @sent_messages = @user.sent_messages.sort_by{|m| m.created_at}.reverse
+      @unread_messages = Message.find(:all, :conditions => {:receiver_id => current_user.id, :unread => true})
     end
     
     def show_message
       @message = Message.find(params[:id])
+      @message.update_attribute(:unread,false)
+      @unread_messages = Message.find(:all, :conditions => {:receiver_id => current_user.id, :unread => true})
       if current_user.id == @message.receiver.id
         render :action => 'show_message'
       else
@@ -178,6 +187,7 @@ class UsersController < ApplicationController
     
     def show_sent_message
       @message = Message.find(params[:id])
+      @unread_messages = Message.find(:all, :conditions => {:receiver_id => current_user.id, :unread => true})
       if current_user.id == @message.sender.id
         render :action => 'show_sent_message'
       else
