@@ -1,0 +1,6 @@
+if @item_category.errors.blank?
+  page.insert_html :bottom, :items_list, :partial => 'item_categories/item_category'
+  page['addCategory'].hide
+else
+  page['addCategory'].replace_html :partial => 'item_categories/new'
+end

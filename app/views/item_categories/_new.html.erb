@@ -1,0 +1,15 @@
+<div class="slide_down">
+  <h3 class='float-l'>Add A New Item Category</h3>
+  <%=link_to_remote 'Cancel', :url => {:controller => 'item_categories', :action => 'new', :cancel => 'true'}, :html => {:class => 'float-r'}%>
+  <br class='clear'>
+<%form_remote_for @item_category, :url=> {:controller => 'item_categories', :action=>'create'} do |f|%>
+  <%=f.error_messages%>
+  <%=f.label :name%>
+  <%=f.text_field :name%><br />
+  <hr>
+  <%=f.submit 'Submit'%>
+  <%=link_to_remote 'close', :url => {:controller => 'item_categories', :action => 'new', :cancel => 'true'}%>
+<%end%>
+
+
+</div>

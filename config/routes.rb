@@ -22,7 +22,16 @@ ActionController::Routing::Routes.draw do |map|
   map.report_user 'report', :controller => 'users', :action => 'report_user'
   map.follow_user 'follow', :controller => 'users', :action => 'follow_user'
   map.unfollow_user 'unfollow', :controller => 'users', :action => 'unfollow_user'
+  map.delete_category 'item_categories/destroy/:id', :controller=> 'item_categories', :action => 'destroy'
+  map.edit_category 'item_categories/edit/:id', :controller=> 'item_categories', :action => 'edit'
+  map.post '/post', :controller =>'items', :action => 'create'
+  map.post_item 'post_item', :controller => 'items', :action => 'new'
+  
+  
   map.resources :users
+  
+  map.resources :items
+  map.resources :item_categories
 
   map.resource :session
   

@@ -1,0 +1,18 @@
+<div id="columns">
+	<div id="side">
+  		<%=link_to "Manage Users", :action => 'manage_users'%><br/>
+		<%=link_to "Manage Auctions", :action => 'manage_auctions'%><br/>
+		<%=link_to "Manage Item Categories", :action => 'manage_item_categories'%><br/>
+    </div>
+    <div id="main">
+		<%=link_to_remote 'Add Category', :url => {:controller => 'item_categories', :action => 'new'}, :html=>{:class=>'float-r'}%>
+		<br class='clear'>
+		<div id='edit_category' style='display:none'></div>
+		<div id='addCategory' style='display:none'></div>
+		<hr>
+
+		<ul id='items_list' class='ajax_list'>
+		  <%=render :partial => 'item_categories/item_category', :collection => @categories%>
+		</ul>
+    </div>
+</div>

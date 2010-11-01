@@ -7,6 +7,10 @@ class AdminController < ApplicationController
     @users = User.all
   end
   
+  def manage_item_categories
+    @categories = ItemCategory.all
+  end
+  
   def manage_auctions
   end
   

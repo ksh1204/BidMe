@@ -1,0 +1,2 @@
+id = dom_id(@item_category)
+page[id].slide_up

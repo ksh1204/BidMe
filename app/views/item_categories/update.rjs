@@ -1,0 +1,8 @@
+id = dom_id(@item_category)
+if @item_category.errors.blank?
+  page[id].replace :partial => 'item_categories/item_category', :collection => [@item_category]
+  page['edit_category'].slide_up
+  page.visual_effect :highlight, id, :duration => 3
+else
+  page['edit_category'].replace_html :partial => 'item_categories/edit'
+end

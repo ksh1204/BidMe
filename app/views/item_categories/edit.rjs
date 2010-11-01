@@ -1,0 +1,7 @@
+unless params[:cancel]
+  page['addCategory'].hide
+  page['edit_category'].replace_html :partial=>'item_categories/edit'
+  page['edit_category'].slide_down
+else
+  page['edit_category'].slide_up
+end

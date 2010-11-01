@@ -9,11 +9,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101031094123) do
+ActiveRecord::Schema.define(:version => 20101101013412) do
 
   create_table "follows", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "following_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "item_category_id"
+    t.boolean  "bin"
+    t.float    "bin_price"
+    t.string   "item_photo_file_name"
+    t.string   "item_photo_content_type"
+    t.integer  "item_photo_file_size"
+    t.datetime "item_photo_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,10 +47,26 @@ ActiveRecord::Schema.define(:version => 20101031094123) do
     t.boolean  "unread",      :default => true
   end
 
+  create_table "transactions", :force => true do |t|
+    t.integer  "buyer_id"
+    t.integer  "seller_id"
+    t.integer  "item_id"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_comments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "commentee_id"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_items", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,5 +103,12 @@ ActiveRecord::Schema.define(:version => 20101031094123) do
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+
+  create_table "watches", :force => true do |t|
+    t.integer  "watcher_id"
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
