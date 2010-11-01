@@ -26,6 +26,7 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_category 'item_categories/edit/:id', :controller=> 'item_categories', :action => 'edit'
   map.post '/post', :controller =>'items', :action => 'create'
   map.post_item 'post_item', :controller => 'items', :action => 'new'
+  map.search_item 'search', :controller => 'items', :action => 'search'
   
   
   map.resources :users

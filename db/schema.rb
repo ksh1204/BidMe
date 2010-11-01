@@ -28,12 +28,14 @@ ActiveRecord::Schema.define(:version => 20101101013412) do
     t.string   "name"
     t.text     "description"
     t.integer  "item_category_id"
+    t.float    "start_price"
     t.boolean  "bin"
     t.float    "bin_price"
     t.string   "item_photo_file_name"
     t.string   "item_photo_content_type"
     t.integer  "item_photo_file_size"
     t.datetime "item_photo_updated_at"
+    t.boolean  "delta",                   :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

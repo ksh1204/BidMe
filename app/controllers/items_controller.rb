@@ -11,7 +11,8 @@ class ItemsController < ApplicationController
     @item = Item.new(params[:item])
     success = @item && @item.save
     if success && @item.errors.empty?
-      current_user.user_items.build(:item_id => @item.id)
+      @user_item = current_user.user_items.build(:item_id => @item.id)
+      @user_item.save
       redirect_back_or_default('/')
       gflash :success => "Thanks for posting!"
     else
@@ -21,6 +22,7 @@ class ItemsController < ApplicationController
   end
   
   def search
+    @items = Item.search params[:q], :page => 1, :per_page => 20
   end
   
   def show
