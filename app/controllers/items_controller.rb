@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   
   def new
     @item = Item.new
+    session[:bin_checked] = false
   end
   
   def create
@@ -13,9 +14,10 @@ class ItemsController < ApplicationController
     if success && @item.errors.empty?
       @user_item = current_user.user_items.build(:item_id => @item.id)
       @user_item.save
+      session[:bin_checked] = nil
       redirect_back_or_default('/')
       gflash :success => "Thanks for posting!"
-    else
+    else      
       gflash :error  => "Post failed. Try again."
       render :action => 'new'
     end
@@ -26,5 +28,9 @@ class ItemsController < ApplicationController
   end
   
   def show
+  end
+  
+  def bin_check
+    @bin = session[:bin_checked] = !session[:bin_checked]
   end
 end

@@ -1,0 +1,26 @@
+<% if @items.count == 0 %>
+	<center><p>"There are no items in this category"</p></center>
+<% else %>
+
+<% for item in @items %>
+	<table>
+		<tr>
+			<td style="width:5%">User</td>
+			<td><%=item.user.login%></td>
+		</tr>
+			<td style="width:5%">Category</td>
+			<td><%=item.item_category.name%></td>
+		</tr>
+		<tr>
+			<td style="width:5%">Name</td>
+			<td><%=item.name%></td>
+		</tr>
+		<tr>
+			<td style="width:5%">Description</td>
+			<td><%=truncate(item.description,100,'...')%></td>
+		</tr>
+	</table>
+	<hr/>
+<% end %>
+
+<% end %>

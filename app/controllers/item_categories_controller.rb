@@ -36,4 +36,5 @@ class ItemCategoriesController < ApplicationController
     @item_category.update_attributes(params[:item_category])
     @item_category.save
   end
+
 end

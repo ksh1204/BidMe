@@ -1,0 +1,5 @@
+if @bin
+  page['bin_price'].slide_down()
+else
+  page['bin_price'].slide_up()
+end

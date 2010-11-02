@@ -32,12 +32,8 @@
     <%= render :partial=> 'users/user_bar'%>
     
     <div class='header_link_container'>
-    <%=link_to 'About', {:controller => 'base', :action => 'about'}, :class => 'header_link span-4'%>
-    <%=link_to 'Contribute', {:controller => 'recipes', :action => 'new'}, :class => 'header_link span-4'%>
-    <%=link_to 'Recipes', {:controller => 'recipes', :action => 'index_all'}, :class => 'header_link span-4'%>
-    <%=link_to 'Search', {:controller => 'items', :action => 'index'}, :class => 'header_link span-4'%>
-    <%if current_user%><%=link_to 'Grocery List', {:controller => 'grocery_ingredients', :action => ''}, :class => 'header_link span-4'%><%end%>
-    
+    <%=link_to 'Post', {:controller => 'items', :action => 'new'}, :class => 'header_link span-4'%>
+    <%=link_to 'Search', {:controller => 'items', :action => 'index'}, :class => 'header_link span-4'%>  
     </div>
   </div>
 </div>

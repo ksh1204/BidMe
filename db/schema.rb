@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20101101013412) do
     t.float    "start_price"
     t.boolean  "bin"
     t.float    "bin_price"
+    t.integer  "time_limit"
     t.string   "item_photo_file_name"
     t.string   "item_photo_content_type"
     t.integer  "item_photo_file_size"

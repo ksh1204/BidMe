@@ -12,7 +12,21 @@ class Item < ActiveRecord::Base
     :medium => "300x300>",
     :large =>   "400x400>" }
     
-  attr_accessible :name, :description, :bin, :bin_price, :item_category_id, :item_photo
+  validates_presence_of     :name
+  validates_length_of       :name,    :within => 3..40
+  
+  validates_presence_of     :description
+  validates_length_of       :description,    :within => 3..500
+  
+  validates_presence_of     :bin
+
+  validates_presence_of     :item_category_id
+  
+  validates_presence_of     :start_price
+  
+  validates_presence_of     :time_limit
+    
+  attr_accessible :name, :description, :bin, :bin_price, :item_category_id, :item_photo, :start_price, :time_limit
   
   define_index do
     indexes :name, :sortable => true
