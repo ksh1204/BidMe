@@ -30,6 +30,9 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @diff = Time.parse(@item.created_at.to_s)+@item.time_limit-Time.now.utc
+    if @diff.to_f <= 0
+      @item.update_attribute(:closed,true)
+    end
     @end_date = Time.parse(@item.created_at.to_s)+@item.time_limit
     @bids = @item.bids
     @highest_bid = nil

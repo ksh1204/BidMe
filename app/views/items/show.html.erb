@@ -103,8 +103,9 @@ function displayCountdown(countdn,cd) {
 	 	if (secs < 10) secs = '0'+secs;
 			var countdn1 = (countdn - secs) / 60;
 		var mins = countdn1 % 60; 
-		if (mins < 10) mins = '0'+mins;
-			countdn1 = (countdn1 - mins) / 60;
+		if (mins < 10) 
+			mins = '0'+mins;
+		countdn1 = (countdn1 - mins) / 60;
 		var hours = countdn1 % 24;
 		var days = (countdn1 - hours) / 24;
 		document.getElementById(cd).innerHTML = days+' days + '+hours+' : '+mins+' : '+secs;setTimeout('displayCountdown('+(countdn-1)+',\''+cd+'\');',999);}}

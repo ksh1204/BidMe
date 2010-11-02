@@ -291,7 +291,11 @@ class UsersController < ApplicationController
 		  if !price
 		    gflash :error => "Price cannot be empty"
 		    redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
+		  elsif @item.closed
+		    gflash :error => "This auction is closed."
+		    redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
 		  end
+		    
 		  if @bids.count > 0
 		    @highest = @bids.first
 		    if price.to_f <= @highest.price
