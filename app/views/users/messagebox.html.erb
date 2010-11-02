@@ -3,6 +3,7 @@
   		<%= render :partial => 'messagebox_menu' %>
     </div>
     <div id="main">
+		<h3>Inbox</h3>
 		<table id="message_box">
 		  <thead>
 			<th>Sender</th>
@@ -17,11 +18,11 @@
 						<%if message.unread%>
 		    				<td><%= link_to message.sender.login, {:action => 'profile', :username => message.sender.login}, {:class => 'unread_message'} %></td>
 							<td><%= link_to truncate(message.description,40,'...'), {:action => 'show_message', :id => message.id}, {:class => 'unread_message'} %></td>
-							<td class='unread_message'><%= message.created_at.strftime("%y-%m-%d %H:%M") %></td>
+							<td class='unread_message'><%= message.created_at.strftime("%b %d, %Y %I:%M %p") %></td>
 						<%else%>
 							<td><%= link_to message.sender.login, {:action => 'profile', :username => message.sender.login}, {} %></td>
 							<td><%= link_to truncate(message.description,40,'...'), {:action => 'show_message', :id => message.id},{} %></td>
-							<td><%= message.created_at.strftime("%y-%m-%d %H:%M") %></td>
+							<td><%= message.created_at.strftime("%b %d, %Y %I:%M %p") %></td>
 						<%end%>
 					<%end%>
 				</tr>

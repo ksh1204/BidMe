@@ -5,15 +5,14 @@
     <div id="main">
 		<h2>Write Message</h2>
 		<%=form_tag :action=>'send_message'%>
-		  <%=label_tag :sender_id%>
-		  <br/>
-		  <%=label_tag @message.sender.login%>
+		<table><tr>
+		  <td style="width:5%"><h3><%=label_tag "FROM"%></h3></td>
+		  <td><h3><%=label_tag @message.sender.login%></h3></td></tr>
 		  <br/>
 		  <br/>
 
-		  <%=label_tag :receiver%>
-		  <br/>
-		  <%=text_field_tag :receiver, (@message.receiver.login if @message.receiver)%>
+		  <tr><td style="width:5%"><h3><%=label_tag "TO"%></h3></td>
+		  <td><h3><%=text_field_tag :receiver, (@message.receiver.login if @message.receiver)%></h3></td></tr></table>
 		  <br/>
 		  <br/>
 
@@ -23,8 +22,8 @@
 		  <br/>
 		  <br/>	
 
-		  <%=submit_tag 'Send'%>
-		  <%= button_to "Back", request.env["HTTP_REFERER"] %>
+		  <table><tr><td style="width:5%"><%=submit_tag 'Send'%></td>
+		  <td><%= button_to "Back", request.env["HTTP_REFERER"] %></td></tr></table>
 		</form>
     </div>
 </div>

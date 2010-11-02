@@ -3,6 +3,7 @@
   		<%= render :partial => 'messagebox_menu' %>
     </div>
     <div id="main">
+		<h3>Sent Messages</h3>
 		<table id="sent_messages">
 		  <thead>
 			<th>Receiver</th>
@@ -16,7 +17,7 @@
 						<%if message%>
 			    			<td><%= link_to message.receiver.login, :action => 'profile', :username => message.receiver.login %></td>
 							<td><%= link_to truncate(message.description,40,'...'), :action => 'show_sent_message', :id => message.id %></td>
-							<td><%= message.created_at.strftime("%y-%m-%d %H:%M") %></td>
+							<td><%= message.created_at.strftime("%b %d, %Y %I:%M %p") %></td>
 						<%end%>
 					</tr>
 				<% end %>
