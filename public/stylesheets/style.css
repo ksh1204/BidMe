@@ -376,3 +376,33 @@ width: 650px;
 .unread_message{
 	font-color:blue; font-weight:900;
 }
+
+/*COUNTER SPECIFIC STYLES */
+.counter{
+	width: 610px;
+}
+.counter ul.countdown{
+	list-style-type: none;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+.counter ul.countdown li{
+	float: left;
+	background: url(digit.png) no-repeat;
+	height:110px;
+	width: 105px;
+	padding-top: 15px;
+}
+.counter ul.countdown li div{
+	font-size: 15px;
+}
+.counter ul.countdown li div.countdown_num{
+	font-size: 48px;
+}
+.counter ul.countdown li.no_countdown{
+	padding-top:4px;
+	background:transparent;
+	height:110px;
+	width:180px;
+}

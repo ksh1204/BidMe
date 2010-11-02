@@ -14,6 +14,7 @@ class CreateItems < ActiveRecord::Migration
       t.datetime :item_photo_updated_at
       t.boolean :delta, :default => true, :null => false
       t.float :current_price
+      t.boolean :closed, :default => false
       t.timestamps
     end
   end

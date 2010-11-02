@@ -29,6 +29,8 @@ class ItemsController < ApplicationController
   
   def show
     @item = Item.find(params[:id])
+    @diff = Time.parse(@item.created_at.to_s)+@item.time_limit-Time.now.utc
+    @end_date = Time.parse(@item.created_at.to_s)+@item.time_limit
   end
   
   def bin_check

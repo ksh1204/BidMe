@@ -36,7 +36,9 @@ ActiveRecord::Schema.define(:version => 20101101013412) do
     t.string   "item_photo_content_type"
     t.integer  "item_photo_file_size"
     t.datetime "item_photo_updated_at"
-    t.boolean  "delta",                   :default => true, :null => false
+    t.boolean  "delta",                   :default => true,  :null => false
+    t.float    "current_price"
+    t.boolean  "closed",                  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
