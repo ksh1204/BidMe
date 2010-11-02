@@ -26,7 +26,7 @@ class Item < ActiveRecord::Base
   
   validates_presence_of     :time_limit
     
-  attr_accessible :name, :description, :bin, :bin_price, :item_category_id, :item_photo, :start_price, :time_limit
+  attr_accessible :name, :description, :bin, :bin_price, :item_category_id, :item_photo, :start_price, :time_limit, :current_price
   
   define_index do
     indexes :name, :sortable => true

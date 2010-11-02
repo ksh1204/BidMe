@@ -13,6 +13,7 @@ class CreateItems < ActiveRecord::Migration
       t.integer :item_photo_file_size
       t.datetime :item_photo_updated_at
       t.boolean :delta, :default => true, :null => false
+      t.float :current_price
       t.timestamps
     end
   end
