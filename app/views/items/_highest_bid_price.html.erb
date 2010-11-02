@@ -1,0 +1,14 @@
+<% if @highest_bid %>
+	<table>
+		<tr>
+			<td style="width:10%">Highest Bidder</td>
+			<td style="float:left"><%=@highest_bid.bidder.login%></td>
+		</tr>
+		<tr>
+			<td style="width:10%">Highest Price</td>
+			<td style="float:left">$<%=@highest_bid.price%></td>
+		</tr>
+	</table>
+<% else %>
+No one has bidded yet! Be the first one to bid!
+<% end %>

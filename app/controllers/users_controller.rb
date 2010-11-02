@@ -217,9 +217,12 @@ class UsersController < ApplicationController
       @admin = User.find_by_login('admin')
       @message = @reporter.sent_messages.build(:receiver_id => @admin.id, :description => "#{@reporter.login} has reported #{@reportee.login}! Do something about it!")
       @message.save
+      @unread_messages = Message.find(:all, :conditions => {:receiver_id => @admin.id, :unread => true})
+      @num_unread = @unread_messages.count
       render :juggernaut => {:type => :send_to_client, :client_id => @admin.id} do |page|
         page.insert_html :top, :main_content, :partial => 'base/new_message', :object => @message
         page.visual_effect :fade, :no_message, :duration => 2
+        page.replace :inbox_link, :partial => 'update_inbox_link', :object => @num_unread
         page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
         page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
       end
@@ -237,9 +240,12 @@ class UsersController < ApplicationController
         @follow.save
         @message = @follower.sent_messages.build(:receiver_id => @following.id, :description => "#{@follower.login} is following you!")
         @message.save
+        @unread_messages = Message.find(:all, :conditions => {:receiver_id => @following.id, :unread => true})
+        @num_unread = @unread_messages.count
         render :juggernaut => {:type => :send_to_client, :client_id => @following.id} do |page|
           page.insert_html :top, :main_content, :partial => 'base/new_message', :object => @message
           page.visual_effect :fade, :no_message, :duration => 2
+          page.replace :inbox_link, :partial => 'update_inbox_link', :object => @num_unread
           page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
           page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
         end
@@ -274,6 +280,59 @@ class UsersController < ApplicationController
 			  @comment.save
 			end
 			redirect_to :action => 'profile', :username => @commentee.login
+		end
+		
+		def bid
+		  @user = current_user
+		  @bids = Bid.find(:all, :conditions => {:item_id => params[:item_id]}, :order => "price DESC")
+		  @item = Item.find(params[:item_id])
+		  @admin = User.find_by_login("admin")
+		  price = params[:bid_price]
+		  if !price
+		    gflash :error => "Price cannot be empty"
+		    redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
+		  end
+		  if @bids.count > 0
+		    @highest = @bids.first
+		    if price.to_f <= @highest.price
+		      gflash :error => "Bid price must be greater than the current price of the item!"
+		      redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
+		    else
+    		  @highest_bid = @user.bids.build(:item_id => params[:item_id], :price => params[:bid_price])
+    		  @highest_bid.save
+    		  gflash :success => "Bid success. You are now the highest bidder!"
+    		  render :juggernaut => {:type => :send_to_all} do |page|
+            page.replace_html :highest_bid, :partial => 'items/highest_bid_price', :object => @highest_bid
+            page.visual_effect :highlight, "highest_bid", :duration => 5
+          end
+          @message = @admin.sent_messages.build(:receiver_id => @highest.bidder.id, :description => "You have been OUTBIDDED by #{@highest_bid.bidder.login} for <a href='items/show/#{@highest_bid.item.id}'>#{@highest_bid.item.name}</a>")
+          @message.save
+          @unread_messages = Message.find(:all, :conditions => {:receiver_id => @highest.bidder.id, :unread => true})
+          @num_unread = @unread_messages.count
+          render :juggernaut => {:type => :send_to_client, :client_id => @highest.bidder.id} do |page|
+            page.insert_html :top, :main_content, :partial => 'base/new_message', :object => @message
+            page.visual_effect :fade, :no_message, :duration => 2
+            page.replace :inbox_link, :partial => 'update_inbox_link', :object => @num_unread
+            page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
+            page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
+          end
+          redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
+        end
+      else
+        if price.to_f <= @item.start_price
+          gflash :error => "Bid price must be greater than the current price of the item!"
+        else
+          @highest_bid = @user.bids.build(:item_id => params[:item_id], :price => params[:bid_price])
+          @highest_bid.save
+          @highest_bid.save
+    		  gflash :success => "Bid success. You are now the highest bidder!"
+    		  render :juggernaut => {:type => :send_to_all_clients } do |page|
+            page.replace_html :highest_bid, :partial => 'items/highest_bid_price', :object => @highest_bid
+            page.visual_effect :highlight, "highest_bid", :duration => 5
+          end
+        end
+        redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
+      end
 		end
 
 end

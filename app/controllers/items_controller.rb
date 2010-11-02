@@ -31,6 +31,12 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @diff = Time.parse(@item.created_at.to_s)+@item.time_limit-Time.now.utc
     @end_date = Time.parse(@item.created_at.to_s)+@item.time_limit
+    @bids = @item.bids
+    @highest_bid = nil
+    if @bids.count > 0
+      @highest_bid = @bids.sort_by {|b| -b.price}.first
+    end
+    
   end
   
   def bin_check
@@ -38,6 +44,6 @@ class ItemsController < ApplicationController
   end
   
   def end_auction
-    render :controller => 'users', :action => 'new'
+    @item = Item.find(params[:id])
   end
 end

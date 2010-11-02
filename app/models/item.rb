@@ -5,6 +5,9 @@ class Item < ActiveRecord::Base
   has_many :watches
   has_many :watchers, :through => :watches
   
+  has_many :bids
+  has_many :bidders, :through => :bids
+  
   has_attached_file :item_photo, :default_url => "/images/default.png",
   :styles => {
     :thumb=> "50x50#",

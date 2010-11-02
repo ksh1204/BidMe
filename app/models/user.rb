@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :user_items
   has_many :posted_items, :through => :user_items
   
+  has_many :bids, :foreign_key => "bidder_id"
+  has_many :bidded_items, :through => :bids
+  
   has_many :bought_transactions, :class_name => "Transaction", :foreign_key => "buyer_id"
   has_many :bought_items, :through => :bought_transactions
   has_many :sold_transactions, :class_name => "Transaction", :foreign_key => "seller_id"

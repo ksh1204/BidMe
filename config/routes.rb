@@ -27,6 +27,7 @@ ActionController::Routing::Routes.draw do |map|
   map.post '/post', :controller =>'items', :action => 'create'
   map.post_item 'post_item', :controller => 'items', :action => 'new'
   map.search_item 'search', :controller => 'items', :action => 'search'
+  map.bid_item 'bid', :controller => 'users', :action => 'bid'
   
   
   map.resources :users

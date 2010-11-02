@@ -24,8 +24,16 @@
 	</tr>
 </table>
 <% if @diff > 0 %>
+<div id='highest_bid'>
+	<%= render :partial => "highest_bid_price", :object => @highest_bid %>
+</div>
 <div id='bid_id'>
-	<%=link_to "Bid", :action => 'bid'%>
+	<%= form_tag :controller => "users", :action => "bid" %>
+		<%= label_tag "Price" %>
+		<%= text_field_tag :bid_price %>
+		<%= hidden_field_tag :item_id, @item.id %>
+		<%= submit_tag "Bid!"%>
+	</form>
 </div>
 <% end %>
 

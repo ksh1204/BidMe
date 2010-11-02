@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101101013412) do
+ActiveRecord::Schema.define(:version => 20101102042145) do
+
+  create_table "bids", :force => true do |t|
+    t.integer  "bidder_id"
+    t.integer  "item_id"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "follows", :force => true do |t|
     t.integer  "follower_id"
