@@ -36,4 +36,8 @@ class ItemsController < ApplicationController
   def bin_check
     @bin = session[:bin_checked] = !session[:bin_checked]
   end
+  
+  def end_auction
+    render :controller => 'users', :action => 'new'
+  end
 end

@@ -13,7 +13,7 @@
 	</tr>
 	<tr>
 		<td>Time Remaining</td>
-		<td><span id="cd"></span></td>
+		<td><span id="cd", style="color:red"></span></td>
 	<tr>
 		<td>Description</td>
 		<td><%=@item.description%></td>
@@ -23,6 +23,11 @@
 		<td><%=image_tag @item.item_photo.url(:small)%>
 	</tr>
 </table>
+<% if @diff > 0 %>
+<div id='bid_id'>
+	<%=link_to "Bid", :action => 'bid'%>
+</div>
+<% end %>
 
 <script type="text/javascript">
 var month = <%=@end_date.month%> + ""; // 1 through 12 or '*' within the next month, '0' for the current month
@@ -80,5 +85,19 @@ function setC(month,day,hour,tz) {
 		diffDate.setMilliseconds(toDate - fromDate);
 		return Math.floor(diffDate.valueOf()/1000);
 	}
-function displayCountdown(countdn,cd) {if (countdn < 0) document.getElementById(cd).innerHTML = "Sorry, you are too late."; else {var secs = countdn % 60; if (secs < 10) secs = '0'+secs;var countdn1 = (countdn - secs) / 60;var mins = countdn1 % 60; if (mins < 10) mins = '0'+mins;countdn1 = (countdn1 - mins) / 60;var hours = countdn1 % 24;var days = (countdn1 - hours) / 24;document.getElementById(cd).innerHTML = days+' days + '+hours+' : '+mins+' : '+secs;setTimeout('displayCountdown('+(countdn-1)+',\''+cd+'\');',999);}}
+function displayCountdown(countdn,cd) {
+	if (countdn <= 0) {
+		document.getElementById(cd).innerHTML = "Sorry, you are too late.";
+		document.getElementById('bid_id').innerHTML = "";
+	}
+	 else {
+		var secs = countdn % 60;
+	 	if (secs < 10) secs = '0'+secs;
+			var countdn1 = (countdn - secs) / 60;
+		var mins = countdn1 % 60; 
+		if (mins < 10) mins = '0'+mins;
+			countdn1 = (countdn1 - mins) / 60;
+		var hours = countdn1 % 24;
+		var days = (countdn1 - hours) / 24;
+		document.getElementById(cd).innerHTML = days+' days + '+hours+' : '+mins+' : '+secs;setTimeout('displayCountdown('+(countdn-1)+',\''+cd+'\');',999);}}
 </script>
