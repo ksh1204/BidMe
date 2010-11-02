@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration
       t.text :description
       t.integer :item_category_id
       t.float :start_price
-      t.boolean :bin
+      t.boolean :bin, :default => false
       t.float :bin_price
       t.integer :time_limit
       t.string :item_photo_file_name

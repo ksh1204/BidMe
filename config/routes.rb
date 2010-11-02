@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.write_message 'write_message', :controller => 'users', :action => 'write_message'
   map.show_message 'message', :controller => 'users', :action => 'show_message'
   map.show_sent_message 'sent_message', :controller => 'users', :action => 'show_sent_message'
-  map.profile 'profile', :controller => 'users', :action => 'profile'
+  map.profile 'profile/:username', :controller => 'users', :action => 'profile'
   map.remove_profile_photo 'remove_profile_photo', :controller => 'users', :action => 'remove_profile_photo'
   map.report_user 'report', :controller => 'users', :action => 'report_user'
   map.follow_user 'follow', :controller => 'users', :action => 'follow_user'

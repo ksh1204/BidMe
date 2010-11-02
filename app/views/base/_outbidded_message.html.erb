@@ -1,0 +1,7 @@
+<STYLE TYPE="text/css" MEDIA=screen>
+<!--
+  a  { color: red }
+-->
+</STYLE>
+
+<%= js add_gritter("You have been outbidded by <a href='/profile/#{@highest_bid.bidder.login}'>#{@highest_bid.bidder.login}</a> for <a href='/items/show/#{@highest_bid.item.id}'>#{@highest_bid.item.name}</a>",:image => :notice, :title => "You've been outbidded!") %>

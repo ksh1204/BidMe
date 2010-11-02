@@ -94,7 +94,8 @@ function setC(month,day,hour,tz) {
 		return Math.floor(diffDate.valueOf()/1000);
 	}
 function displayCountdown(countdn,cd) {
-	if (countdn <= 0) {
+
+	if (countdn < 0) {
 		document.getElementById(cd).innerHTML = "Sorry, you are too late.";
 		document.getElementById('bid_id').innerHTML = "";
 	}

@@ -1,1 +1,7 @@
-<%= js add_gritter("You received a new message from #{@message.sender.login}",:image => :notice, :title => "New Message") %>
+<STYLE TYPE="text/css" MEDIA=screen>
+<!--
+  a  { color: red }
+-->
+</STYLE>
+
+<%= js add_gritter("You received a new message from <a href='/profile/#{@message.sender.login}'>#{@message.sender.login}"</a>,:image => :notice, :title => "New Message") %>

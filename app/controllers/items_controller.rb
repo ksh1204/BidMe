@@ -15,8 +15,8 @@ class ItemsController < ApplicationController
       @user_item = current_user.user_items.build(:item_id => @item.id)
       @user_item.save
       session[:bin_checked] = nil
-      redirect_back_or_default('/')
       gflash :success => "Thanks for posting!"
+      redirect_to :action => 'show', :id => @item.id
     else      
       gflash :error  => "Post failed. Try again."
       render :action => 'new'
@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   end
   
   def search
-    @items = Item.search params[:q], :page => 1, :per_page => 20
+    @items = Item.search params[:q], :page => params[:page], :per_page => 10
   end
   
   def show
@@ -48,5 +48,7 @@ class ItemsController < ApplicationController
   
   def end_auction
     @item = Item.find(params[:id])
+    @item.update_attribute(:closed,true)
+    redirect_to :action => 'show', :id => @item.id
   end
 end

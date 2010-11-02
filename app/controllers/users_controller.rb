@@ -309,16 +309,18 @@ class UsersController < ApplicationController
             page.replace_html :highest_bid, :partial => 'items/highest_bid_price', :object => @highest_bid
             page.visual_effect :highlight, "highest_bid", :duration => 5
           end
-          @message = @admin.sent_messages.build(:receiver_id => @highest.bidder.id, :description => "You have been OUTBIDDED by #{@highest_bid.bidder.login} for <a href='items/show/#{@highest_bid.item.id}'>#{@highest_bid.item.name}</a>")
-          @message.save
-          @unread_messages = Message.find(:all, :conditions => {:receiver_id => @highest.bidder.id, :unread => true})
-          @num_unread = @unread_messages.count
-          render :juggernaut => {:type => :send_to_client, :client_id => @highest.bidder.id} do |page|
-            page.insert_html :top, :main_content, :partial => 'base/new_message', :object => @message
-            page.visual_effect :fade, :no_message, :duration => 2
-            page.replace :inbox_link, :partial => 'update_inbox_link', :object => @num_unread
-            page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
-            page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
+          if @highest.bidder.id != @highest_bid.bidder.id
+            @message = @admin.sent_messages.build(:receiver_id => @highest.bidder.id, :description => "You have been OUTBIDDED by #{@highest_bid.bidder.login} for <a href='items/show/#{@highest_bid.item.id}'>#{@highest_bid.item.name}</a>")
+            @message.save
+            @unread_messages = Message.find(:all, :conditions => {:receiver_id => @highest.bidder.id, :unread => true})
+            @num_unread = @unread_messages.count
+            render :juggernaut => {:type => :send_to_client, :client_id => @highest.bidder.id} do |page|
+              page.insert_html :top, :main_content, :partial => 'base/outbidded_message', :object => @highest_bid
+              page.visual_effect :fade, :no_message, :duration => 2
+              page.replace :inbox_link, :partial => 'update_inbox_link', :object => @num_unread
+              page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
+              page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
+            end
           end
           redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
         end
@@ -330,7 +332,7 @@ class UsersController < ApplicationController
           @highest_bid.save
           @highest_bid.save
     		  gflash :success => "Bid success. You are now the highest bidder!"
-    		  render :juggernaut => {:type => :send_to_all_clients } do |page|
+    		  render :juggernaut => {:type => :send_to_all } do |page|
             page.replace_html :highest_bid, :partial => 'items/highest_bid_price', :object => @highest_bid
             page.visual_effect :highlight, "highest_bid", :duration => 5
           end
