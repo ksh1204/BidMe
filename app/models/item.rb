@@ -21,8 +21,6 @@ class Item < ActiveRecord::Base
   validates_presence_of     :description
   validates_length_of       :description,    :within => 3..500
   
-  validates_presence_of     :bin
-
   validates_presence_of     :item_category_id
   
   validates_presence_of     :start_price
