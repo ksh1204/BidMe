@@ -1,7 +1,7 @@
 <%if current_user.is_admin?%>
 	<h2>Edit <%=@user.login-%> Profile Information</h2>
 <%else%>
-	<h2>Edit Your Profile Information</h2>
+	<h2>Edit Profile Information</h2>
 <%end%>
 <%form_for @user, :url => {:action=>'update', :id=>@user.id}, :html => { :multipart => true } do |f|%>
 <%=f.error_messages%>
