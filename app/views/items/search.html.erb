@@ -1,5 +1,5 @@
 <%= render :partial => 'search_box'%>
-
+<% if @items.first %>
 <% for item in @items %>
 	<table>
 		<tr>
@@ -22,3 +22,7 @@
 <% end %>
 
 <center><%= will_paginate @items %></center>
+
+<% else %>
+	<center>No items found</center>
+<% end %>
