@@ -5,22 +5,22 @@
     <div id="main">
 		<h2>Write Message</h2>
 		<%=form_tag :action=>'send_message'%>
-		<table><tr>
-		  <td style="width:5%"><h3><%=label_tag "FROM"%></h3></td>
-		  <td><h3><%=label_tag @message.sender.login%></h3></td></tr>
+		  <%=label_tag :sender_id, 'From:'%>
+		  <br/>
+		  <%=label_tag @message.sender.login%>
 		  <br/>
 		  <br/>
 
-		  <tr><td style="width:5%"><h3><%=label_tag "TO"%></h3></td>
-		  <td><h3><%=text_field_tag :receiver, (@message.receiver.login if @message.receiver)%></h3></td></tr></table>
+		  <%=label_tag :receiver, 'To:'%>
 		  <br/>
+		  <%=text_field_tag :receiver, (@message.receiver.login if @message.receiver)%>
 		  <br/>
+		
 
-		  <%=label_tag :description%>
+		  <%=label_tag :description, 'Message:'%>
 		  <br/>
 		  <%=text_area_tag :description%>
 		  <br/>
-		  <br/>	
 
 		  <table><tr><td style="width:5%"><%=submit_tag 'Send'%></td>
 		  <td><%= button_to "Back", request.env["HTTP_REFERER"] %></td></tr></table>
