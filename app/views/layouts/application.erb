@@ -43,8 +43,8 @@
 	</div>
   <%end%>
   <%=render :partial => 'base/notification'%>
-
   <%=yield%>
+  <% request.env["HTTP_REFERER"] = request.request_uri() %>
 </div>
 </body>
 </html>

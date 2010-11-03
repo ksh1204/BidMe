@@ -181,7 +181,7 @@ class UsersController < ApplicationController
         render :action => 'show_message'
       else
         gflash :error => "Unknown request."
-        redirect_back_or_default('/')
+        redirect_back_or_default('/messagebox')
       end
     end
     
@@ -192,7 +192,7 @@ class UsersController < ApplicationController
         render :action => 'show_sent_message'
       else
         gflash :error => "Unknown request."
-        redirect_back_or_default('/')
+        redirect_back_or_default('/sent_messages')
       end
     end
     

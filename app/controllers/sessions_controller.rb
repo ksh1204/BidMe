@@ -2,6 +2,8 @@
 class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
+  
+  before_filter :already_logged_in
 
   # render new.erb.html
   def new
@@ -10,7 +12,7 @@ class SessionsController < ApplicationController
   def create
     logout_keeping_session!
     user = User.authenticate(params[:login], params[:password])
-    if user && !user.logged_in && !user.is_banned
+    if user && !user.is_banned
       # Protects against session fixation attacks, causes request forgery
       # protection if user resubmits an earlier form using back
       # button. Uncomment if you understand the tradeoffs.
@@ -18,12 +20,17 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      user.update_attribute(:logged_in, 'true')
-      redirect_back_or_default('/')
-      gflash :notice => "Logged in successfully"
-    elsif user && user.logged_in
-      gflash :error => "You are already logged in from a different browser/computer"
-      render :action => 'new'
+      current_ip = request.remote_ip
+      last_ip = user.last_ip
+      if ((current_ip.eql?(last_ip)) && user.logged_in) || !last_ip || !user.logged_in
+        user.update_attributes(:logged_in => true, :last_ip => current_ip)
+        update_activity_time
+        redirect_back_or_default('/')
+        gflash :notice => "Logged in successfully"
+      elsif !(current_ip.eql?(last_ip)) && user.logged_in
+        gflash :error => "You are already logged in from a different browser/computer"
+        render :action => 'new'
+      end
     elsif user && user.is_banned
       gflash :error => "You are banned from signing in! Please email BidMe Administrator!"
       render :action => 'new'
@@ -52,5 +59,12 @@ protected
       gflash :error => "Couldn't log you in as '#{params[:login]}'"
     end
     logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
+  end
+  
+  def already_logged_in
+    if current_user
+      gflash :notice => "You are already logged in!"
+      redirect_back_or_default('/')
+    end
   end
 end

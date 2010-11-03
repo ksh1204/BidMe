@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20101102042145) do
     t.text     "description"
     t.integer  "item_category_id"
     t.float    "start_price"
-    t.boolean  "bin"
+    t.boolean  "bin",                     :default => false
     t.float    "bin_price"
     t.integer  "time_limit"
     t.string   "item_photo_file_name"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20101102042145) do
     t.datetime "remember_token_expires_at"
     t.string   "activation_code",            :limit => 40
     t.datetime "activated_at"
+    t.string   "last_ip"
     t.boolean  "is_admin",                                  :default => false
     t.boolean  "is_banned",                                 :default => false
     t.string   "first_name"
