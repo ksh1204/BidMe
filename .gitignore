@@ -1,4 +1,4 @@
-log/
+log/*
 tmp/**/*
 config/database.yml
 config/development.sphinx.conf
