@@ -1,17 +1,19 @@
-<h1>Log In</h1>
-
+<h2>Log In</h2>
+<small>
 <% form_tag session_path do -%>
-<%=link_to 'forgot your login or password', :controller => 'users', :action => 'forgot'%>
-<p><%= label_tag 'login' %>
+<p><%= label_tag 'login', 'Login ID:' %>
+<br>
 <%= text_field_tag 'login', @login %></p>
 
-<p><%= label_tag 'password' %>
-<%= password_field_tag 'password', nil %></p>
-
+<p><%= label_tag 'password', 'Password:' %>
+<br>
+<%= password_field_tag 'password', nil %></p></small>
 <!-- Uncomment this if you want this functionality
 <p><%= label_tag 'remember_me', 'Remember me' %>
 <%= check_box_tag 'remember_me', '1', @remember_me %></p>
 -->
 
 <p><%= submit_tag 'Log in' %></p>
+
+<%=link_to 'Forgot ID/password?', :controller => 'users', :action => 'forgot'%>
 <% end -%>
