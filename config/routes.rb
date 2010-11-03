@@ -28,6 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   map.post_item 'post_item', :controller => 'items', :action => 'new'
   map.search_item 'search', :controller => 'items', :action => 'search'
   map.bid_item 'bid', :controller => 'users', :action => 'bid'
+  map.end_auction 'end_auction/:id', :controller => 'items', :action => 'end_auction'
   
   
   map.resources :users

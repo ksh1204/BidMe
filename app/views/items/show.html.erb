@@ -35,6 +35,10 @@
 		<%= submit_tag "Bid!"%>
 	</form>
 </div>
+<% else %>
+<div id='highest_bid'>
+	Auction is closed!
+</div>
 <% end %>
 
 <script type="text/javascript">
@@ -46,6 +50,7 @@ var min = <%=@end_date.min%> + "";    // 0 through 59 for minutes after the hour
 var sec = <%=@end_date.sec%>;
 var tz = 0;     // offset in hours from UTC to your timezone
 var lab = 'cd';  // id of the entry on the page where the counter is to be inserted
+var item_id = <%=@item.id%> + "";
 
 function start() {displayCountdown(setCountdown(month,day,hour,min,tz),lab);}
 loaded(lab,start);
@@ -98,6 +103,9 @@ function displayCountdown(countdn,cd) {
 	if (countdn < 0) {
 		document.getElementById(cd).innerHTML = "Sorry, you are too late.";
 		document.getElementById('bid_id').innerHTML = "";
+		$.ajax({ url: '/items/end_auction/'+item_id,
+		         type: 'post'
+		});
 	}
 	 else {
 		var secs = countdn % 60;

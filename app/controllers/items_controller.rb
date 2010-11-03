@@ -48,7 +48,16 @@ class ItemsController < ApplicationController
   
   def end_auction
     @item = Item.find(params[:id])
-    @item.update_attribute(:closed,true)
+    @diff = Time.parse(@item.created_at.to_s)+@item.time_limit-Time.now.utc
+    if !@item.closed
+      if @diff <= 0
+        @item.update_attribute(:closed,true)
+        render :juggernaut => {:type => :send_to_all} do |page|
+          page.replace_html :highest_bid, "Auction is closed now!"
+          page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
+        end
+      end
+    end
     redirect_to :action => 'show', :id => @item.id
   end
 end

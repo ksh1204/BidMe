@@ -145,8 +145,9 @@ class UsersController < ApplicationController
           page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
         end
         gflash :progress => "Your message is being sent"
+      else
+        gflash :error => "Message could not be sent!"
       end
-      
       redirect_to :action => 'messagebox'
     end
     
@@ -214,8 +215,12 @@ class UsersController < ApplicationController
     def report_user
       @reporter = current_user
       @reportee = User.find_by_login(params[:username])
+      if @reporter.id == @reportee.id
+        gflash :error => "Unknown request!"
+        redirect_back_or_default('/')
+      end
       @admin = User.find_by_login('admin')
-      @message = @reporter.sent_messages.build(:receiver_id => @admin.id, :description => "#{@reporter.login} has reported #{@reportee.login}! Do something about it!")
+      @message = @reporter.sent_messages.build(:receiver_id => @admin.id, :description => "<a href='/profile/#{@reporter.login}'>#{@reporter.login}</a> has reported <a href='/profile/#{@reporter.login}'>#{@reportee.login}</a>! Do something about it!")
       @message.save
       @unread_messages = Message.find(:all, :conditions => {:receiver_id => @admin.id, :unread => true})
       @num_unread = @unread_messages.count
@@ -234,11 +239,15 @@ class UsersController < ApplicationController
       @follower = current_user
       @following = User.find_by_login(params[:username])
       @user = @following
+      if @follower.id == @following.id
+        gflash :error => "Invalid request!"
+        redirect_back_or_default('/')
+      end
       exist = Follow.find(:first, :conditions => {:follower_id => @follower.id, :following_id => @following.id})
       if !exist
         @follow = @follower.follow_followings.build(:following_id => @following.id)
         @follow.save
-        @message = @follower.sent_messages.build(:receiver_id => @following.id, :description => "#{@follower.login} is following you!")
+        @message = @follower.sent_messages.build(:receiver_id => @following.id, :description => "<a href='/profile/#{@follower.login}'>#{@follower.login}</a> is following you!")
         @message.save
         @unread_messages = Message.find(:all, :conditions => {:receiver_id => @following.id, :unread => true})
         @num_unread = @unread_messages.count
@@ -260,6 +269,10 @@ class UsersController < ApplicationController
       @follower = current_user
       @following = User.find_by_login(params[:username])
       @user = @following
+      if @follower.id == @following.id
+        gflash :error => "Unknown request!"
+        redirect_back_or_default('/')
+      end
       exist = Follow.find(:first, :conditions => {:follower_id => @follower.id, :following_id => @following.id})
       if exist
         exist.destroy
@@ -288,12 +301,13 @@ class UsersController < ApplicationController
 		  @item = Item.find(params[:item_id])
 		  @admin = User.find_by_login("admin")
 		  price = params[:bid_price]
-		  if !price
-		    gflash :error => "Price cannot be empty"
-		    redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
-		  elsif @item.closed
+
+		  if @item.closed
 		    gflash :error => "This auction is closed."
 		    redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
+		  elsif !price
+  		  gflash :error => "Price cannot be empty"
+  		  redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
 		  end
 		    
 		  if @bids.count > 0
@@ -310,7 +324,7 @@ class UsersController < ApplicationController
             page.visual_effect :highlight, "highest_bid", :duration => 5
           end
           if @highest.bidder.id != @highest_bid.bidder.id
-            @message = @admin.sent_messages.build(:receiver_id => @highest.bidder.id, :description => "You have been OUTBIDDED by #{@highest_bid.bidder.login} for <a href='items/show/#{@highest_bid.item.id}'>#{@highest_bid.item.name}</a>")
+            @message = @admin.sent_messages.build(:receiver_id => @highest.bidder.id, :description => "You have been OUTBIDDED by <a href='/profile/#{@highest_bid.bidder.login}'>#{@highest_bid.bidder.login}</a> for <a href='items/show/#{@highest_bid.item.id}'>#{@highest_bid.item.name}</a>")
             @message.save
             @unread_messages = Message.find(:all, :conditions => {:receiver_id => @highest.bidder.id, :unread => true})
             @num_unread = @unread_messages.count

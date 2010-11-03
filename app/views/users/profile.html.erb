@@ -12,6 +12,7 @@
 		</div>
 		</div>
 	</div>
+	<% if current_user.id != @user.id%>
 	<div id="user_profile_report">
 		<%= link_to "REPORT THIS USER", :action => 'report_user', :username => @user.login%>
 	</div>
@@ -22,6 +23,7 @@
 			<%= link_to "FOLLOW", :action => 'follow_user', :username => @user.login %>
 		<% end %>
 	</div>
+	<% end %>
 	<div id="user_profile_ban">
 		<% if current_user.is_admin? %>
 			<% if @user.is_banned %>
