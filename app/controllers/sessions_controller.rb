@@ -63,8 +63,10 @@ protected
   
   def already_logged_in
     if current_user
-      gflash :notice => "You are already logged in!"
-      redirect_back_or_default('/')
+      if current_user.logged_in?
+        gflash :notice => "You are already logged in!"
+        redirect_back_or_default('/')
+      end
     end
   end
 end
