@@ -34,9 +34,9 @@
     <div class='header_link_container'>
     <%=link_to 'Post', {:controller => 'items', :action => 'new'}, :class => 'header_link span-4'%>
     <%=link_to 'Search', {:controller => 'items', :action => 'index'}, :class => 'header_link span-4'%>  
- 	<%=link_to 'My Auctions', {:controller => 'recipes', :action => 'index_all'}, :class => 'header_link span-4'%>
-   	 <%=link_to 'My Profile', {:controller => 'users', :action => 'profile', :username => current_user.login}, :class => 'header_link span-4'%>
-   	 <%=link_to 'My Messages', {:controller => 'users', :action => 'messagebox'}, :class => 'header_link span-4'%>
+    <%=link_to 'My Auctions', {:controller => 'recipes', :action => 'index_all'}, :class => 'header_link span-4'%>
+    <%=link_to 'My Profile', {:controller => 'users', :action => 'profile', :username => current_user.login}, :class => 'header_link span-4'%>
+    <%=link_to 'My Messages', {:controller => 'users', :action => 'messagebox'}, :class => 'header_link span-4'%>
 	<% end %>
     </div>
   </div>
