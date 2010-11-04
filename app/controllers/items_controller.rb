@@ -15,8 +15,8 @@ class ItemsController < ApplicationController
       @user_item = current_user.user_items.build(:item_id => @item.id)
       @user_item.save
       session[:bin_checked] = nil
-      #system "rake close_auction ITEM_ID=#{@item.id} &"
-      AuctionWorker.async_end_auction(:item_id => @item.id)
+      system "rake close_auction ITEM_ID=#{@item.id} &"
+      #AuctionWorker.async_end_auction(:item_id => @item.id)
       gflash :success => "Thanks for posting!"
       redirect_to :action => 'show', :id => @item.id
     else      
@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   end
   
   def search
-    @items = Item.search params[:q], :page => params[:page], :per_page => 10
+    @items = Item.search params[:q], :page => params[:page], :per_page => 10, :conditions => {:close => false}
   end
   
   def show

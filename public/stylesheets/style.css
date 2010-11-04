@@ -335,6 +335,7 @@ cursor: pointer;
 
 #user_profile_login{
 	position: relative;
+	float: left;
 	font-family:"Lucida Console";
 	font-size: 1.0cm;
 }

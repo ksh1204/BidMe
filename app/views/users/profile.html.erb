@@ -2,15 +2,20 @@
 	<div id="profile_head">
 		<div id="profile_head_photo">
 		<div id="user_profile_photo">
+			<div id="profile_head_login">
+			<div id="user_profile_login" align="left" >
+		<%=@user.login%><br/>
+			</div>
+			</div>
+			<% if @user.profile_photo == nil %>
 			<%= image_tag @user.profile_photo.url(:small) %>
+			<% else %>
+			<%= image_tag('/images/big_default.jpg') %>
+			<% end %>
+			
 		</div>
 		</div>
 		
-		<div id="profile_head_login">
-		<div id="user_profile_login">
-			<%=@user.login%><br/>
-		</div>
-		</div>
 	</div>
 	<% if current_user.id != @user.id%>
 	<div id="user_profile_report">

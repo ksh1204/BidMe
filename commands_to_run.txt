@@ -12,5 +12,5 @@ rake thinking_sphinx:start
 (or if thinking_sphinx is already running, rake thinking_sphinx:reindex)
 
 starling -d -P tmp/pids/starling.pid -q log/
-script/workling_starling_client start
+script/workling_client start
 

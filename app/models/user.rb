@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
 
   before_create :make_activation_code 
   
-  has_attached_file :profile_photo, :default_url => "/images/default.png",
+  has_attached_file :profile_photo, :default_url => "/images/default.jpg",
   :styles => {
     :thumb=> "50x50#",
     :small  => "150x150>",
