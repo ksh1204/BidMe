@@ -334,7 +334,7 @@ cursor: pointer;
 }
 
 #user_profile_login{
-	position: relative;
+	text-align:left
 	float: left;
 	font-family:"Lucida Console";
 	font-size: 1.0cm;
