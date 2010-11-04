@@ -1,0 +1,16 @@
+external stuff installed from either external source or gem (excluding plugins): sphinx from sphinx site, and gem install starling
+
+rake db:drop
+rake db:create
+rake db:migrate
+rake db:fixtures:load
+
+juggernaug -c juggernaug.yml
+
+rake thinking_sphinx:index
+rake thinking_sphinx:start
+(or if thinking_sphinx is already running, rake thinking_sphinx:reindex)
+
+starling -d -P tmp/pids/starling.pid -q log/
+script/workling_starling_client start
+
