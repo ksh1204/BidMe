@@ -322,7 +322,8 @@ cursor: pointer;
 
 #basic_info_col3{
 	float:left;
-	width:40%;
+	width:70%;
+	margin-left: 16px;
 }
 
 #user_profile_photo{
@@ -336,6 +337,12 @@ cursor: pointer;
 #user_profile_login{
 	text-align:left
 	float: left;
+	font-family:"Lucida Console";
+	font-size: 1.0cm;
+}
+
+#profile_head_login {
+	position: relative;
 	font-family:"Lucida Console";
 	font-size: 1.0cm;
 }
@@ -359,6 +366,14 @@ cursor: pointer;
 #user_profile_follow{
 	position: relative;
 }
+
+#user_profile_right{
+border: 5px;
+margin-top: 100px;
+margin-left: 20px;
+width: 500px;
+}
+
 
 .horiz_line{
 	color: red;
@@ -419,11 +434,12 @@ width: 650px;
 }
 
 #message_content {
-	width: 300px;
-	height: 100px;
-	border: 3px solid #cccccc;
-	padding: 5px;
+ 	width: 400px;
+ 	border: 1px solid #cccccc;
+ 	padding: 5px;
+	word-wrap: break-word;
 }
+ 		
 
 #comments_table {
 	width: 800px;

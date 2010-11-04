@@ -1,3 +1,8 @@
 <div id="profile_photo">
-	<p><%= image_tag @user.profile_photo.url(:medium) %></p>
+	<p><% if @user.profile_photo_file_name %>
+		<%= image_tag @user.profile_photo.url(:medium) %>
+	   <% else %>
+		<%= image_tag('/images/big_default.jpg') %>
+	   <% end %>
+	</p>
 </div>
