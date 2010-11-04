@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   
-  before_filter :already_logged_in
+  before_filter :already_logged_in, :except => :destroy
 
   # render new.erb.html
   def new
