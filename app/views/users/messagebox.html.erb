@@ -20,8 +20,8 @@
 							<td><%= link_to truncate(message.description,40,'...'), {:action => 'show_message', :id => message.id}, {:class => 'unread_message'} %></td>
 							<td class='unread_message'><%= message.created_at.strftime("%b %d, %Y %I:%M %p") %></td>
 						<%else%>
-							<td><%= link_to message.sender.login, {:action => 'profile', :username => message.sender.login}, {} %></td>
-							<td><%= link_to truncate(message.description,40,'...'), {:action => 'show_message', :id => message.id},{} %></td>
+							<td><%= link_to message.sender.login, {:action => 'profile', :username => message.sender.login}, {:class => 'messagebox_links'} %></td>
+							<td><%= link_to truncate(message.description,40,'...'), {:action => 'show_message', :id => message.id},{:class => 'messagebox_links'} %></td>
 							<td><%= message.created_at.strftime("%b %d, %Y %I:%M %p") %></td>
 						<%end%>
 					<%end%>

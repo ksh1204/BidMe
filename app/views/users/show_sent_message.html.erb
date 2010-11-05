@@ -10,7 +10,7 @@
 	<h2>Message to <%= @message.receiver.login %></h2><h5>
 		  
 	<div id="sender_box">	
-	Sent to: <br><%= @message.receiver.login %>
+	Sent to: <br><%= link_to @message.receiver.login, {:action => 'profile', :username => @message.receiver.login}, {:class => 'messagebox_links'} %>
 	</div>	
 	<br>
 	Message:<br>

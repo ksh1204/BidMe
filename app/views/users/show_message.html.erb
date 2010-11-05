@@ -7,10 +7,10 @@
     <div id="main">
 		<h2>Message from <%= @message.sender.login %></h2><h5>
 	<div id="sender_box">	
-	From:<br> <%= @message.sender.login %> <br></div><br>
+	From:<br> <%= link_to @message.sender.login, {:action => 'profile', :username => @message.sender.login}, {:class => 'messagebox_links'} %> <br></div><br>
 		
 	Message: <br/>
-	<div id="message_content">	    
+	<div id="message_content">		    
 	<%= @message.description %>
 	</div>
 	<br><br>

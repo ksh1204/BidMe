@@ -14,6 +14,8 @@
 		</div>
 		<div id="user_profile_right" style="float: left;">
 		 <b>Basic Information</b>
+
+	<hr style="margin-top:0; margin-bottom:0; width:40%"">
 		  <div id="profile_info" >
 			
 			<div id="basic_info_col2">
@@ -30,6 +32,7 @@
 			<div id="basic_info_col3">
 				<div id="user_profile_email">
 					<%= @user.email %><br/>
+
 				</div>
 				<div id="user_profile_address">
 					<%= @user.address %><br/>
@@ -75,33 +78,37 @@
 	<%=text_area_tag :description %><br/>
 	<%=submit_tag "Comment"%>
 	</form>
-		<table id ="comments_table">
-			<thead>
-				<th>User</th>
-				<th>Comment</th>
-			</thead>
-			<tbody id="comments_body">
+	<br>
+	<div id="all_comments">			
 			<% if @comments.count > 0 %>
-				<% for comment in @comments %>
-					<tr id="comment_<%=comment.id%>">
-					<td><div>
-					<% if @user.profile_photo_file_name %>
-					<%= image_tag @user.profile_photo.url(:thumb) %>
-					<% else %>
-					<%= image_tag('/images/big_default.jpg') %>
-					<% end %></div>
-					    <div style="position: relative;"><%= facebox_link_to comment.user.login,
-						:url => {:action => 'profile',
-					 	:username => comment.user.login}%></td></div>
-					<td><%= comment.description %></td>
-					</tr>
+			<% for comment in @comments %>
+				<div id='comment_<%=comment.id%>', class='comment_body'>
+					<div id='comment_left'>
+						<div id="comment_left_photo">
+							<% if @user.profile_photo_file_name %>
+							<%= image_tag @user.profile_photo.url(:thumb) %>
+							<% else %>
+							<%= image_tag('/images/default.jpg') %>
+							<% end %>
+						</div>
+						<div id="comment_left_name">
+						    	<%= facebox_link_to comment.user.login,
+								:url => {:action => 'profile',
+						 		:username => comment.user.login}%>
+						</div>
+					</div>
+					<div id='comment_right'>
+						<%= comment.description %>
+					</div>
+					<div id="clear_profile_position" style="clear:both;"></div>
+				</div>
 				<% end %>
 			<% else %>
-				<tr id="no_comments">
-					<td><center>This user has no comments.</center></td>
-				</tr>
+				
+				<center>This user has no comments.</center>
+				
 			<% end %>
-			</tbody>
-		</table>
+			
+		
 	</div>
 </div>
