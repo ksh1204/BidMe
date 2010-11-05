@@ -1,24 +1,19 @@
 <div id="columns">
 	<div id="side">
-		<%=link_to "Inbox", :action => 'messagebox'%><br/>
-		
-	      	<%=link_to "Sent Messages", :action => 'sent_messages'%><br/>
-  		<%=link_to "Write Message", :action => 'write_message'%><br/>
-		
-    </div>
-    <div id="main">
-	<h2>Message to <%= @message.receiver.login %></h2><h5>
-		  
-	<div id="sender_box">	
-	Sent to: <br><%= link_to @message.receiver.login, {:action => 'profile', :username => @message.receiver.login}, {:class => 'messagebox_links'} %>
-	</div>	
-	<br>
-	Message:<br>
-	<div id="message_content">
-	<%= @message.description %>
-	</div>			<br>
-	<%= button_to 'Write', :action => 'write_message', :receiver => @message.receiver.login%>
-	<%= button_to "Back", request.env["HTTP_REFERER"] %></h5>
-			
+  		<%= render :partial => 'messagebox_menu' %>
+	</div>
+	<div id="main">
+		<h2>Message to <%= @message.receiver.login %></h2><h5>
+			  
+		<div id="sender_box">	
+		Sent to: <br><%= link_to @message.receiver.login, {:action => 'profile', :username => @message.receiver.login}, {:class => 'messagebox_links'} %>
+		</div>	
+		<br>
+		Message:<br>
+		<div id="message_content">
+		<%= @message.description %>
+		</div>			<br>
+		<%= button_to 'Write', :action => 'write_message', :receiver => @message.receiver.login%>
+		<%= button_to "Back", request.env["HTTP_REFERER"] %></h5>	
     </div>
 </div>
