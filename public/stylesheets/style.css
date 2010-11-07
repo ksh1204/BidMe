@@ -466,5 +466,42 @@ margin-left: 100px;
 margin-top: 25px;
 }
 
+.FreezePaneOff
+   {
+      visibility: hidden;
+      display: none;
+      position: absolute;
+      top: -100px;
+      left: -100px;
+   }
+
+   .FreezePaneOn
+   {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      visibility: visible;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      z-index: 999;
+      filter:alpha(opacity=85);
+      -moz-opacity:0.85;
+      padding-top: 20%;
+   }
+
+   .InnerFreezePane
+   {
+      text-align: center;
+      width: 66%;
+      background-color: black;
+      color: White;
+      font-size: large;
+	  font-color: white;
+      /*border: dashed 2px #111;*/
+      padding: 9px;
+   }
+
 
 

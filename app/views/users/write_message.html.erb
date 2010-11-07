@@ -22,7 +22,7 @@
 		  <%=text_area_tag :description%>
 		  <br/>
 
-		  <table><tr><td style="width:5%"><%=submit_tag 'Send'%></td>
+		  <table><tr><td style="width:5%"><%=submit_tag 'Send', :onclick=>"FreezeScreen('Please wait...');" %></td>
 		  <td><%= button_to "Back", request.env["HTTP_REFERER"] %></td></tr></table>
 		</form>
     </div>
