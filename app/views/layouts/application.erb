@@ -15,7 +15,15 @@
   <% end %>
   <%= javascript_include_tag 'jquery-ui' %>
 
-  
+  <script language="JavaScript">
+   function FreezeScreen(msg) {
+      scroll(0,0);
+      var outerPane = document.getElementById('FreezePane');
+      var innerPane = document.getElementById('InnerFreezePane');
+      if (outerPane) outerPane.className = 'FreezePaneOn';
+      if (innerPane) innerPane.innerHTML = msg;
+   }
+   </script>
 
 
   
@@ -23,7 +31,9 @@
 </head>
 
 <body>
-
+<div align="center" id="FreezePane" class="FreezePaneOff">
+   <div id="InnerFreezePane" class="InnerFreezePane"> </div>
+</div>
 <div id='header'>
   <div class='content'>
     <a href='/'>

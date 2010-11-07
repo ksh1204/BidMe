@@ -1,11 +1,2 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  bidder_id: 1
-  item_id: 1
-  price: 1.5
-
-two:
-  bidder_id: 1
-  item_id: 1
-  price: 1.5

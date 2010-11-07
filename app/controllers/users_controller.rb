@@ -145,10 +145,11 @@ class UsersController < ApplicationController
           page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
         end
         gflash :progress => "Your message is being sent"
+        redirect_to :action => 'messagebox'
       else
         gflash :error => "Message could not be sent!"
+        redirect_to :action => 'write_message'
       end
-      redirect_to :action => 'messagebox'
     end
     
     def write_message
