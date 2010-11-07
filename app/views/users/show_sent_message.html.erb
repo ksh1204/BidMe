@@ -13,7 +13,11 @@
 		<div id="message_content">
 		<%= @message.description %>
 		</div>			<br>
-		<%= button_to 'Write', :action => 'write_message', :receiver => @message.receiver.login%>
-		<%= button_to "Back", request.env["HTTP_REFERER"] %></h5>	
+
+		
+		
+		<table id="button_table"><tr><td id="first_button" style="width:5%"><%= button_to 'Write', :action => 'write_message', :receiver => @message.receiver.login%></td>
+		  <td><%= button_to "Back", request.env["HTTP_REFERER"] %></td></tr></table>
+			
     </div>
 </div>

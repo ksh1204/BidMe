@@ -1,7 +1,7 @@
 body {
 	background-color: #000000;
 /*	background-image: url('../images/background-gradient.png');*/
-/*	background-repeat:repeat-x;*/
+/*	background-repeat:repeat-x;aadb6d*/
 	/* Chrome, Safari:*/
 /*    	background: -webkit-gradient(linear, right top, right bottom, from(#000000), to(#FFFFFF)); */
 //	background: transparent url('/images/background.jpg') repeat scroll left top; 
@@ -23,12 +23,13 @@ body {
 	color:white;
 	text-decoration:none;
 	font-weight:500;
-	font-size:20px;
+	font-size:14px;
 	font-family: sans-serif;
 }
 
 #header a:hover{
-	color:#aadb6d;
+	//color:#aadb6d;	
+	background-color:#404040;
 }
 
 #logo {
@@ -39,7 +40,11 @@ body {
 	height:40px;
 	background-image:url('../images/logo.png');
 	background-repeat:no-repeat;
-	background-color:#101010 ;
+	background-color:black ;
+}
+
+#logo a{
+	background-color: ;
 }
 
 .content{
@@ -51,7 +56,7 @@ body {
 .header_link{
 	float:left;
 	width:145px;
-	margin:16px 0 0 0;
+	margin:30px 0px 30px 0;
 	text-decoration:none;
 	text-align:center;
 }
@@ -61,7 +66,7 @@ body {
 }
 
 #main_content{
-	margin-top:25px;
+	margin-top:22px;
 	width:940px;
 	min-height:300px;
 	background-color:#404040;
@@ -102,6 +107,7 @@ ul.ajax_list{
 	list-style-position: none;
 	margin:0;
 	padding:0;
+	color:black;
 }
 
 .section{
@@ -186,14 +192,18 @@ li.highlightable{
 	clear:both;
 	border-bottom:1px dotted grey;
 	width:100%;
+	
 }
 
 li.highlightable a{
 	text-decoration:none;
+	color:black;
 }
+
 
 .highlightable:hover{
 	background-color:lightyellow;
+	color:blue;
 }
 
 .slide_down{
@@ -275,6 +285,8 @@ cursor: pointer;
 
 #columns {
   background: #080808;
+    -moz-border-radius: 10px; 
+  -webkit-border-radius: 10px;
 }
 
 
@@ -283,6 +295,8 @@ cursor: pointer;
   padding-top: 4ex;
   padding-left: 2em;
   background: white;
+   -moz-border-radius: 10px; 
+  -webkit-border-radius: 10px;
 }
 
 #side {
@@ -292,6 +306,8 @@ cursor: pointer;
   padding-bottom: 1em;
   width: 12em;
   background: #080808;
+    -moz-border-radius: 10px; 
+  -webkit-border-radius: 10px;
 }
 
 #side a{
@@ -399,7 +415,8 @@ width: 650px;
 }
 
 .unread_message{
-	font-color:blue; font-weight:900;
+	color: red;
+	font-weight:900;
 }
 
 /*COUNTER SPECIFIC STYLES */
@@ -466,5 +483,8 @@ margin-left: 100px;
 margin-top: 25px;
 }
 
+#first_button{
+	padding: 4px 0px 4px 0px
+}
 
 

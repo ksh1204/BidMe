@@ -6,7 +6,8 @@
   <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
   <%= stylesheet_link_tag 'style'%>
   <%= stylesheet_link_tag 'facebox' %>
-  <%= include_gritter_and_jquery%>
+  <%= javascript_include_tag 'jquery-google'%>
+  <%= include_gritter%>
   <%= javascript_include_tag 'facebox'%>
   <%= javascript_include_tag :juggernaut %>
   <% if current_user %>
@@ -25,7 +26,7 @@
 
 <div id='header'>
   <div class='content'>
-    <a href='/' class='span-4'>
+    <a href='/'>
     <div id='logo'>
     </div>
     </a>

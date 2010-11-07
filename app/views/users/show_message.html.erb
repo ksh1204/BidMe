@@ -14,7 +14,7 @@
 	<br><br>
 		    
 	
-	<table><tr><td style="width:5%"><%= button_to 'Reply', :action => 'write_message', :receiver => @message.sender.login%></td>
+	<table><tr><td id="first_button" style="width:5%"><%= button_to 'Reply', :action => 'write_message', :receiver => @message.sender.login%></td>
 		  <td><%= button_to "Back", request.env["HTTP_REFERER"] %></td></tr></table>
 			
     </div>

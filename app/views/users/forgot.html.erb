@@ -1,20 +1,12 @@
 <%= error_messages_for :user %>
 <% form_for :user do |f| -%>
-<table id="newedit">
-    <thead>
-        <tr>
-            <th colspan="2" >Request link to reset password</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td align="right"><label>Email:</label></td>
-            <td><%= f.text_field :email %></td>
-        </tr>       
-        <tr>
-            <td></td>
-            <td><%= submit_tag 'Submit' %></td>
-        </tr>
-    </tbody>
-</table>
+<h2>Request link to reset password:</h2>
+<br>
+<div id='forgot_p'>
+	<div id='forgot_e_label'>
+		Email: <%= f.text_field :email %>
+	</div><br>
+		<%= submit_tag 'Submit' %>
+
 <% end -%>
+</div>
