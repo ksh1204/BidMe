@@ -5,7 +5,7 @@ rake db:create
 rake db:migrate
 rake db:fixtures:load
 
-juggernaug -c juggernaug.yml
+juggernaut -c juggernaut.yml
 
 rake thinking_sphinx:index
 rake thinking_sphinx:start

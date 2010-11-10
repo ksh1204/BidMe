@@ -3,14 +3,8 @@
   		<%= render :partial => 'messagebox_menu' %>
     </div>
     <div id="main">
-		<h2>Write Message</h2>
+		<h2>New Message</h2>
 		<%=form_tag :action=>'send_message'%>
-		  <%=label_tag :sender_id, 'From:', :class => 'messagebox_links'%>
-		  <br/>
-		  <%=label_tag :sender_id, @message.sender.login, :class => 'messagebox_links'%>
-		  <br/>
-		  <br/>
-
 		  <%=label_tag :receiver, 'To:', :class => 'messagebox_links'%>
 		  <br/>
 		  <%=text_field_tag :receiver, (@message.receiver.login if @message.receiver)%>
