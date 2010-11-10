@@ -487,43 +487,69 @@ margin-top: 25px;
 	padding: 4px 0px 4px 0px
 }
 
-.FreezePaneOff
-   {
-      visibility: hidden;
-      display: none;
-      position: absolute;
-      top: -100px;
-      left: -100px;
-   }
+.FreezePaneOff{
+    visibility: hidden;
+    display: none;
+    position: absolute;
+    top: -100px;
+    left: -100px;
+}
 
-   .FreezePaneOn
-   {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      visibility: visible;
-      display: block;
-      width: 100%;
-      height: 100%;
-      background-color: black;
-      z-index: 999;
-      filter:alpha(opacity=85);
-      -moz-opacity:0.85;
-      padding-top: 20%;
-   }
+.FreezePaneOn{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    visibility: visible;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 999;
+    filter:alpha(opacity=85);
+    -moz-opacity:0.85;
+    padding-top: 20%;
+}
 
-   .InnerFreezePane
-   {
-      text-align: center;
-      width: 66%;
-      background-color: black;
-      color: White;
-      font-size: large;
-	  font-color: white;
-      /*border: dashed 2px #111;*/
-      padding: 9px;
-   }
+.InnerFreezePane{
+    text-align: center;
+    width: 66%;
+    background-color: black;
+    color: White;
+    font-size: large;
+	font-color: white;
+    /*border: dashed 2px #111;*/
+    padding: 9px;
+}
 
+.searched_items{
+	height:650px;
+}
+
+.searched_item{
+	float:left;
+	padding:15px 15px 15px 15px;
+}
+
+.searched_item_name{
+	text-align:center;
+}
+
+.searched_item_name a{
+	color:orange;
+}
+
+.searched_item_name a:hover{
+	color:red;
+}
+
+.searched_item_price{
+	text-align:center;
+}
+
+.searched_item_category{
+	text-align:center;
+	color:blue;
+}
 
 
 
