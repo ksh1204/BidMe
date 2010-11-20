@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :user_items
   has_many :posted_items, :through => :user_items
+
   
   has_many :bids, :foreign_key => "bidder_id"
   has_many :bidded_items, :through => :bids
@@ -19,9 +20,9 @@ class User < ActiveRecord::Base
   has_many :watches, :foreign_key => "watcher_id"
   has_many :watched_items, :through => :watches
   
-  has_many :user_ratings
-  has_many :ratees, :through => :user_ratings
-  
+  ajaxful_rateable :dimensions => [:quality]
+  ajaxful_rater
+
   has_many :user_comments, :foreign_key => "commentee_id"
   has_many :commentees, :through => :user_comments
   

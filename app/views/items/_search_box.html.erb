@@ -1,6 +1,7 @@
 <center><div id="search_box">
+	<div id="box">
 	<%= form_tag :controller => "items", :action => "search" %>
-		<%= text_field_tag :q %>
+		<%= text_field_tag :q, '' %><br></div>
 		<%= submit_tag "Search"%>
 	</form>
 </div></center>

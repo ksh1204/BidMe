@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :messages
+  map.resources :users, :member => {:rate => :post}
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'

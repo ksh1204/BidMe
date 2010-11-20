@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101102042145) do
+ActiveRecord::Schema.define(:version => 20101110085324) do
 
   create_table "bids", :force => true do |t|
     t.integer  "bidder_id"
@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(:version => 20101102042145) do
     t.boolean  "unread",      :default => true
   end
 
+  create_table "rates", :force => true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.integer  "stars",         :null => false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
+  add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
+
   create_table "transactions", :force => true do |t|
     t.integer  "buyer_id"
     t.integer  "seller_id"
@@ -80,11 +93,6 @@ ActiveRecord::Schema.define(:version => 20101102042145) do
   create_table "user_items", :force => true do |t|
     t.integer  "user_id"
     t.integer  "item_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_ratings", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

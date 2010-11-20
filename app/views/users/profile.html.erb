@@ -1,3 +1,5 @@
+<%= ratings_for @user, :force_static => true, :dimension => :quality %>
+<%= ratings_for @user, :dimension => :quality, :show_user_rating => true %>
 <div class="profile">
 	<div id="profile_head">
 		<div id="user_profile_left" style="float: left;">

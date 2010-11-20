@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   end
   
   def search
-    @items = Item.search params[:q], :page => params[:page], :per_page => 12
+    @items = Item.search params[:q], :page => params[:page], :per_page => 40
   end
   
   def show
@@ -53,6 +53,7 @@ class ItemsController < ApplicationController
     @diff = Time.parse(@item.created_at.to_s)+@item.time_limit-Time.now.utc
     if !@item.closed
       if @diff <= 0
+	@transaction = Transaction.new
         @item.update_attribute(:closed,true)
         render :juggernaut => {:type => :send_to_all} do |page|
           page.replace_html :highest_bid, "Auction is closed now!"
