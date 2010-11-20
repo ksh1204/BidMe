@@ -1,5 +1,4 @@
-<%= ratings_for @user, :force_static => true, :dimension => :quality %>
-<%= ratings_for @user, :dimension => :quality, :show_user_rating => true %>
+
 <div class="profile">
 	<div id="profile_head">
 		<div id="user_profile_left" style="float: left;">
@@ -71,6 +70,12 @@
 		<% end %>
 	</div>
 	
+	<hr class="horiz_line">
+<div id ="rating_section">
+<b>User Rating</b>
+<%= ratings_for @user, :dimension => :quality %>
+
+</div>
 	<hr class="horiz_line">
 
 	<div id ="comment_section">

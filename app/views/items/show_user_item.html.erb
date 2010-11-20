@@ -1,0 +1,36 @@
+<h2> Current Auctions </h2>
+
+<% if @items.first %>
+<% @count = 0%>
+<div class="searched_items">
+<% for item in @items %>
+	<% if item && item.user == current_user && !item.closed %>
+	<div class="searched_item">
+		<div class="searched_item_photo">
+			<% if item.item_photo_file_name %>
+				<%= image_tag item.item_photo.url(:small) %>
+			<% else %>
+				<%= image_tag('/images/default.jpg') %>
+			<% end %>
+		</div>
+		<div class="searched_item_category">
+			<%=item.item_category.name%>
+		</div>
+		<div class="searched_item_name">
+			<%=link_to item.name, :action => 'show', :id => item.id%>
+		</div>
+		<div class="searched_item_price">
+			$<%=item.start_price%>
+		</div>
+	</div>
+	<% @count += 1 %>
+	<% if @count % 4 == 0%>
+		<div style="clear:both"></div>
+	<%end %>
+	<% end %>
+<% end %>
+</div>
+
+<% else %>
+	<center>No items found</center>
+<% end %>

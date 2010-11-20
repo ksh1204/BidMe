@@ -293,6 +293,8 @@ class UsersController < ApplicationController
       redirect_to :action => 'profile', :username => @following.login
     end
 
+    
+
 		def write_comment
 			@user = current_user
 			@commentee = User.find(params[:commentee_id])

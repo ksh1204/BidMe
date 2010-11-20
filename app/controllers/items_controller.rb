@@ -44,6 +44,10 @@ class ItemsController < ApplicationController
     
   end
   
+  def show_user_item
+      @items = Item.find(:all)
+  end
+
   def bin_check
     @bin = session[:bin_checked] = !session[:bin_checked]
   end
