@@ -14,7 +14,7 @@
     <% if current_user.is_admin? %>
       <%=link_to 'Manage Site', :controller => :admin, :action => :index %>
     <% end %>
-    <%=link_to current_user.login, home_path%> (<%=link_to 'logout', logout_path%>)
+  <%=link_to current_user.login, {:controller => 'users', :action => 'profile', :username => current_user.login} %> (<%=link_to 'logout', logout_path%>)
    <!-- <%=link_to 'My Messagebox', {:controller => 'users', :action => 'messagebox'}%>- -->
   <%else%>
     <%=link_to 'login', login_path%> | <%=link_to 'signup', signup_path%>

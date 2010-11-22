@@ -61,7 +61,7 @@ class UsersController < ApplicationController
       if current_user.is_admin?
         redirect_to :action => 'list'
       else
-        redirect_to :action => 'home'
+        redirect_to :action => 'profile', :username => current_user.login
       end
     else
       render :action => 'edit', :id => params[:id]
@@ -213,6 +213,7 @@ class UsersController < ApplicationController
 		  respond_to do |format|
 		    format.html
         format.js { render_to_facebox }
+      @items = Item.find(:all)
       end
       
     end
@@ -367,7 +368,8 @@ class UsersController < ApplicationController
         else
           @highest_bid = @user.bids.build(:item_id => params[:item_id], :price => params[:bid_price])
           @highest_bid.save
-          @highest_bid.save
+          @user.money = @user.money - price.to_f
+	  @user.save
     		  gflash :success => "Bid success. You are now the highest bidder!"
     		  render :juggernaut => {:type => :send_to_all } do |page|
             page.replace_html :highest_bid, :partial => 'items/highest_bid_price', :object => @highest_bid

@@ -2,6 +2,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :messages
   map.resources :users, :member => {:rate => :post}
 
+  map.resources :users
+  
+  map.resources :items
+  map.resources :item_categories
+
+  map.resource :session
+  
+  map.resources :admins
+  map.edit 'users/edit', :controller => 'users', :action => 'edit'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
@@ -11,7 +20,6 @@ ActionController::Routing::Routes.draw do |map|
   map.forgot    '/forgot',                    :controller => 'users',     :action => 'forgot'
   map.reset     'reset/:reset_code',          :controller => 'users',     :action => 'reset'
   map.change_password 'users/change_password', :controller => 'users', :action => 'change_password'
-  map.edit_user 'users/edit', :controller => 'users', :action => 'edit'
   map.home '/users/home', :controller => 'users', :action => 'home'
   map.messagebox 'messagebox', :controller => 'users', :action => 'messagebox'
   map.sent_messages 'sent_messages', :controller => 'users', :action => 'sent_messages'
@@ -30,16 +38,8 @@ ActionController::Routing::Routes.draw do |map|
   map.search_item 'search', :controller => 'items', :action => 'search'
   map.bid_item 'bid', :controller => 'users', :action => 'bid'
   map.end_auction 'end_auction/:id', :controller => 'items', :action => 'end_auction'
+  map.show 'items/:id', :controller => 'items', :action => 'show'
   
-  
-  map.resources :users
-  
-  map.resources :items
-  map.resources :item_categories
-
-  map.resource :session
-  
-  map.resources :admins
 
   # The priority is based upon order of creation: first created -> highest priority.
 

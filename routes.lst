@@ -1,0 +1,85 @@
+(in /home/yelnil/Desktop/RubyProjects/BidMe)
+------------------------------------------
+IMPORTANT: AjaxfulRating has been updated to v2.2.x and some options changed.Please read the changelog at http://github.com/edgarjs/ajaxful-rating/blob/master/CHANGELOG
+------------------------------------------
+            messages GET    /messages(.:format)                 {:action=>"index", :controller=>"messages"}
+                     POST   /messages(.:format)                 {:action=>"create", :controller=>"messages"}
+         new_message GET    /messages/new(.:format)             {:action=>"new", :controller=>"messages"}
+        edit_message GET    /messages/:id/edit(.:format)        {:action=>"edit", :controller=>"messages"}
+             message GET    /messages/:id(.:format)             {:action=>"show", :controller=>"messages"}
+                     PUT    /messages/:id(.:format)             {:action=>"update", :controller=>"messages"}
+                     DELETE /messages/:id(.:format)             {:action=>"destroy", :controller=>"messages"}
+               users GET    /users(.:format)                    {:action=>"index", :controller=>"users"}
+                     POST   /users(.:format)                    {:action=>"create", :controller=>"users"}
+            new_user GET    /users/new(.:format)                {:action=>"new", :controller=>"users"}
+           rate_user POST   /users/:id/rate(.:format)           {:action=>"rate", :controller=>"users"}
+           edit_user GET    /users/:id/edit(.:format)           {:action=>"edit", :controller=>"users"}
+                user GET    /users/:id(.:format)                {:action=>"show", :controller=>"users"}
+                     PUT    /users/:id(.:format)                {:action=>"update", :controller=>"users"}
+                     DELETE /users/:id(.:format)                {:action=>"destroy", :controller=>"users"}
+                     GET    /users(.:format)                    {:action=>"index", :controller=>"users"}
+                     POST   /users(.:format)                    {:action=>"create", :controller=>"users"}
+                     GET    /users/new(.:format)                {:action=>"new", :controller=>"users"}
+                     GET    /users/:id/edit(.:format)           {:action=>"edit", :controller=>"users"}
+                     GET    /users/:id(.:format)                {:action=>"show", :controller=>"users"}
+                     PUT    /users/:id(.:format)                {:action=>"update", :controller=>"users"}
+                     DELETE /users/:id(.:format)                {:action=>"destroy", :controller=>"users"}
+               items GET    /items(.:format)                    {:action=>"index", :controller=>"items"}
+                     POST   /items(.:format)                    {:action=>"create", :controller=>"items"}
+            new_item GET    /items/new(.:format)                {:action=>"new", :controller=>"items"}
+           edit_item GET    /items/:id/edit(.:format)           {:action=>"edit", :controller=>"items"}
+                item GET    /items/:id(.:format)                {:action=>"show", :controller=>"items"}
+                     PUT    /items/:id(.:format)                {:action=>"update", :controller=>"items"}
+                     DELETE /items/:id(.:format)                {:action=>"destroy", :controller=>"items"}
+     item_categories GET    /item_categories(.:format)          {:action=>"index", :controller=>"item_categories"}
+                     POST   /item_categories(.:format)          {:action=>"create", :controller=>"item_categories"}
+   new_item_category GET    /item_categories/new(.:format)      {:action=>"new", :controller=>"item_categories"}
+  edit_item_category GET    /item_categories/:id/edit(.:format) {:action=>"edit", :controller=>"item_categories"}
+       item_category GET    /item_categories/:id(.:format)      {:action=>"show", :controller=>"item_categories"}
+                     PUT    /item_categories/:id(.:format)      {:action=>"update", :controller=>"item_categories"}
+                     DELETE /item_categories/:id(.:format)      {:action=>"destroy", :controller=>"item_categories"}
+         new_session GET    /session/new(.:format)              {:action=>"new", :controller=>"sessions"}
+        edit_session GET    /session/edit(.:format)             {:action=>"edit", :controller=>"sessions"}
+             session GET    /session(.:format)                  {:action=>"show", :controller=>"sessions"}
+                     PUT    /session(.:format)                  {:action=>"update", :controller=>"sessions"}
+                     DELETE /session(.:format)                  {:action=>"destroy", :controller=>"sessions"}
+                     POST   /session(.:format)                  {:action=>"create", :controller=>"sessions"}
+              admins GET    /admins(.:format)                   {:action=>"index", :controller=>"admins"}
+                     POST   /admins(.:format)                   {:action=>"create", :controller=>"admins"}
+           new_admin GET    /admins/new(.:format)               {:action=>"new", :controller=>"admins"}
+          edit_admin GET    /admins/:id/edit(.:format)          {:action=>"edit", :controller=>"admins"}
+               admin GET    /admins/:id(.:format)               {:action=>"show", :controller=>"admins"}
+                     PUT    /admins/:id(.:format)               {:action=>"update", :controller=>"admins"}
+                     DELETE /admins/:id(.:format)               {:action=>"destroy", :controller=>"admins"}
+                edit        /users/edit                         {:action=>"edit", :controller=>"users"}
+              logout        /logout                             {:action=>"destroy", :controller=>"sessions"}
+               login        /login                              {:action=>"new", :controller=>"sessions"}
+            register        /register                           {:action=>"create", :controller=>"users"}
+              signup        /signup                             {:action=>"new", :controller=>"users"}
+            activate        /activate/:activation_code          {:action=>"activate", :controller=>"users"}
+        send_message        /users/send_message                 {:action=>"send_message", :controller=>"users"}
+              forgot        /forgot                             {:action=>"forgot", :controller=>"users"}
+               reset        /reset/:reset_code                  {:action=>"reset", :controller=>"users"}
+     change_password        /users/change_password              {:action=>"change_password", :controller=>"users"}
+                home        /users/home                         {:action=>"home", :controller=>"users"}
+          messagebox        /messagebox                         {:action=>"messagebox", :controller=>"users"}
+       sent_messages        /sent_messages                      {:action=>"sent_messages", :controller=>"users"}
+       write_message        /write_message                      {:action=>"write_message", :controller=>"users"}
+        show_message        /message                            {:action=>"show_message", :controller=>"users"}
+   show_sent_message        /sent_message                       {:action=>"show_sent_message", :controller=>"users"}
+             profile        /profile/:username                  {:action=>"profile", :controller=>"users"}
+remove_profile_photo        /remove_profile_photo               {:action=>"remove_profile_photo", :controller=>"users"}
+         report_user        /report                             {:action=>"report_user", :controller=>"users"}
+         follow_user        /follow                             {:action=>"follow_user", :controller=>"users"}
+       unfollow_user        /unfollow                           {:action=>"unfollow_user", :controller=>"users"}
+     delete_category        /item_categories/destroy/:id        {:action=>"destroy", :controller=>"item_categories"}
+       edit_category        /item_categories/edit/:id           {:action=>"edit", :controller=>"item_categories"}
+                post        /post                               {:action=>"create", :controller=>"items"}
+           post_item        /post_item                          {:action=>"new", :controller=>"items"}
+         search_item        /search                             {:action=>"search", :controller=>"items"}
+            bid_item        /bid                                {:action=>"bid", :controller=>"users"}
+         end_auction        /end_auction/:id                    {:action=>"end_auction", :controller=>"items"}
+                show        /items/:id                          {:action=>"show", :controller=>"items"}
+                root        /                                   {:action=>"index", :controller=>"base"}
+                            /:controller/:action/:id            
+                            /:controller/:action/:id(.:format)  

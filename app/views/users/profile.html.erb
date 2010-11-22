@@ -14,8 +14,10 @@
 			</div>
 		</div>
 		<div id="user_profile_right" style="float: left;">
-		 <b>Basic Information</b>
-
+		 <b>Basic Information</b> 
+		 <% if current_user.id == @user.id%>
+			 (<%=link_to 'Edit', {:controller => 'users', :id => current_user.id, :action => 'edit'}%>)
+		 <% end %>
 	<hr style="margin-top:0; margin-bottom:0; width:40%"">
 		  <div id="profile_info" >
 			
@@ -77,7 +79,42 @@
 
 </div>
 	<hr class="horiz_line">
+<div id="profile_user_items_header">
+<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
+<b>User Items</b>
+	<div id="profile_user_items">
+		<% if @items.first %>
+			<% @count = 0%>
+			<% for item in @items %>
+				<% if item && item.user == @user && !item.closed %>
+				<div class="searched_item">
+					<div class="searched_item_photo">
+						<% if item.item_photo_file_name %>
+							<%= image_tag item.item_photo.url(:small) %>
+						<% else %>
+							<%= image_tag('/images/default.jpg') %>
+						<% end %>
+					</div>
+					<div class="searched_item_name">
+						<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id} %>
+					</div>
+				</div>
+				<% @count += 1 %>
+				<% if @count % 4 == 0%>
+					<div style="clear:both"></div>
+				<%end %>
+				<% end %>
+			<% end %>
 
+			<% else %>
+				No items found
+		<% end %>
+
+		<hr class="horiz_line">
+
+	</div>
+</div>
+	<% end %>
 	<div id ="comment_section">
 	<b>User Comments</b>
 	<%=form_tag :action => 'write_comment' %>
