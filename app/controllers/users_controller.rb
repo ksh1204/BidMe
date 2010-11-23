@@ -197,7 +197,11 @@ class UsersController < ApplicationController
         redirect_back_or_default('/sent_messages')
       end
     end
-    
+ 
+ def about
+	@user = current_user
+ end    
+
  def rate
     @user = User.find(params[:id])
     @user.rate(params[:stars], current_user, params[:dimension])
@@ -294,7 +298,9 @@ class UsersController < ApplicationController
       redirect_to :action => 'profile', :username => @following.login
     end
 
-    
+    def show_user_items
+      @items = current_user.user_items
+  end
 
 		def write_comment
 			@user = current_user
@@ -322,16 +328,14 @@ class UsersController < ApplicationController
 		  elsif !price
   		  gflash :error => "Price cannot be empty"
   		  redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
-		  end
+		  else
 		    
 		  if (@bids.count > 0) && (money >= price.to_f)                   
 		    @highest = @bids.first
 		    if price.to_f <= @highest.price
 		      gflash :error => "Bid price must be greater than the current price of the item!"
-		      redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
 		    elsif (@bids.first.bidder.id == current_user.id)
 			gflash :error => "Cannot outbid yourself!"
-		        redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
 		    else			
     		  @highest_bid = @user.bids.build(:item_id => params[:item_id], :price => params[:bid_price])
     		  @highest_bid.save
@@ -379,5 +383,8 @@ class UsersController < ApplicationController
         redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
       end
 		end
+	end
 
 end
+
+ 

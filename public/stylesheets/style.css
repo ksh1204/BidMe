@@ -391,7 +391,7 @@ cursor: pointer;
 
 #user_profile_right{
 border: 5px;
-margin-top: 100px;
+margin-top: 90px;
 margin-left: 20px;
 width: 500px;
 }
@@ -456,6 +456,7 @@ width: 650px;
 	padding: 5px;
 }
 
+
 #message_content {
  	width: 400px;
  	border: 1px solid #cccccc;
@@ -463,7 +464,7 @@ width: 650px;
 	word-wrap: break-word;
 }
  		
-#comments_table {
+#comments_box {
 	width: 800px;
 	max-width:100px;
 }
@@ -521,13 +522,15 @@ margin-top: 25px;
     padding: 9px;
 }
 
-.searched_items{
-	height:650px;
-}
 
 .searched_item{
 	float:left;
+	width: 20%;
 	padding:15px 15px 15px 15px;
+}
+
+.searched_item_photo{
+	text-align:center;
 }
 
 .searched_item_name{
@@ -549,6 +552,10 @@ margin-top: 25px;
 .searched_item_category{
 	text-align:center;
 	color:blue;
+}
+
+.search_pages{
+	padding-top: 35px;
 }
 
 

@@ -14,16 +14,22 @@
 			</div>
 		</div>
 		<div id="user_profile_right" style="float: left;">
-		 <b>Basic Information</b> 
-		 <% if current_user.id == @user.id%>
+ 		<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
+		 <b>Information</b> 
+                 <% if current_user.id == @user.id%>
 			 (<%=link_to 'Edit', {:controller => 'users', :id => current_user.id, :action => 'edit'}%>)
+		 <% end %>
+		 <% else %>
+		 <b>Basic Information</b> 
+		 
 		 <% end %>
 	<hr style="margin-top:0; margin-bottom:0; width:40%"">
 		  <div id="profile_info" >
 			
 			<div id="basic_info_col2">
-				<div id="email_label">
-					Email:
+			<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
+				<div id="name_label">
+					Name: 
 				</div>
 				<div id="address_label">
 					Address: 
@@ -31,17 +37,29 @@
 				<div id="phone_label">
 					Phone:
 				</div>
+				<% end %>
+				<div id="email_label">
+					Email:
+				</div>
 			</div>
 			<div id="basic_info_col3">
-				<div id="user_profile_email">
-					<%= @user.email %><br/>
+				<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
+				<div id="user_profile_name">
+					<%= @user.first_name %> <%= @user.last_name %><br/>
 
 				</div>
+				
 				<div id="user_profile_address">
 					<%= @user.address %><br/>
 				</div>
+
 				<div id="user_profile_phone">
 					<%= @user.phone %><br/>
+				</div>
+				<% end %>
+				<div id="user_profile_email">
+					<%= @user.email %><br/>
+
 				</div>
 			</div>
 		</div>

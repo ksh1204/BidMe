@@ -104,9 +104,7 @@ function displayCountdown(countdn,cd) {
 	if (countdn < 0) {
 		document.getElementById(cd).innerHTML = "Sorry, you are too late.";
 		document.getElementById('bid_id').innerHTML = "";
-		$.ajax({ url: '/items/end_auction/'+item_id,
-		         type: 'post'
-		});
+		document.getElementById('highest_bid').innerHTML = "Auction is closed";
 	}
 	 else {
 		var secs = countdn % 60;

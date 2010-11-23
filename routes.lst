@@ -61,6 +61,7 @@ IMPORTANT: AjaxfulRating has been updated to v2.2.x and some options changed.Ple
               forgot        /forgot                             {:action=>"forgot", :controller=>"users"}
                reset        /reset/:reset_code                  {:action=>"reset", :controller=>"users"}
      change_password        /users/change_password              {:action=>"change_password", :controller=>"users"}
+               about        /users/about                        {:action=>"about", :controller=>"users"}
                 home        /users/home                         {:action=>"home", :controller=>"users"}
           messagebox        /messagebox                         {:action=>"messagebox", :controller=>"users"}
        sent_messages        /sent_messages                      {:action=>"sent_messages", :controller=>"users"}

@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
   has_many :bidded_items, :through => :bids
   
   has_many :bought_transactions, :class_name => "Transaction", :foreign_key => "buyer_id"
-  has_many :bought_items, :through => :bought_transactions
+  has_many :bought_items, :through => :bought_transactions, :foreign_key => "item_id"
   has_many :sold_transactions, :class_name => "Transaction", :foreign_key => "seller_id"
-  has_many :sold_items, :through => :sold_transactionss
+  has_many :sold_items, :through => :sold_transactions, :foreign_key => "item_id"
   
   has_many :watches, :foreign_key => "watcher_id"
   has_many :watched_items, :through => :watches

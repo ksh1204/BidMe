@@ -2,6 +2,7 @@ class Item < ActiveRecord::Base
   has_one :user_item
   has_one :user, :through => :user_item
   belongs_to :item_category
+  has_many :transactions
   has_many :watches
   has_many :watchers, :through => :watches
   
@@ -33,4 +34,5 @@ class Item < ActiveRecord::Base
     indexes :name, :sortable => true
     set_property :delta => true
   end
+
 end

@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   end
   
   def search
-    @items = Item.search params[:q], :page => params[:page], :per_page => 40
+    @items = Item.search params[:q], :page => params[:page], :per_page => 16
   end
   
   def show
@@ -44,9 +44,7 @@ class ItemsController < ApplicationController
     
   end
   
-  def show_user_item
-      @items = Item.find(:all)
-  end
+ 
 
   def bin_check
     @bin = session[:bin_checked] = !session[:bin_checked]
@@ -54,27 +52,13 @@ class ItemsController < ApplicationController
   
   def end_auction
     @item = Item.find(params[:id])
-    @user = User.find(@item.user.id)
     @diff = Time.parse(@item.created_at.to_s)+@item.time_limit-Time.now.utc
-    seller = @item.bids.sort_by {|b| -b.price}.first.bidder_id
-    price = @item.bids.sort_by {|b| -b.price}.first
-    @transaction = Transaction.new
-    @transaction.buyer_id = @item.user.id
-    @transaction.seller_id = seller
-    @transaction.item_id = @item.id
-    @transaction.price = price
-    @transaction.save
-    @user.money = @user.money + price
-    @user.save
     @item.update_attribute(:closed,true)
-    if !@item.closed
-      if @diff <= 0
-        render :juggernaut => {:type => :send_to_all} do |page|
+    render :juggernaut => {:type => :send_to_all} do |page|
           page.replace_html :highest_bid, "Auction is closed now!"
           page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
-        end
-      end
     end
+    
     redirect_to :action => 'show', :id => @item.id
   end
 end
