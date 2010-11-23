@@ -330,12 +330,17 @@ class UsersController < ApplicationController
   		  redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
 		  else
 		    
-		  if (@bids.count > 0) && (money >= price.to_f)                   
+		  if (@bids.count > 0)                   
 		    @highest = @bids.first
 		    if price.to_f <= @highest.price
 		      gflash :error => "Bid price must be greater than the current price of the item!"
+		      redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
 		    elsif (@bids.first.bidder.id == current_user.id)
 			gflash :error => "Cannot outbid yourself!"
+			redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
+		    elsif (money < price.to_f)
+			gflash :error => "You cannot afford to pay this"
+			redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
 		    else			
     		  @highest_bid = @user.bids.build(:item_id => params[:item_id], :price => params[:bid_price])
     		  @highest_bid.save
@@ -367,8 +372,10 @@ class UsersController < ApplicationController
       else
         if price.to_f <= @item.start_price 
           gflash :error => "Bid price must be greater than the current price of the item!"
+          redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
 	elsif money < price.to_f
 	   gflash :error => "Cannot afford to bid with that price!"
+           redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
         else
           @highest_bid = @user.bids.build(:item_id => params[:item_id], :price => params[:bid_price])
           @highest_bid.save
@@ -379,6 +386,7 @@ class UsersController < ApplicationController
             page.replace_html :highest_bid, :partial => 'items/highest_bid_price', :object => @highest_bid
             page.visual_effect :highlight, "highest_bid", :duration => 5
           end
+	  redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
         end
         redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
       end
