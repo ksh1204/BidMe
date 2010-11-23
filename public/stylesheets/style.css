@@ -554,6 +554,25 @@ margin-top: 25px;
 	color:blue;
 }
 
+.history_item_name a {
+	color:orange;
+}
+
+.history_item_name {
+	margin-left:10px;
+}
+
+#sold_transac{
+	margin-left:10px;
+}
+
+#bought_transac{
+	margin-left:10px;
+}	
+.history_item_name a:hover{
+	color:red;
+}
+
 .search_pages{
 	padding-top: 35px;
 }

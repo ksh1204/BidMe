@@ -1,0 +1,28 @@
+<h2> Account Activity </h2>
+
+<div id='account_history'>
+	<div id='sold_transac'>
+		<div class='history_header'>
+			<% if @sold.count > 0 %>
+			<small>Sold Items:</small>
+			<% end %>
+		</div>
+		<% for sold_transac in @sold %>
+		<div class="history_item_name">
+			 <%sold_item = Item.find(sold_transac.item_id) %>
+			 <%=link_to sold_item.name, {:controller => 'items', :action => 'show', :id => sold_item.id}%> -- $<%=sold_transac.price%><br></div>
+		<% end %>
+	</div><br>
+	<div id='bought_transac'>
+		<div class='history_header'>
+			<% if @bought.count > 0 %>
+			<small>Bought Items:</small>
+			<% end %>
+		</div>
+		<% for bought_transac in @bought %>
+		 <div class="history_item_name">
+			 <%bought_item = Item.find(bought_transac.item_id) %>
+			 <%=link_to bought_item.name, {:controller => 'items', :action => 'show', :id => bought_item.id}%> -- $<%=bought_transac.price%><br></div>
+		 <% end %>
+	</div>
+</div>

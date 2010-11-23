@@ -300,7 +300,9 @@ class UsersController < ApplicationController
 
     def show_user_items
       @items = current_user.user_items
-  end
+      @sold = Transaction.find_all_by_seller_id(current_user.id)
+      @bought = Transaction.find_all_by_buyer_id(current_user.id)
+    end
 
 		def write_comment
 			@user = current_user

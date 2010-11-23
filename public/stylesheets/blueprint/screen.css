@@ -29,7 +29,7 @@ a img {border:none;}
 /* typography.css */
 html {font-size:100.01%;}
 body {font-size:75%;color:#000;background:#fff;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
-h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#292e29;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;color:grey;}
 h1 {font-size:3em;line-height:1;margin-bottom:0.5em; }
 h2 {font-size:2em;margin-bottom:0.05em;}
 h3 {font-size:1.5em;line-height:1;margin-bottom:1em; }
