@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   end
   
   def search
-    @items = Item.search params[:q], :page => params[:page], :per_page => 16
+    @items = Item.search params[:q], :page => params[:page], :per_page => 16, :conditions => {:closed => false}
   end
   
   def show
@@ -55,6 +55,7 @@ class ItemsController < ApplicationController
     @item.update_attribute(:closed,true)
     render :juggernaut => {:type => :send_to_all} do |page|
           page.replace_html :highest_bid, "Auction is closed now!"
+          page.replace_html :bid_id, ""
           page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
     end
     

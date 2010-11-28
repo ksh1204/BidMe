@@ -37,6 +37,7 @@ ActionController::Routing::Routes.draw do |map|
   map.show 'items/:id', :controller => 'items', :action => 'show'
   map.show_user_items 'posts', :controller => 'users', :action => 'show_user_items'
   map.search_index 'search', :controller => 'items', :action => 'index'
+  map.bin 'bin/:id', :controller => 'users', :action => 'buy_it_now'
   
   map.resources :messages
   map.resources :users, :member => {:rate => :post}
