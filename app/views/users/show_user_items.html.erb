@@ -1,41 +1,81 @@
-
+<hr class="horiz_line">
+<h2> Items of Interest </h2>
+<% if @following %>
+	<div id="followed_items_all">
+	<% for user_f in @following %>
+		<% user = User.find(user_f.following_id) %>
+		<div id="followed_items_user">
+		From <%= link_to user.login, {:controller => 'users', :action => 'profile', :username =>user.login} %> : 
+		</div>
+		<div id="followed_items">
+		<% items_followed = user.user_items %>
+		<% @count = 0%>
+		<% for user_item in items_followed %>
+			<% if user_item %>
+				<% item = Item.find(user_item.id) %>
+				<% if !item.closed  && item.user == user %>
+					<div class="searched_item">
+						<div class="searched_item_photo">
+							<% if item.item_photo_file_name %>
+								<%= image_tag item.item_photo.url(:thumb) %>
+							<% else %>
+								<%= image_tag('/images/default.jpg') %>
+							<% end %>
+						</div>
+						<div class="searched_item_name">
+							<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
+						</div>
+					</div>
+					<% @count += 1 %>
+					<% if @count % 4 == 0%>
+						<div style="clear:both"></div>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+		</div><div style="clear:both"></div>
+		
+	<% end %>
+	</div>
+<% end %>
 <hr class="horiz_line">
 <h2> Posted Items </h2>
 <% if @items.first %>
-<% @count = 0%>
-<div class="searched_items">
-<% for user_item in @items %>
-	<% if user_item %>
-	<% item = Item.find(user_item.id) %>
-	<div class="searched_item">
-		<div class="searched_item_photo">
-			<% if item.item_photo_file_name %>
-				<%= image_tag item.item_photo.url(:small) %>
-			<% else %>
-				<%= image_tag('/images/default.jpg') %>
+	<% @items = UserItem.paginate :page => params[:page], :per_page => 16, :order => 'created_at DESC' %>
+	
+	<div id="posted_items_page">
+		<div class="searched_items">
+		<% for user_item in @items %>
+			<% if user_item && user_item.user_id == current_user.id%>
+				<% item = Item.find(user_item.id) %>
+				<div class="searched_item">
+					<div class="searched_item_photo">
+						<% if item.item_photo_file_name %>
+							<%= image_tag item.item_photo.url(:thumb) %>
+						<% else %>
+							<%= image_tag('/images/default.jpg') %>
+						<% end %>
+					</div>
+					<div class="searched_item_name">
+						<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
+					</div>
+					<% if item.closed %>
+					<div class="searched_item_status">
+						<small><center>done</center></small>
+					</div>
+					<% else %>
+					<div class="searched_item_status" style="color:red;">
+						<b><i><center>Active</center></b></i>
+					</div>
+					<% end %>
+				</div>
+				
 			<% end %>
-		</div>
-		<div class="searched_item_name">
-			<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
-		</div>
-		<% if item.closed %>
-		<div class="searched_item_status">
-			<small><center>done</center></small>
-		</div>
-		<% else %>
-		<div class="searched_item_status" style="color:red;">
-			<b><i><center>Active</center></b></i>
-		</div>
 		<% end %>
-	</div>
-	<% @count += 1 %>
-	<% if @count % 4 == 0%>
 		<div style="clear:both"></div>
-	<%end %>
-	<% end %>
-<% end %>
-</div>
-
+		</div>
+		<div class="posted_items_paginate"><center><%= will_paginate @items %></center></div>
+	</div>
 <% else %>
 	<small>No items found</small>
 <% end %>

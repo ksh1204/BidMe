@@ -1,0 +1,209 @@
+<<<<<<< HEAD
+<script type="text/javascript">
+$(function () {
+		<% @end_date = Time.parse(@item.created_at.to_s)+@item.time_limit %>
+		var end = new Date();
+		var id = <%=@item.id%> + "";
+		var year = <%=@end_date.year%> + ""
+		var month = <%=@end_date.month%> + ""; // 1 through 12 or '*' within the next month, '0' for the current month
+		var day = <%=@end_date.day%> + "";   // day of month or + day offset
+		var hour = <%=@end_date.hour%> + "";   // 0 through 23 for the hour of the day
+		var min = <%=@end_date.min%> + "";    // 0 through 59 for minutes after the hour
+		var sec = <%=@end_date.sec%> + "";
+		var tz = 0;     // offset in hours from UTC to your timezone
+	end = new Date(year,month-1,day,hour-8,min,sec);
+	$('#show_item_time_time_left').countdown({until: end});
+});
+</script>
+<div id="show_item_left">
+<div id="show_item_seller">
+	<div id="show_item_seller_label"></div>
+	<div id="show_item_seller_photo">
+		<% if @item.user.profile_photo_file_name %>
+		<%= image_tag @user.profile_photo.url(:small) %>
+		<% else %>
+		<%= image_tag('/images/default.jpg') %>
+		<% end %>
+	</div>
+	<div id="show_item_seller_name"><%=link_to @item.user.login, {:controller => "users", :action => "profile", :username => @item.user.login}%></div>
+</div>
+</div>
+<div id="show_item_middle">
+<div id="show_item_item">
+	<div id="show_item_item_label">Name</div>
+	<div id="show_item_item_name"><%=@item.name%></div>
+</div>
+<div id="show_item_desc">
+	<div id="show_item_desc_label">Description</div>
+	<div id="show_item_desc_desc"><pre><%=@item.description%></pre></div>
+</div>
+<div id="show_item_photo">
+	<div id="show_item_photo_label">Photo</div>
+	<div id="show_item_photo_photo">
+		<% if @item.item_photo_file_name %>
+			<%=image_tag @item.item_photo.url(:small)%>
+		<% else %>
+			<%=image_tag('/images/photo_na_long.png')%>
+		<% end %>
+	</div>
+</div>
+</div>
+<div id="show_item_right">
+<div id="show_item_price">
+	<div id="show_item_price_label">Start Price</div>
+	<div id="show_item_price_price">$<%=@item.start_price%></div>
+</div>
+<div id="show_item_time">
+	<div id="show_item_time_label">Time Remaining</div>
+	<div id="show_item_time_time_left"></div>
+</div>
+<% if @diff > 0 %>
+<div id='bid_id'>
+	<%= form_tag :controller => "users", :action => "bid" %>
+		<%= text_field_tag :bid_price %>
+		<%= hidden_field_tag :item_id, @item.id %>
+		<%= submit_tag "Bid!"%>
+	</form>
+</div>
+<div id='highest_bid'>
+	<%= render :partial => "highest_bid_price", :object => @highest_bid %>
+</div>
+<% else %>
+<div id='highest_bid'>
+	Auction is closed!
+</div>
+</div>
+<% end %>
+=======
+<div id="item_auction">
+	<div id="item_photo">
+		<% if @item.item_photo_file_name %>
+			<%= image_tag @item.item_photo.url(:small) %>
+		<% else %>
+			<%= image_tag('/images/big_default.jpg') %>
+		<% end %>
+	</div>
+	<div id="item_info">
+		<div id="item_name">
+			<big><u><b><%=@item.name%> </big></b></u>
+		</div>
+		<div id="item_description_show">
+				<b> Description: </b><br>
+			<div id="item_actual_description">
+				 <%=@item.description%>
+			</div> 
+		</div>
+		<div id="item_seller_info">
+			Poster : <%= link_to @item.user.login, {:controller => 'users', :action => 'profile', :username =>@item.user.login} %>
+			<%= ratings_for @item.user, :dimension => :quality, :force_static => true, :small => true%>
+		</div>
+		<div id="item_start_price">
+			Starting bid : $
+			<%=@item.start_price%> 
+		</div>
+		<div id="item_time_remaining">
+			Time Remaining: 
+			<span id="cd", style="color:red"></span> 
+		</div>
+		<% if @diff > 0 %>
+			<div id='highest_bid'>
+			<%= render :partial => "highest_bid_price", :object => @highest_bid %>
+			</div>
+			<div id='bid_id'>
+			<%= form_tag :controller => "users", :action => "bid" %>
+				Place bid: <%= text_field_tag :bid_price %>
+				<%= hidden_field_tag :item_id, @item.id %>
+				<%= submit_tag "Bid!"%>
+			</form>
+			</div>
+		<% else %>
+			<div id='highest_bid'>
+				<u>Auction is now closed!
+				<% if @highest_bid %>
+					Won by <i><%= link_to @highest_bid.bidder.login, {:controller => 'users', :action => 'profile', :username =>@highest_bid.bidder.login} %></i>.</u>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+	<div id="clear_item_position" style="clear:both;"></div>
+</div>
+
+
+<script type="text/javascript">
+var month = <%=@end_date.month%> + ""; // 1 through 12 or '*' within the next month, '0' for the current month
+var day = <%=@end_date.day%> + "";   // day of month or + day offset
+var dow = 0;     // day of week sun=1 sat=7 or 0 for whatever day it falls on
+var hour = <%=@end_date.hour%> + "";    // 0 through 23 for the hour of the day
+var min = <%=@end_date.min%> + "";    // 0 through 59 for minutes after the hour
+var sec = <%=@end_date.sec%>;
+var tz = 0;     // offset in hours from UTC to your timezone
+var lab = 'cd';  // id of the entry on the page where the counter is to be inserted
+var item_id = <%=@item.id%> + "";
+
+function start() {displayCountdown(setCountdown(month,day,hour,min,tz),lab);}
+loaded(lab,start);
+
+// Countdown Javascript
+// copyright 20th April 2005, 1st November 2009 by Stephen Chapman
+// permission to use this Javascript on your web page is granted
+// provided that all of the code in this script (including these
+// comments) is used without any alteration
+// you may change the start function if required
+var pageLoaded = 0; window.onload = function() {pageLoaded = 1;}
+function loaded(i,f) {if (document.getElementById && document.getElementById(i) != null) f(); else if (!pageLoaded) setTimeout('loaded(\''+i+'\','+f+')',100);
+}
+function setCountdown(month,day,hour,min,tz) {
+	var m = month; if (month=='*') m = 0;  
+	var c = setC(m,day,hour,tz); 
+	if (month == '*' && c < 0)  
+		c = setC('*',day,hour,tz); 
+	return c;
+} 
+function setC(month,day,hour,tz) {
+	var toDate = new Date();
+	if (day.substr(0,1) == '+') {
+		var day1 = parseInt(day.substr(1));
+		toDate.setDate(toDate.getDate()+day1);
+	} 
+	else{
+		toDate.setDate(day);
+	}
+	if (month == '*')
+		toDate.setMonth(toDate.getMonth() + 1);
+	else if (month > 0) {
+		 if (month <= toDate.getMonth())
+			toDate.setFullYear(toDate.getFullYear() + 1);
+			toDate.setMonth(month-1);
+	}
+	if (dow >0) 
+		toDate.setDate(toDate.getDate()+(dow-1-toDate.getDay())%7);
+		toDate.setHours(hour);
+		toDate.setMinutes(min-(tz*60));
+		toDate.setSeconds(sec);
+		var fromDate = new Date();
+		fromDate.setMinutes(fromDate.getMinutes() + fromDate.getTimezoneOffset());
+		var diffDate = new Date(0);
+		diffDate.setMilliseconds(toDate - fromDate);
+		return Math.floor(diffDate.valueOf()/1000);
+	}
+function displayCountdown(countdn,cd) {
+
+	if (countdn < 0) {
+		document.getElementById(cd).innerHTML = "No time left.";
+		document.getElementById('bid_id').innerHTML = "";
+		document.getElementById('highest_bid').innerHTML = "Auction is now closed!";
+	}
+	 else {
+		var secs = countdn % 60;
+	 	if (secs < 10) secs = '0'+secs;
+			var countdn1 = (countdn - secs) / 60;
+		var mins = countdn1 % 60; 
+		if (mins < 10) 
+			mins = '0'+mins;
+		countdn1 = (countdn1 - mins) / 60;
+		var hours = countdn1 % 24;
+		var days = (countdn1 - hours) / 24;
+		document.getElementById(cd).innerHTML = days+' days and '+hours+' : '+mins+' : '+secs+ ' left.';
+		setTimeout('displayCountdown('+(countdn-1)+',\''+cd+'\');',999);}}
+</script>
+>>>>>>> 0cd1032c20387ffbf6cd25e5c9580149c9ce3464

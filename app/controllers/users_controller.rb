@@ -302,6 +302,7 @@ class UsersController < ApplicationController
       @items = current_user.user_items
       @sold = Transaction.find_all_by_seller_id(current_user.id)
       @bought = Transaction.find_all_by_buyer_id(current_user.id)
+      @following = Follow.find_all_by_follower_id(current_user.id)
     end
 
 		def write_comment
