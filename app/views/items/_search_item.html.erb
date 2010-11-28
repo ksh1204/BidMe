@@ -1,0 +1,43 @@
+<% @end_date = Time.parse(@item.created_at.to_s)+@item.time_limit %>
+<script type="text/javascript">
+var year = <%=@end_date.year%> + "";
+var month = <%=@end_date.month%> + ""; // 1 through 12 or '*' within the next month, '0' for the current month
+var day = <%=@end_date.day%> + "";   // day of month or + day offset
+var dow = 0;     // day of week sun=1 sat=7 or 0 for whatever day it falls on
+var hour = <%=@end_date.hour%> + "";    // 0 through 23 for the hour of the day
+var min = <%=@end_date.min%> + "";    // 0 through 59 for minutes after the hour
+var sec = <%=@end_date.sec%>;
+var tz = 0;     // offset in hours from UTC to your timezone
+var lab = 'cd';  // id of the entry on the page where the counter is to be inserted
+var item_id = <%=@item.id%> + "";
+$(function () {
+	var end = new Date();
+	end = new Date(year,month,day,hour,min,sec);
+	$("#searched_item_time_<%=@item.id%>").countdown({until: end});
+	$('#year').text(austDay.getFullYear());
+});
+</script>
+<div class="searched_item">
+	<div class="searched_item_category">
+		<%=@item.item_category.name%>
+	</div>
+	<div class="searched_item_name">
+		<%=link_to truncate(@item.name,20,'...'), :action => 'show', :id => @item.id%>
+	</div>
+	<div class="searched_item_price">
+		$<%=@item.start_price%>
+	</div>
+	<div class="searched_item_photo">
+		<% if @item.item_photo_file_name %>
+			<%= image_tag @item.item_photo.url(:small) %>
+		<% else %>
+			<%= image_tag('/images/default.jpg') %>
+		<% end %>
+	</div>
+	<div class="searched_item_bid_price", id="search_page_<%=@item.id%>">
+	<% @highest_bid = @item.bids.last %>
+	<%= render :partial => 'searched_bid_price', :object => @highest_bid %>
+	</div>
+	<div id="searched_item_time_<%=@item.id%>", class="searched_item_time">
+	</div>
+</div>

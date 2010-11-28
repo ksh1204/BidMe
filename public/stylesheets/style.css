@@ -522,6 +522,11 @@ margin-top: 25px;
     padding: 9px;
 }
 
+.searched_items{
+	float:left;
+	width:100%;
+	padding-left:55px;
+}
 
 .searched_item{
 	width:179px;
@@ -597,6 +602,148 @@ margin: 0px auto;
 padding: 1.7em;
 width: 800px;
 }
+
+.searched_item_time{
+	color:black;;
+}
+
+#show_item_left{
+	width:75px;
+	float:left;
+}
+
+#show_item_middle{
+	width:600px;
+	float:left;
+}
+
+#show_item_right{
+	width:200px;
+	float:right;
+}
+
+#show_item_seller{
+	
+}
+
+#show_item_seller_label{
+	
+}
+
+#show_item_item{
+	height: 30px;
+}
+
+#show_item_item_label{
+	float:left;
+	font-family:Impact, fantasy;
+	width: 100px;
+}
+
+#show_item_item_name{
+	font-family:Comic Sans, Comic Sans MS, cursive;
+	width:600px;
+}
+
+#show_item_price{
+	height: 30px;
+}
+
+#show_item_price_label{
+	float:left;
+	font-family:Impact, fantasy;
+	width: 100px;
+}
+
+#show_item_price_price{
+	font-family:Comic Sans, Comic Sans MS, cursive
+	width:600px;
+}
+
+#show_item_time{
+	height: 100px;
+}
+
+#show_item_time_label{
+	font-family:Impact, fantasy;
+	width: 100px;
+}
+
+#show_item_time_time_left{
+	width:200px;
+}
+
+#show_item_desc{
+
+}
+
+#show_item_desc_label{
+	float:left;
+	font-family:Impact, fantasy;
+	width: 100px;
+}
+
+#show_item_desc_desc{
+	font-family:Comic Sans, Comic Sans MS, cursive
+	width:600px;
+}
+
+#show_item_photo{
+
+}
+
+#show_item_photo_label{
+	float:left;
+	font-family:Impact, fantasy;
+	width: 100px;
+}
+
+#show_item_photo_photo{
+	width:600px;
+}
+
+#highest_bid{
+	width:150px;
+	float:left;
+	font-family:Oldtown, fantasy;
+	color:white;
+}
+
+#bid_id{
+	widht:100px;
+	height: 50px;
+}
+
+#highest_bid table tr td{
+	color:white;
+}
+
+#bid_price{
+	width: 80px;
+}
+
+#result_label{
+	font-family:fantasy;
+	padding-bottom:30px;
+	padding-left:59px;
+	font-size:23px;
+}
+
+.searched_item_time div { float: left; width: 34px; height: 50px; 
+    background: url('/images/countdownGlowing.gif') no-repeat 0px 0px; } 
+.searched_item_time div.image0 { background-position: -0px 0px; } 
+.searched_item_time div.image1 { background-position: -34px 0px; } 
+.searched_item_time div.image2 { background-position: -68px 0px; } 
+.searched_item_time div.image3 { background-position: -102px 0px; } 
+.searched_item_time div.image4 { background-position: -136px 0px; } 
+.searched_item_time div.image5 { background-position: -170px 0px; } 
+.searched_item_time div.image6 { background-position: -204px 0px; } 
+.searched_item_time div.image7 { background-position: -238px 0px; } 
+.searched_item_time div.image8 { background-position: -272px 0px; } 
+.searched_item_time div.image9 { background-position: -306px 0px; } 
+.searched_item_time div.imageDay { background-position: -340px 0px; } 
+.searched_item_time div.imageSep { background-position: -374px 0px; } 
+.searched_item_time div.imageSpace { background-position: -408px 0px; }
 
 
 

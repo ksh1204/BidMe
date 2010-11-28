@@ -35,7 +35,6 @@ class ItemsController < ApplicationController
     if @diff.to_f <= 0
       @item.update_attribute(:closed,true)
     end
-    @end_date = Time.parse(@item.created_at.to_s)+@item.time_limit
     @bids = @item.bids
     @highest_bid = nil
     if @bids.count > 0
