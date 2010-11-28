@@ -3,9 +3,9 @@
 		<div id="highest_bid_name">
 			Highest Bidder :
 			<% if @highest_bid.bidder == current_user %>
-				<%= link_to 'You.', @item.user.login, {:controller => 'users', :action => 'profile', :username =>@item.user.login} %>
+			 	<%= link_to current_user.login, {:controller => 'users', :action => 'profile', :username => current_user.login} %>
 			<% else %>
-				<%= link_to @highest_bid.bidder.login, {:controller => 'users', :action => 'profile', :username =>@item.user.login} %>
+				<%= link_to @highest_bid.bidder.login, {:controller => 'users', :action => 'profile', :username =>@highest_bid.bidder.login} %>
 			<% end %>
 		</div>
 		<div id="highest_bid_price">

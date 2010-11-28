@@ -8,7 +8,13 @@
 	</div>
 	<div id="item_info">
 		<div id="item_name">
-			<big><u><b><%=@item.name%> </big></b></u>
+			<div id="user_watch">
+			<% if Watch.find(:first, :conditions => {:watcher_id => current_user.id, :item_id => @item.id}) %>
+				<big><u><b><%=@item.name%> </big></b></u> ( <%= link_to "Unwatch", :controller => 'users', :action => 'unwatch_item', :id => @item.id%> )
+			<% else %>
+				<big><u><b><%=@item.name%> </big></b></u> ( <%= link_to "Watch", :controller => 'users', :action => 'watch_item', :id => @item.id %> )
+			<% end %>
+			</div>
 		</div>
 		<div id="item_description_show">
 				<b> Description: </b><br>

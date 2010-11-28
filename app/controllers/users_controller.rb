@@ -298,11 +298,40 @@ class UsersController < ApplicationController
       redirect_to :action => 'profile', :username => @following.login
     end
 
+	def watch_item
+      @watcher = current_user
+      @item = Item.find(params[:id])
+      exist = Watch.find(:first, :conditions => {:watcher_id => @watcher.id, :item_id => @item.id})
+      if !exist
+        @watch = @watcher.watches.build(:watcher_id => @watcher.id, :item_id => @item.id)
+        @watch.save
+        gflash :success => "You are now watching #{@item.name}!"
+      else
+        gflash :error => "You are already watching #{@item.name}!"
+      end
+      redirect_to :controller => 'items', :action => 'show', :id => @item.id
+    end
+    
+    def unwatch_item
+      @watcher = current_user
+      @watching = Item.find(params[:id]) 
+      exist = Watch.find(:first, :conditions => {:watcher_id => @watcher.id, :item_id => @watching.id})
+      if exist
+        exist.destroy
+        gflash :success => "You are no longer watching #{@watching.name}!"
+      else
+        gflash :error => "You are already not following #{@watching.name}!"
+      end
+      redirect_to :controller => 'items', :action => 'show', :id => @watching.id	
+    end
+
+
     def show_user_items
       @items = current_user.user_items
       @sold = Transaction.find_all_by_seller_id(current_user.id)
       @bought = Transaction.find_all_by_buyer_id(current_user.id)
       @following = Follow.find_all_by_follower_id(current_user.id)
+      @watched = Watch.find_all_by_watcher_id(current_user.id)
     end
 
 		def write_comment

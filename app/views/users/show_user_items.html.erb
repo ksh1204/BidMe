@@ -38,6 +38,38 @@
 	<% end %>
 	</div>
 <% end %>
+<div id="watched_items_all">
+	<% if @watched %>
+	<% @count = 0%>
+	<div id="watched_items_header">
+		Active watched items : 
+	</div>
+	<div id="wathced_items_actual">
+		<% for watched_item in @watched %>
+			<% if watched_item %>
+				<% item = Item.find(watched_item.item_id) %>
+				<% if !item.closed %>
+					<div class="searched_item">
+						<div class="searched_item_photo">
+							<% if item.item_photo_file_name %>
+								<%= image_tag item.item_photo.url(:thumb) %>
+							<% else %>
+								<%= image_tag('/images/default.jpg') %>
+							<% end %>
+						</div>
+						<div class="searched_item_name">
+							<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
+						</div>
+					</div>
+					<% @count += 1 %>
+					<% if @count % 4 == 0%>
+						<div style="clear:both"></div>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	</div><div style="clear:both"></div>
+	<% end %>
 <hr class="horiz_line">
 <h2> Posted Items </h2>
 <% if @items.first %>
