@@ -27,9 +27,12 @@ body {
 	font-family: sans-serif;
 }
 
-#header a:hover{
-	//color:#aadb6d;	
+#header a:hover{	
 	background-color:#404040;
+	-moz-border-top-left-radius: 5px 5px;
+	-moz-border-top-right-radius: 5px 5px;
+	-webkit-border-top-left-radius: 5px 5px;
+	-webkit-border-top-right-radius: 5px 5px;
 }
 
 #logo {
@@ -390,12 +393,56 @@ cursor: pointer;
 }
 
 #user_profile_right{
-border: 5px;
-margin-top: 90px;
-margin-left: 20px;
-width: 500px;
+	border: 5px;
+	margin-top: 90px;
+	margin-left: 20px;
+	width: 500px;
 }
 
+#item_photo{
+	float:left;
+	border: 5px;
+	margin-left: 20px;
+}
+
+#item_info{
+	float:left;
+	border: 5px;
+	margin-left: 20px;
+	width: 500px;
+}
+
+#item_description_show{
+	padding-left:5px;
+	background:#101010;
+	border: 1px solid black;
+	width: 50%;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+}
+
+#item_actual_description{
+	margin-left:5px;
+}
+
+#item_auction{
+	padding-top:20px;
+	margin-left:20px;
+	padding-bottom:20px;
+	background:#202020;
+	width:80%;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+}
+
+#highest_bid_div{
+	padding-left:5px;
+	background:#201010;
+	border: 2px solid black;
+	width: 50%;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+}
 
 .horiz_line{
 	color: red;
@@ -576,6 +623,8 @@ margin-top: 25px;
 .search_pages{
 	padding-top: 35px;
 }
+
+
 
 
 

@@ -1,46 +1,57 @@
+<div id="item_auction">
+	<div id="item_photo">
+		<% if @item.item_photo_file_name %>
+		<%= image_tag @item.item_photo.url(:big) %>
+		<% else %>
+		<%= image_tag('/images/big_default.jpg') %>
+		<% end %>
+	</div>
+	<div id="item_info">
+		<div id="item_name">
+			<big><u><b><%=@item.name%> </big></b></u>
+		</div>
+		<div id="item_description_show">
+				 Description: <br>
+			<div id="item_actual_description">
+				 <%=@item.description%>
+			</div> 
+		</div>
+		<div id="item_seller_info">
+			Poster : <%= link_to @item.user.login, {:controller => 'users', :action => 'profile', :username =>@item.user.login} %>
+			<%= ratings_for @item.user, :dimension => :quality, :force_static => true, :small => true%>
+		</div>
+		<div id="item_start_price">
+			Starting bid : 
+			<%=@item.start_price%> 
+		</div>
+		<div id="item_time_remaining">
+			Time Remaining: 
+			<span id="cd", style="color:red"></span> 
+		</div>
+		<% if @diff > 0 %>
+			<div id='highest_bid'>
+			<%= render :partial => "highest_bid_price", :object => @highest_bid %>
+			</div>
+			<div id='bid_id'>
+			<%= form_tag :controller => "users", :action => "bid" %>
+				<%= label_tag "Price" %>
+				<%= text_field_tag :bid_price %>
+				<%= hidden_field_tag :item_id, @item.id %>
+				<%= submit_tag "Bid!"%>
+			</form>
+			</div>
+		<% else %>
+			<div id='highest_bid'>
+				<u>Auction is now closed!
+				<% if @highest_bid %>
+					Won by <i><%= link_to @highest_bid.bidder.login, {:controller => 'users', :action => 'profile', :username =>@highest_bid.bidder.login} %></i>.</u>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+	<div id="clear_item_position" style="clear:both;"></div>
+</div>
 
-<table>
-	<tr>
-		<td>Seller</td>
-		<td><%=@item.user.login%></td>
-	</tr>
-	<tr>
-		<td>Name</td>
-		<td><%=@item.name%></td>
-	</tr>
-	<tr>
-		<td>Start Price</td>
-		<td><%=@item.start_price%></td>
-	</tr>
-	<tr>
-		<td>Time Remaining</td>
-		<td><span id="cd", style="color:red"></span></td>
-	<tr>
-		<td>Description</td>
-		<td><%=@item.description%></td>
-	</tr>
-	<tr>
-		<td>Photo</td>
-		<td><%=image_tag @item.item_photo.url(:small)%>
-	</tr>
-</table>
-<% if @diff > 0 %>
-<div id='highest_bid'>
-	<%= render :partial => "highest_bid_price", :object => @highest_bid %>
-</div>
-<div id='bid_id'>
-	<%= form_tag :controller => "users", :action => "bid" %>
-		<%= label_tag "Price" %>
-		<%= text_field_tag :bid_price %>
-		<%= hidden_field_tag :item_id, @item.id %>
-		<%= submit_tag "Bid!"%>
-	</form>
-</div>
-<% else %>
-<div id='highest_bid'>
-	Auction is closed!
-</div>
-<% end %>
 
 <script type="text/javascript">
 var month = <%=@end_date.month%> + ""; // 1 through 12 or '*' within the next month, '0' for the current month
@@ -102,9 +113,9 @@ function setC(month,day,hour,tz) {
 function displayCountdown(countdn,cd) {
 
 	if (countdn < 0) {
-		document.getElementById(cd).innerHTML = "Sorry, you are too late.";
+		document.getElementById(cd).innerHTML = "No time left.";
 		document.getElementById('bid_id').innerHTML = "";
-		document.getElementById('highest_bid').innerHTML = "Auction is closed";
+		document.getElementById('highest_bid').innerHTML = "Auction is now closed!";
 	}
 	 else {
 		var secs = countdn % 60;
@@ -116,5 +127,6 @@ function displayCountdown(countdn,cd) {
 		countdn1 = (countdn1 - mins) / 60;
 		var hours = countdn1 % 24;
 		var days = (countdn1 - hours) / 24;
-		document.getElementById(cd).innerHTML = days+' days + '+hours+' : '+mins+' : '+secs;setTimeout('displayCountdown('+(countdn-1)+',\''+cd+'\');',999);}}
+		document.getElementById(cd).innerHTML = days+' days and '+hours+' : '+mins+' : '+secs+ ' left.';
+		setTimeout('displayCountdown('+(countdn-1)+',\''+cd+'\');',999);}}
 </script>

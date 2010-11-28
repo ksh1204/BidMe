@@ -1,14 +1,18 @@
-<% if @highest_bid %>
-	<table>
-		<tr>
-			<td style="width:10%">Highest Bidder</td>
-			<td style="float:left"><%=@highest_bid.bidder.login%></td>
-		</tr>
-		<tr>
-			<td style="width:10%">Highest Price</td>
-			<td style="float:left">$<%=@highest_bid.price%></td>
-		</tr>
-	</table>
-<% else %>
-No one has bidded yet! Be the first one to bid!
-<% end %>
+<div id="highest_bid_div">
+	<% if @highest_bid %>
+		<div id="highest_bid_name">
+			Highest Bidder :
+			<% if @highest_bid.bidder == current_user %>
+				<%= link_to 'You.', @item.user.login, {:controller => 'users', :action => 'profile', :username =>@item.user.login} %>
+			<% else %>
+				<%= link_to @highest_bid.bidder.login, {:controller => 'users', :action => 'profile', :username =>@item.user.login} %>
+			<% end %>
+		</div>
+		<div id="highest_bid_price">
+			Price :	$<%=@highest_bid.price%>
+		</div>	
+	<% else %>
+		No one has bidded yet! Be the first one to bid!
+	<% end %>
+		<div id="clear_item_position" style="clear:both;"></div>
+</div>

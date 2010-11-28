@@ -388,7 +388,7 @@ class UsersController < ApplicationController
             page.replace_html :highest_bid, :partial => 'items/highest_bid_price', :object => @highest_bid
             page.visual_effect :highlight, "highest_bid", :duration => 5
           end
-	  redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
+	  
         end
         redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
       end

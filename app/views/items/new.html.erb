@@ -20,7 +20,7 @@
 <p><%= f.label :bin %><br/>
 <%= f.check_box :bin, :onchange => remote_function(:url => {:action => 'bin_check'})%></p>
 
-<p id="bin_price", style="display:none"><%= f.label :bin_price %><br />
+<p id="bin_price", style="display:block"><%= f.label :bin_price %><br />
 <%= f.text_field :bin_price %></p>
 
 <p>

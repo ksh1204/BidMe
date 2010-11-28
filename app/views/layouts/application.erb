@@ -46,7 +46,7 @@
     <div class='header_link_container'>
     <%=link_to 'Post', {:controller => 'items', :action => 'new'}, :class => 'header_link span-4'%>
     <%=link_to 'Search', {:controller => 'items', :action => 'index'}, :class => 'header_link span-4'%>  
-    <%=link_to 'Items', {:controller => 'users', :action => 'show_user_items'}, :class => 'header_link span-4'%>
+    <%=link_to 'My Items', {:controller => 'users', :action => 'show_user_items'}, :class => 'header_link span-4'%>
     <%=link_to 'Messages', {:controller => 'users', :action => 'messagebox'}, :class => 'header_link span-4'%>
     <%=link_to 'About', '/users/about', :class => 'header_link span-4'%>
 	<% end %>
