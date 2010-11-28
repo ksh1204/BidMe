@@ -660,14 +660,15 @@ width: 800px;
 	float:left;
 }
 
-#show_item_middle{
-	width:600px;
+#show_item_right{
+	width:450px;
 	float:left;
 }
 
-#show_item_right{
+#show_item_middle{
 	width:200px;
-	float:right;
+	float:left;
+	padding-right: 20px;
 }
 
 #show_item_seller{
@@ -704,8 +705,29 @@ width: 800px;
 }
 
 #show_item_price_price{
-	font-family:Comic Sans, Comic Sans MS, cursive
-	width:600px;
+	font-family:Comic Sans, Comic Sans MS, cursive;
+	width:300px;
+}
+
+#show_item_bin_price{
+	height: 30px;
+}
+
+#show_item_bin_price_label{
+	float:left;
+	font-family:Impact, fantasy;
+	width: 100px;
+}
+
+#show_item_bin_price_price{
+	font-family:Comic Sans, Comic Sans MS, cursive;
+	width:50px;
+	float:left;
+}
+
+#show_item_bin_button{
+	float: right;
+	width:30px;
 }
 
 #show_item_time{
@@ -732,7 +754,7 @@ width: 800px;
 }
 
 #show_item_desc_desc{
-	font-family:Comic Sans, Comic Sans MS, cursive
+	font-family:Comic Sans, Comic Sans MS, cursive;
 	width:600px;
 }
 
@@ -751,7 +773,7 @@ width: 800px;
 }
 
 #highest_bid{
-	width:150px;
+	width:300px;
 	float:left;
 	font-family:Oldtown, fantasy;
 	color:white;

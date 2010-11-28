@@ -398,7 +398,39 @@ class UsersController < ApplicationController
       end
 		end
 	end
+	
+	def buy_it_now
+    @item = Item.find(params[:id])
+    if @item.closed
+      gflash :error => "Unknown action"
+    else
+      if current_user == @item.user
+        gflash :error => "You cannot buy your own item!"
+      elsif current_user.money >= @item.bin_price
+        if @item.bids.first
+          @highest_bid = @item.bids.sort_by{|b| b.price}.last
+          highest_bidder = @highest_bid.bidder
+          highest_bidder.update_attribute(:money, highest_bidder.money+@highest_bid.price)
+        end
+        gflash :success => "Congratulations! You have bought the item."
+        render :juggernaut => {:type => :send_to_all} do |page|
+              page.replace_html :show_item_time, ""
+              page.replace_html :bid_id, ""
+              page.replace_html :highest_bid, "Auction is closed!"
+        end
+        @item.update_attribute(:closed,true)
+        poster = @item.user
+        poster.update_attribute(:money, poster.money+@item.bin_price)
+        current_user.update_attribute(:money,current_user.money-@item.bin_price)
+      else
+        gflash :error => "Cannot afford to buy this item"
+      end
+    end
+    redirect_to :controller => 'items', :action => 'show', id => params[:id]
+  end
 
 end
+
+
 
  
