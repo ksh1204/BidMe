@@ -96,52 +96,49 @@
 <%= ratings_for @user, :dimension => :quality %>
 
 </div>
-	<hr class="horiz_line">
-<div id="profile_user_items_header">
-<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
-<b>User Items</b>
-	<div id="profile_user_items">
-		<% if @items.first %>
+<hr class="horiz_line">
+
+<% if (current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id})) && @use_items %>
+	<div id="profile_user_items_header">
+		<b>User Items</b>
+		<div id="profile_user_items">
 			<% @count = 0%>
-			<% for item in @items %>
+			<% for u_item in @user_items %>
+				<% item = Item.find_by_id(u_item.item_id) %>
 				<% if item && item.user == @user && !item.closed %>
-				<div class="searched_item">
-					<div class="searched_item_photo">
-						<% if item.item_photo_file_name %>
-							<%= image_tag item.item_photo.url(:small) %>
-						<% else %>
-							<%= image_tag('/images/default.jpg') %>
-						<% end %>
+					<div class="searched_item">
+						<div class="searched_item_photo">
+							<% if item.item_photo_file_name %>
+								<%= image_tag item.item_photo.url(:small) %>
+							<% else %>
+								<%= image_tag('/images/default.jpg') %>
+							<% end %>
+						</div>
+						<div class="searched_item_name">
+							<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id} %>
+						</div>
 					</div>
-					<div class="searched_item_name">
-						<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id} %>
-					</div>
-				</div>
-				<% @count += 1 %>
-				<% if @count % 4 == 0%>
-					<div style="clear:both"></div>
-				<%end %>
+					<% @count += 1 %>
+					<% if @count % 4 == 0%>
+						<div style="clear:both"></div>
+					<%end %>
 				<% end %>
 			<% end %>
-
-			<% else %>
-				No items found
-		<% end %>
-
-		<hr class="horiz_line">
-
+		</div>
 	</div>
-</div>
-	<% end %>
+
+	<hr class="horiz_line">
+<% end %>
+
 	<div id ="comment_section">
-	<b>User Comments</b>
-	<%=form_tag :action => 'write_comment' %>
-	<%=hidden_field_tag :commentee_id, @user.id %>
-	<%=text_area_tag :description %><br/>
-	<%=submit_tag "Comment"%>
-	</form>
-	<br>
-	<div id="all_comments">			
+		<b>User Comments</b>
+		<%=form_tag :action => 'write_comment' %>
+		<%=hidden_field_tag :commentee_id, @user.id %>
+		<%=text_area_tag :description %><br/>
+		<%=submit_tag "Comment"%>
+		</form>
+		<br>
+		<div id="all_comments">			
 			<% if @comments.count > 0 %>
 			<% for comment in @comments %>
 				<div id='comment_<%=comment.id%>', class='comment_body'>

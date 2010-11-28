@@ -1,32 +1,33 @@
-<h1>Post a new item!</h1>
-
+<h1>New Item</h1>
+<small>
 <%= error_messages_for :item %>
 <% form_for :item, :url => items_path, :html => {:name => "new_item", :multipart => true} do |f| -%>
-<p><%= f.label :name %><br/>
-<%= f.text_field :name %></p>
+<p><%= f.label :name, 'Name :'%><br/>
+<%= f.text_field :name, :class => 'small_box' %></p>
 
-<p><%= f.label :description %><br/>
+<p><%= f.label :description, 'Description :' %><br/>
 <%= f.text_area :description %></p>
 
-<p><%= f.label :item_category %><br/>
+<p><%= f.label :item_category, 'Category :' %><br/>
 <%= f.select(:item_category_id, ItemCategory.find(:all, :order => "name ASC").collect {|i| [i.name, i.id]}, {:prompt => 'Select Category'})%></p>
 
-<p><%= f.label :start_price %><br/>
-<%= f.text_field :start_price %></p>
+<p><%= f.label :start_price, 'Initial bid : ' %><br/>
+<%= f.text_field :start_price, :class => 'small_box'%></p>
 
-<p><%= f.label :time_limit %><br/>
-<%= f.text_field :time_limit %></p>
+<p><%= f.label :time_limit, 'Time limit : ' %><br/>
+<%= f.text_field :time_limit, :class => 'small_box' %></p>
 
-<p><%= f.label :bin %><br/>
+<p><%= f.label :bin, 'Buy It Now :' %>
 <%= f.check_box :bin, :onchange => remote_function(:url => {:action => 'bin_check'})%></p>
 
-<p id="bin_price", style="display:block"><%= f.label :bin_price %><br />
-<%= f.text_field :bin_price %></p>
+<p id="bin_price", style="display:block;display:none;"><%= f.label :bin_price, 'BIN Price : '%><br />
+<%= f.text_field :bin_price, :class => 'small_box' %></p>
 
 <p>
-  <%= f.label :item_photo %><br />
+  <%= f.label :item_photo, 'Item image : ' %><br />
   <%= f.file_field :item_photo %>
 </p>
 
 <p><%= submit_tag 'Post', :onclick=>"FreezeScreen('Please wait...');" %></p>
 <% end -%>
+</small>

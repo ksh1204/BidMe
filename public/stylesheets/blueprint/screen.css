@@ -29,19 +29,19 @@ a img {border:none;}
 /* typography.css */
 html {font-size:100.01%;}
 body {font-size:75%;color:#000;background:#fff;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
-h1, h2, h3, h4, h5, h6 {font-weight:normal;color:grey;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;color:white;}
 h1 {font-size:3em;line-height:1;margin-bottom:0.5em; }
-h2 {font-size:2em;margin-bottom:0.05em;}
+h2 {font-size:2em;margin-bottom:0.05em; color:black;}
 h3 {font-size:1.5em;line-height:1;margin-bottom:1em; }
 h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em; }
-h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em; }
+h5 {font-size:1em;font-weight:bold; color:black;}
 h6 {font-size:1em;font-weight:bold; }
 h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
 p {margin:0 0 1.5em;}
 p img.left {float:left;margin:1.5em 1.5em 1.5em 0;padding:0;}
 p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
-a:focus, a:hover {color:green;}
-a {color:white;text-decoration:none;}
+a:focus, a:hover {color:blue;}
+a {color:#afafaf;text-decoration:none;}
 blockquote {margin:1.5em;color:#000;font-style:italic;}
 strong {font-weight:bold;}
 em, dfn {font-style:italic;}
@@ -84,8 +84,8 @@ caption {background:#eee;}
 label {font-weight:bold;}
 fieldset {padding:1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
 legend {font-weight:bold;font-size:1.2em;}
-input[type=text], input[type=password], input.text, input.title, textarea, select {background-color:#fff;border:1px solid #bbb;}
-input[type=text]:focus, input[type=password]:focus, input.text:focus, input.title:focus, textarea:focus, select:focus {border-color:#666;}
+input[type=text], input[type=password], input.text, input.title, textarea, select {background-color:#fff;border:1px solid black;}
+input[type=text]:focus, input[type=password]:focus, input.text:focus, input.title:focus, textarea:focus, select:focus {border-color:black;}
 input[type=text], input[type=password], input.text, input.title, textarea, select {margin:0.5em 0;}
 input.text, input.title {width:300px;padding:5px;}
 input.title {font-size:1.5em;}

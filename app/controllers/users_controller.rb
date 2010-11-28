@@ -213,11 +213,11 @@ class UsersController < ApplicationController
 
     def profile
       @user = User.find_by_login(params[:username])
-		  @comments = @user.user_comments
+	@comments = @user.user_comments
 		  respond_to do |format|
 		    format.html
         format.js { render_to_facebox }
-      @items = Item.find(:all)
+      @user_items = current_user.user_items
       end
       
     end
@@ -262,7 +262,7 @@ class UsersController < ApplicationController
       if !exist
         @follow = @follower.follow_followings.build(:following_id => @following.id)
         @follow.save
-        @message = @follower.sent_messages.build(:receiver_id => @following.id, :description => "<a href='/profile/#{@follower.login}'>#{@follower.login}</a> is following you!")
+        @message = @follower.sent_messages.build(:receiver_id => @following.id, :description => "You have a new follower! <a href='/profile/#{@follower.login}'>#{@follower.login}</a> is following you!")
         @message.save
         @unread_messages = Message.find(:all, :conditions => {:receiver_id => @following.id, :unread => true})
         @num_unread = @unread_messages.count
@@ -299,18 +299,20 @@ class UsersController < ApplicationController
     end
 
 	def watch_item
-      @watcher = current_user
-      @item = Item.find(params[:id])
-      exist = Watch.find(:first, :conditions => {:watcher_id => @watcher.id, :item_id => @item.id})
-      if !exist
-        @watch = @watcher.watches.build(:watcher_id => @watcher.id, :item_id => @item.id)
-        @watch.save
-        gflash :success => "You are now watching #{@item.name}!"
-      else
-        gflash :error => "You are already watching #{@item.name}!"
-      end
-      redirect_to :controller => 'items', :action => 'show', :id => @item.id
-    end
+		@watcher = current_user
+		@item = Item.find(params[:id])
+		exist = Watch.find(:first, :conditions => {:watcher_id => @watcher.id, :item_id => @item.id})
+		if !exist && !@item.closed
+		@watch = @watcher.watches.build(:watcher_id => @watcher.id, :item_id => @item.id)
+		@watch.save
+		gflash :success => "You are now watching #{@item.name}!"
+		elsif @item.closed
+			gflash :error => "Can not watch this auction!"
+		else
+			gflash :error => "You are already watching #{@item.name}!"
+		end
+		redirect_to :controller => 'items', :action => 'show', :id => @item.id
+	end
     
     def unwatch_item
       @watcher = current_user
@@ -327,7 +329,7 @@ class UsersController < ApplicationController
 
 
     def show_user_items
-      @items = current_user.user_items
+      @user_items = UserItem.paginate :per_page => 8, :page => params[:page], :conditions => { :user_id => current_user.id }, :order => 'created_at DESC'
       @sold = Transaction.find_all_by_seller_id(current_user.id)
       @bought = Transaction.find_all_by_buyer_id(current_user.id)
       @following = Follow.find_all_by_follower_id(current_user.id)

@@ -1,5 +1,7 @@
+
+<h1> My Items </h1>
 <hr class="horiz_line">
-<h2> Items of Interest </h2>
+<h3> Items of Interest </h3>
 <% if @following %>
 	<div id="followed_items_all">
 	<% for user_f in @following %>
@@ -14,15 +16,15 @@
 			<% if user_item %>
 				<% item = Item.find(user_item.id) %>
 				<% if !item.closed  && item.user == user %>
-					<div class="searched_item">
-						<div class="searched_item_photo">
+					<div class="followed_item">
+						<div class="followed_item_photo">
 							<% if item.item_photo_file_name %>
 								<%= image_tag item.item_photo.url(:thumb) %>
 							<% else %>
 								<%= image_tag('/images/default.jpg') %>
 							<% end %>
 						</div>
-						<div class="searched_item_name">
+						<div class="followed_item_name">
 							<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
 						</div>
 					</div>
@@ -40,73 +42,61 @@
 <% end %>
 <div id="watched_items_all">
 	<% if @watched %>
-	<% @count = 0%>
-	<div id="watched_items_header">
-		Active watched items : 
-	</div>
-	<div id="wathced_items_actual">
-		<% for watched_item in @watched %>
-			<% if watched_item %>
-				<% item = Item.find(watched_item.item_id) %>
-				<% if !item.closed %>
-					<div class="searched_item">
-						<div class="searched_item_photo">
-							<% if item.item_photo_file_name %>
-								<%= image_tag item.item_photo.url(:thumb) %>
-							<% else %>
-								<%= image_tag('/images/default.jpg') %>
-							<% end %>
+		<% @count = 0%>
+		<div id="watched_items_header">
+			Active watched items : 
+		</div>
+		<div id="watched_items_actual">
+			<% for watched_item in @watched %>
+				<% if watched_item %>
+					<% item = Item.find(watched_item.item_id) %>
+					<% if !item.closed %>
+						<div class="watched_item">
+							<div class="watched_item_photo">
+								<% if item.item_photo_file_name %>
+									<%= image_tag item.item_photo.url(:thumb) %>
+								<% else %>
+									<%= image_tag('/images/default.jpg') %>
+								<% end %>
+							</div>
+							<div class="watched_item_name">
+								<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
+							</div>
 						</div>
-						<div class="searched_item_name">
-							<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
-						</div>
-					</div>
-					<% @count += 1 %>
-					<% if @count % 4 == 0%>
-						<div style="clear:both"></div>
+						<% @count += 1 %>
+						<% if @count % 4 == 0%>
+							<div style="clear:both"></div>
+						<% end %>
 					<% end %>
 				<% end %>
 			<% end %>
-		<% end %>
-	</div><div style="clear:both"></div>
+		<div style="clear:both"></div>
 	<% end %>
+</div>
+
 <hr class="horiz_line">
-<h2> Posted Items </h2>
-<% if @items.first %>
-	<% @items = UserItem.paginate :page => params[:page], :per_page => 16, :order => 'created_at DESC' %>
-	
+<h3> Posted Items </h3>
+<% if @user_items.first %>
 	<div id="posted_items_page">
-		<div class="searched_items">
-		<% for user_item in @items %>
-			<% if user_item && user_item.user_id == current_user.id%>
-				<% item = Item.find(user_item.id) %>
-				<div class="searched_item">
-					<div class="searched_item_photo">
-						<% if item.item_photo_file_name %>
-							<%= image_tag item.item_photo.url(:thumb) %>
-						<% else %>
-							<%= image_tag('/images/default.jpg') %>
-						<% end %>
-					</div>
-					<div class="searched_item_name">
-						<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
-					</div>
+		<div class="posted_items">
+		<ul>
+		<% for user_item in @user_items %>
+			<% if user_item %>
+				<% item = user_item.item %>
+				<li class="posted_item">
+					<%=link_to item.name, { :controller => 'items', :action => 'show', :id => item.id}%>
 					<% if item.closed %>
-					<div class="searched_item_status">
-						<small><center>done</center></small>
-					</div>
+						<small>-- closed</small>
 					<% else %>
-					<div class="searched_item_status" style="color:red;">
-						<b><i><center>Active</center></b></i>
-					</div>
+						<b><i style="color:red;">-- Active</b></i>
 					<% end %>
-				</div>
-				
+				</li>
 			<% end %>
 		<% end %>
+		</ul>
 		<div style="clear:both"></div>
 		</div>
-		<div class="posted_items_paginate"><center><%= will_paginate @items %></center></div>
+		<div class="posted_items_paginate"><center><%= will_paginate @user_items %></center></div>
 	</div>
 <% else %>
 	<small>No items found</small>

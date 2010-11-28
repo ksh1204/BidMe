@@ -50,27 +50,6 @@ body {
 
 }
 
-#login_box{
-	margin-left:20px;
-	padding:5px;
-	padding-left:20px;
-	padding-top:20px;
-	background:#555;
-	border: 1px solid black;
-	width: 30%;
-	-moz-border-radius: 5px; 
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 1px; 
-	-webkit-border-radius: 1px;
-	-moz-box-shadow: 2px 2px 3px #000;
-	-webkit-box-shadow: 2px 2px 3px #000;
-	box-shadow: 2px 2px 3px #000;
-	/* For IE 8 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
-	/* For IE 5.5 - 7 */
-	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
-}
-
 .content{
 	width:950px;
 	margin:auto;
@@ -309,13 +288,13 @@ cursor: pointer;
 
 #columns {
   background: #080808;
-  -moz-border-radius: 10px; 
+    -moz-border-radius: 10px; 
   -webkit-border-radius: 10px;
 }
 
+
 #main {
   margin-left: 13em;
-  margin-top: 5px;
   padding-top: 4ex;
   padding-left: 2em;
   background: white;
@@ -420,20 +399,6 @@ cursor: pointer;
 	width: 500px;
 }
 
-
-.small_box{
-	width: 15%;
-	-moz-border-radius: 1px; 
-	-webkit-border-radius: 1px;
-	-moz-box-shadow: 2px 2px 3px #000;
-	-webkit-box-shadow: 2px 2px 3px #000;
-	box-shadow: 2px 2px 3px #000;
-	/* For IE 8 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
-	/* For IE 5.5 - 7 */
-	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
-}
-
 #item_photo{
 	float:left;
 	border: 5px;
@@ -445,24 +410,6 @@ cursor: pointer;
 	border: 5px;
 	margin-left: 20px;
 	width: 500px;
-}
-
-#item_description{
-	padding-left:5px;
-	padding: 5px;
-	width: 30%;
-	height: 55%;
-	-moz-border-radius: 5px; 
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 1px; 
-	-webkit-border-radius: 1px;
-	-moz-box-shadow: 2px 2px 3px #000;
-	-webkit-box-shadow: 2px 2px 3px #000;
-	box-shadow: 2px 2px 3px #000;
-	/* For IE 8 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
-	/* For IE 5.5 - 7 */
-	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 #item_description_show{
@@ -560,24 +507,9 @@ width: 650px;
 
 #message_content {
  	width: 400px;
- 	border: 2px solid grey;
+ 	border: 1px solid #cccccc;
  	padding: 5px;
-	color:black;
 	word-wrap: break-word;
-	-moz-border-radius: 5px; 
-	-webkit-border-radius: 5px;
-	-moz-box-shadow: 3px 3px 4px #000;
-	-webkit-box-shadow: 3px 3px 4px #000;
-	box-shadow: 3px 3px 4px #000;
-	/* For IE 8 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
-	/* For IE 5.5 - 7 */
-	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
-}
-
-#message_button{
-	padding: 5px;
-	padding-bottom: 20px;
 }
  		
 #comments_box {
@@ -637,126 +569,6 @@ margin-top: 25px;
     /*border: dashed 2px #111;*/
     padding: 9px;
 }
-
-.watched_item{
-	width:10%;
-	display:block;
-	float:left;
-	list-style:none;
-	text-align:center;
-	padding:15px;
-	position:relative;
-}
-
-.watched_item_photo{
-	text-align:center;
-}
-
-.watched_item_name{
-	text-align:center;
-}
-
-.watched_item_name a{
-	color:orange;
-}
-
-.watched_item_name a:hover{
-	color:red;
-}
-
-.watched_item_price{
-	text-align:center;
-	color:green;
-}
-
-.watched_item_bid_price{
-	text-align:center;
-	color:purple;
-}
-
-.watched_item_category{
-	text-align:center;
-	color:blue;
-}
-
-.followed_item{
-	width:10%;
-	display:block;
-	float:left;
-	list-style:none;
-	text-align:center;
-	padding:15px;
-	position:relative;
-}
-
-.followed_item_photo{
-	text-align:center;
-}
-
-.followed_item_name{
-	text-align:center;
-}
-
-.followed_item_name a{
-	color:orange;
-}
-
-.followed_item_name a:hover{
-	color:red;
-}
-
-.followed_item_price{
-	text-align:center;
-	color:green;
-}
-
-.followed_item_bid_price{
-	text-align:center;
-	color:purple;
-}
-
-.followed_item_category{
-	text-align:center;
-	color:blue;
-}
-
-.posted_item{
-	width:20%;
-	text-align:left;
-	position:relative;
-}
-
-.posted_item_photo{
-	text-align:center;
-}
-
-.posted_item_name{
-	text-align:center;
-}
-
-.posted_item_name a{
-	color:orange;
-}
-
-.posted_item_name a:hover{
-	color:red;
-}
-
-.posted_item_price{
-	text-align:center;
-	color:green;
-}
-
-.posted_item_bid_price{
-	text-align:center;
-	color:purple;
-}
-
-.posted_item_category{
-	text-align:center;
-	color:blue;
-}
-
 
 .searched_items{
 	float:left;

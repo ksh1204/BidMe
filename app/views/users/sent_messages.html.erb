@@ -1,32 +1,32 @@
 <div id="columns">
 	<div id="side">
   		<%= render :partial => 'messagebox_menu' %>
-    </div>
-    <div id="main">
-		<h3>Sent Messages</h3>
+	</div>
+	<div id="main">
+		<h2>Sent Messages</h2>
 		<table id="sent_messages">
-		  <thead>
-			<th>Receiver</th>
-			<th>Message</th>
-			<th>Date/Time</th>
-		  </thead>
-		  <tbody>
+			<thead>
+				<th>Receiver</th>
+				<th>Message</th>
+				<th>Date/Time</th>
+			</thead>
+			<tbody>
 		  	<% if @sent_messages.count > 0 %>
 			  	<% for message in @sent_messages %>
 			    	<tr id="message_#{message.id}" class='highlightable'>
 						<%if message%>
-			    			<td><%= link_to message.receiver.login, {:action => 'profile', :username => message.receiver.login}, {:class => 'messagebox_links'} %></td>
+				    			<td><%= link_to message.receiver.login, {:action => 'profile', :username => message.receiver.login}, {:class => 'messagebox_links'} %></td>
 							<td><%= link_to truncate(message.description,40,'...'), {:action => 'show_sent_message', :id => message.id}, {:class => 'messagebox_links'} %></td>
 							<td><%= message.created_at.strftime("%b %d, %Y %I:%M %p") %></td>
 						<%end%>
-					</tr>
-				<% end %>
-			  <% else %>
+				</tr>
+			<% end %>
+			<% else %>
 				<tr>
 					<td><b><center>You have no sent messages!</center></b></td>
 				</tr>
-			  <% end %>
-		  </tbody>
+			<% end %>
+		 	</tbody>
 		</table>
-    </div>
+	</div>
 </div>

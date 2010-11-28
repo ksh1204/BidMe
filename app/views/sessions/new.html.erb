@@ -1,14 +1,14 @@
-<h2>Log In</h2>
+<h1>Log In</h1>
 <small>
 <div id="login_box">
 <% form_tag session_path do -%>
 <p><%= label_tag 'login', 'Login ID :' %>
 <br>
-<%= text_field_tag 'login', @login %></p>
+<%= text_field_tag 'login', @login, :class => 'small_box' %></p>
 
 <p><%= label_tag 'password', 'Password :' %>
 <br>
-<%= password_field_tag 'password', nil %></p></small>
+<%= password_field_tag 'password', nil, :class => 'small_box' %></p></small>
 <!-- Uncomment this if you want this functionality
 <p><%= label_tag 'remember_me', 'Remember me' %>
 <%= check_box_tag 'remember_me', '1', @remember_me %></p>

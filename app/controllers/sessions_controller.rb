@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
         redirect_back_or_default('/')
         gflash :notice => "Logged in successfully"
       elsif !(current_ip.eql?(last_ip)) && user.logged_in
-        gflash :error => "You are already logged in from a different browser/computer"
+        gflash :error => "You are already logged in from a different computer"
         render :action => 'new'
       end
     elsif user && user.is_banned
