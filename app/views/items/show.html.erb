@@ -1,9 +1,9 @@
 <div id="item_auction">
 	<div id="item_photo">
 		<% if @item.item_photo_file_name %>
-		<%= image_tag @item.item_photo.url(:big) %>
+			<%= image_tag @item.item_photo.url(:small) %>
 		<% else %>
-		<%= image_tag('/images/big_default.jpg') %>
+			<%= image_tag('/images/big_default.jpg') %>
 		<% end %>
 	</div>
 	<div id="item_info">
@@ -11,7 +11,7 @@
 			<big><u><b><%=@item.name%> </big></b></u>
 		</div>
 		<div id="item_description_show">
-				 Description: <br>
+				<b> Description: </b><br>
 			<div id="item_actual_description">
 				 <%=@item.description%>
 			</div> 
@@ -21,7 +21,7 @@
 			<%= ratings_for @item.user, :dimension => :quality, :force_static => true, :small => true%>
 		</div>
 		<div id="item_start_price">
-			Starting bid : 
+			Starting bid : $
 			<%=@item.start_price%> 
 		</div>
 		<div id="item_time_remaining">
@@ -34,8 +34,7 @@
 			</div>
 			<div id='bid_id'>
 			<%= form_tag :controller => "users", :action => "bid" %>
-				<%= label_tag "Price" %>
-				<%= text_field_tag :bid_price %>
+				Place bid: <%= text_field_tag :bid_price %>
 				<%= hidden_field_tag :item_id, @item.id %>
 				<%= submit_tag "Bid!"%>
 			</form>

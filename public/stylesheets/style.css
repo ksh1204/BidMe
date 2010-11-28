@@ -413,7 +413,8 @@ cursor: pointer;
 }
 
 #item_description_show{
-	padding-left:5px;
+	
+	padding:5px;
 	background:#101010;
 	border: 1px solid black;
 	width: 50%;
@@ -430,7 +431,7 @@ cursor: pointer;
 	margin-left:20px;
 	padding-bottom:20px;
 	background:#202020;
-	width:80%;
+	width:800px;
 	-moz-border-radius: 5px; 
 	-webkit-border-radius: 5px;
 }
@@ -569,17 +570,14 @@ margin-top: 25px;
     padding: 9px;
 }
 
-
 .searched_item{
-	width:179px;
-	height:179px;
+	width:10%;
 	display:block;
 	float:left;
 	list-style:none;
 	text-align:center;
 	background:url('/images/bg_bid_window.jpg') no-repeat center center;
 	padding:15px;
-	margin-bottom:2em;
 	position:relative;
 }
 
