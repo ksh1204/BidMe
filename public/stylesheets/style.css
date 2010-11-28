@@ -47,7 +47,7 @@ body {
 }
 
 #logo a{
-	background-color: ;
+
 }
 
 .content{
@@ -571,9 +571,16 @@ margin-top: 25px;
 
 
 .searched_item{
+	width:179px;
+	height:179px;
+	display:block;
 	float:left;
-	width: 20%;
-	padding:15px 15px 15px 15px;
+	list-style:none;
+	text-align:center;
+	background:url('/images/bg_bid_window.jpg') no-repeat center center;
+	padding:15px;
+	margin-bottom:2em;
+	position:relative;
 }
 
 .searched_item_photo{
@@ -594,6 +601,12 @@ margin-top: 25px;
 
 .searched_item_price{
 	text-align:center;
+	color:green;
+}
+
+.searched_item_bid_price{
+	text-align:center;
+	color:purple;
 }
 
 .searched_item_category{
@@ -623,6 +636,16 @@ margin-top: 25px;
 .search_pages{
 	padding-top: 35px;
 }
+
+#infoBar {
+background: url('/images/bg_info_bar.jpg') no-repeat 50% 50%;
+height: 3em;
+margin: 0px auto;
+padding: 1.7em;
+width: 800px;
+}
+
+
 
 
 

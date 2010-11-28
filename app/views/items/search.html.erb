@@ -5,13 +5,6 @@
 <% for item in @items %>
 	<% if item %>
 	<div class="searched_item">
-		<div class="searched_item_photo">
-			<% if item.item_photo_file_name %>
-				<%= image_tag item.item_photo.url(:small) %>
-			<% else %>
-				<%= image_tag('/images/default.jpg') %>
-			<% end %>
-		</div>
 		<div class="searched_item_category">
 			<%=item.item_category.name%>
 		</div>
@@ -20,6 +13,17 @@
 		</div>
 		<div class="searched_item_price">
 			$<%=item.start_price%>
+		</div>
+		<div class="searched_item_photo">
+			<% if item.item_photo_file_name %>
+				<%= image_tag item.item_photo.url(:small) %>
+			<% else %>
+				<%= image_tag('/images/default.jpg') %>
+			<% end %>
+		</div>
+		<div class="searched_item_bid_price", id="search_page_<%=item.id%>">
+		<% @highest_bid = item.bids.last %>
+		<%= render :partial => 'searched_bid_price', :object => @highest_bid %>
 		</div>
 	</div>
 	<% @count += 1 %>
