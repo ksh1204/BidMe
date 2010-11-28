@@ -352,6 +352,8 @@ class UsersController < ApplicationController
     		  render :juggernaut => {:type => :send_to_all} do |page|
             page.replace_html :highest_bid, :partial => 'items/highest_bid_price', :object => @highest_bid
             page.visual_effect :highlight, "highest_bid", :duration => 5
+            page.replace_html "search_page_#{@item.id}", :partial => 'items/searched_bid_price', :object => @highest_bid
+            page.visual_effect :highlight, "search_page_#{@item.id}", :duration => 5
           end
           if @highest.bidder.id != @highest_bid.bidder.id
             @message = @admin.sent_messages.build(:receiver_id => @highest.bidder.id, :description => "You have been OUTBIDDED by <a href='/profile/#{@highest_bid.bidder.login}'>#{@highest_bid.bidder.login}</a> for <a href='items/show/#{@highest_bid.item.id}'>#{@highest_bid.item.name}</a>")
@@ -387,8 +389,9 @@ class UsersController < ApplicationController
     		  render :juggernaut => {:type => :send_to_all } do |page|
             page.replace_html :highest_bid, :partial => 'items/highest_bid_price', :object => @highest_bid
             page.visual_effect :highlight, "highest_bid", :duration => 5
+            page.replace_html "search_page_#{@item.id}", :partial => 'items/searched_bid_price', :object => @highest_bid
+            page.visual_effect :highlight, "search_page_#{@item.id}", :duration => 5
           end
-	  redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
         end
         redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
       end

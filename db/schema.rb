@@ -97,6 +97,11 @@ ActiveRecord::Schema.define(:version => 20101110085324) do
     t.datetime "updated_at"
   end
 
+  create_table "user_ratings", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "login",                      :limit => 40
     t.string   "email",                      :limit => 100
