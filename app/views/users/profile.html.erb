@@ -21,7 +21,6 @@
 		 <% end %>
 		 <% else %>
 		 <b>Basic Information</b> 
-		 
 		 <% end %>
 	<hr style="margin-top:0; margin-bottom:0; width:40%"">
 		  <div id="profile_info" >
@@ -79,7 +78,7 @@
 
 	<% if current_user.id != @user.id%>
 	<div id="user_profile_report">
-		<%= link_to "REPORT THIS USER", :action => 'report_user', :username => @user.login%>
+		<%= link_to "REPORT THIS USER", {:action => 'report_user', :username => @user.login}, {:style => "color:red"}%>
 	</div>
 	<div id="user_profile_follow">
 		<% if Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
@@ -103,7 +102,6 @@
 <div id ="rating_section">
 <b>User Rating</b>
 <%= ratings_for @user, :dimension => :quality %>
-
 </div>
 <hr class="horiz_line">
 
@@ -143,7 +141,7 @@
 		<b>User Comments</b>
 		<%=form_tag :action => 'write_comment' %>
 		<%=hidden_field_tag :commentee_id, @user.id %>
-		<%=text_area_tag :description %><br/>
+		<%=text_area_tag :description, :id => 'comments_box' %><br/>
 		<%=submit_tag "Comment"%>
 		</form>
 		<br>
