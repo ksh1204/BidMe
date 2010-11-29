@@ -942,13 +942,18 @@ margin-top: 25px;
 
 .searched_item{
 	width:179px;
-	height:179px;
-	background-color:#555;
+	height:210px;
+	margin-right:30px;
+	border-bottom-left-radius: 12px 12px;
+	border-bottom-right-radius: 12px 12px;
+	border-top-left-radius: 12px 12px;
+	border-top-right-radius: 12px 12px;
 	display:block;
 	float:left;
 	list-style:none;
 	text-align:center;
-	margin:15px;
+	background:white no-repeat center center;
+	padding:15px;
 	margin-bottom:2em;
 	position:relative;
 	-moz-border-radius: 5px; 
@@ -1024,32 +1029,30 @@ width: 800px;
 	color:black;;
 }
 
-.search_pages{
-	padding-top: 35px;
-}
-
 #show_item_left{
-	width:25%;
+	width:75px;
 	float:left;
 }
 
 #show_item_right{
-	width:25%;
-	float:right;
+	width:450px;
+	float:left;
 }
 
 #show_item_middle{
-	width:25%;
+	width:200px;
 	float:left;
 	padding-right: 20px;
 }
 
 #show_item_seller{
-	
+
 }
 
 #show_item_seller_label{
-	
+	font-family: Georgia, serif;
+	color:yellow;
+	font-weight:bold;
 }
 
 #show_item_item{
@@ -1058,7 +1061,9 @@ width: 800px;
 
 #show_item_item_label{
 	float:left;
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
+	color:yellow;
+	font-weight:bold;
 	width: 100px;
 }
 
@@ -1073,7 +1078,9 @@ width: 800px;
 
 #show_item_price_label{
 	float:left;
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
+	color:yellow;
+	font-weight:bold;
 	width: 100px;
 }
 
@@ -1088,7 +1095,9 @@ width: 800px;
 
 #show_item_bin_price_label{
 	float:left;
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
+	color:yellow;
+	font-weight:bold;
 	width: 100px;
 }
 
@@ -1108,7 +1117,9 @@ width: 800px;
 }
 
 #show_item_time_label{
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
+	color:yellow;
+	font-weight:bold;
 	width: 100px;
 }
 
@@ -1122,7 +1133,9 @@ width: 800px;
 
 #show_item_desc_label{
 	float:left;
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
+	color:yellow;
+	font-weight:bold;
 	width: 100px;
 }
 
@@ -1137,7 +1150,9 @@ width: 800px;
 
 #show_item_photo_label{
 	float:left;
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
+	color:yellow;
+	font-weight:bold;	
 	width: 100px;
 }
 
@@ -1150,19 +1165,6 @@ width: 800px;
 	float:left;
 	font-family:Oldtown, fantasy;
 	color:white;
-}
-
-#bid_id{
-	width:100px;
-	height:50px;
-}
-
-#highest_bid table tr td{
-	color:white;
-}
-
-#bid_price{
-	width: 80px;
 }
 
 #result_label{
