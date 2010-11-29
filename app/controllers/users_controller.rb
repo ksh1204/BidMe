@@ -444,10 +444,13 @@ class UsersController < ApplicationController
           highest_bidder.update_attribute(:money, highest_bidder.money+@highest_bid.price)
         end
         gflash :success => "Congratulations! You have bought the item."
+        @item.closed = true
         render :juggernaut => {:type => :send_to_all} do |page|
               page.replace_html :show_item_time, ""
               page.replace_html :bid_id, ""
               page.replace_html :highest_bid, "Auction is closed!"
+              page.replace_html "item_time_#{@item.id}", :partial => 'items/search_time_ticker', :object => @item
+              page.visual_effect :highlight, "item_time_#{@item.id}", :duration => 5
         end
         @item.update_attribute(:closed,true)
         poster = @item.user

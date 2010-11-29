@@ -57,6 +57,8 @@ class ItemsController < ApplicationController
           page.replace_html :highest_bid, "Auction is closed now!"
           page.replace_html :bid_id, ""
           page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
+          page.replace_html "item_time_#{@item.id}", :partial => 'items/search_time_ticker', :object => @item
+          page.visual_effect :highlight, "item_time_#{@item.id}", :duration => 5
     end
     
     redirect_to :action => 'show', :id => @item.id
