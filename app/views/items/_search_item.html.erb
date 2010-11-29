@@ -40,6 +40,6 @@ $(function () {
 	<% @highest_bid = @item.bids.last %>
 	<%= render :partial => 'searched_bid_price', :object => @highest_bid %>
 	</div>
-	<div id="searched_item_time_<%=@item.id%>", class="searched_item_time">
+	<div id="searched_item_time_<%=@item.id%>", class="searched_item_time" style="background:black;">
 	</div>
 </div>

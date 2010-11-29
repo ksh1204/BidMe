@@ -1002,6 +1002,11 @@ margin-top: 25px;
 .searched_item_time2{
 	
 }
+
+.searched_item_time{
+	color:black;
+}
+
 .history_item_name a {
 	color:orange;
 }
@@ -1036,9 +1041,6 @@ width: 800px;
 	-webkit-border-top-right-radius: 5px 5px;
 
 	border: 1px solid black;
-}
-.searched_item_time{
-	color:black;
 }
 
 #show_item_left{
