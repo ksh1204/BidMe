@@ -1,21 +1,25 @@
-<div id="columns">
+<div id="columns" style="color:black;">
 	<div id="side">
   		<%= render :partial => 'messagebox_menu' %>
     </div>
     <div id="main">
 		<h2>Message from <%= @message.sender.login %></h2><h5>
-	<div id="sender_box">	
-	From:<br> <%= link_to @message.sender.login, {:action => 'profile', :username => @message.sender.login}, {:class => 'messagebox_links'} %> <br></div>
-		
-	Message:</h5>
-	<div id="message_content">		    
-	<%= @message.description %>
+		From :
+		<div id="sender_box1">	
+			<%= link_to @message.sender.login, {:action => 'profile', :username => @message.sender.login}, {:class => 'messagebox_links'} %>
+		</div><br>
+		Message :</color><br></h5>
+		<div id="message_content">		    
+			<%= @message.description %>
+		</div>	    
+		<div id="message_button">
+			<table>
+				<tr>
+					<td id="first_button" style="width:5%">
+						<%= button_to 'Reply', :action => 'write_message',
+											   :receiver => @message.sender.login%></td>
+					<td><%= button_to "Back", request.env["HTTP_REFERER"] %></td></tr>
+			</table>
+		</div>
 	</div>
-		    
-	<div id="message_button">
-	<table><tr><td id="first_button" style="width:5%"><%= button_to 'Reply', :action => 'write_message', :receiver => @message.sender.login%></td>
-		  <td><%= button_to "Back", request.env["HTTP_REFERER"] %></td></tr></div>
-	</table>
-	
-    </div>
 </div>

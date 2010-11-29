@@ -41,6 +41,11 @@
 				<div id="email_label">
 					Email:
 				</div>
+				<% if current_user.id == @user.id %>
+					<div id="money_label">
+						Funds:
+					</div>
+				<% end %>
 			</div>
 			<div id="basic_info_col3">
 				<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
@@ -59,8 +64,12 @@
 				<% end %>
 				<div id="user_profile_email">
 					<%= @user.email %><br/>
-
 				</div>
+				<% if current_user.id == @user.id %>
+					<div id="user_profile_money">
+						$ <%= current_user.money %><br/>
+					</div>
+				<% end %>
 			</div>
 		</div>
 		</div>

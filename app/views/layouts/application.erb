@@ -36,34 +36,37 @@
 
 <body>
 <div align="center" id="FreezePane" class="FreezePaneOff">
-   <div id="InnerFreezePane" class="InnerFreezePane"> </div>
-</div>
-<div id='header'>
-  <div class='content'>
-    <a href='/'>
-    <div id='logo'>
-    </div>
-    </a>
-    <%= render :partial=> 'users/user_bar'%>
-    <%if current_user%>
-    <div class='header_link_container'>
-    <%=link_to 'Post', {:controller => 'items', :action => 'new'}, :class => 'header_link span-4'%>
-    <%=link_to 'Search', {:controller => 'items', :action => 'index'}, :class => 'header_link span-4'%>  
-    <%=link_to 'My Items', {:controller => 'users', :action => 'show_user_items'}, :class => 'header_link span-4'%>
-    <%=link_to 'Messages', {:controller => 'users', :action => 'messagebox'}, :class => 'header_link span-4'%>
-    <%=link_to 'About', '/users/about', :class => 'header_link span-4'%>
-	<% end %>
-    </div>
-  </div>
-</div>
-<div id='main_content' class='content'>
-  <%if current_user%>
-  	<div id='user_#{current_user.id}'>
+	<div id="InnerFreezePane" class="InnerFreezePane">
 	</div>
-  <%end%>
-  <%=render :partial => 'base/notification'%>
-  <%=yield%>
-  <% request.env["HTTP_REFERER"] = request.request_uri() %>
+</div>
+<div id='content'>
+	<div id='header'>
+		<div class='content'>
+			<a href='/'>
+				<div id='logo'>
+				</div>
+			</a>
+			<%= render :partial=> 'users/user_bar'%>
+			<%if current_user%>
+				<div class='header_link_container'>
+					<%=link_to 'Post', {:controller => 'items', :action => 'new'}, :class => 'header_link span-4'%>
+					<%=link_to 'Search', {:controller => 'items', :action => 'index'}, :class => 'header_link span-4'%>  
+					<%=link_to 'My Items', {:controller => 'users', :action => 'show_user_items'}, :class => 'header_link span-4'%>
+					<%=link_to 'Messages', {:controller => 'users', :action => 'messagebox'}, :class => 'header_link span-4'%>
+					<%=link_to 'About', '/users/about', :class => 'header_link span-4'%>	
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div id='main_content' class='content'>
+	<%if current_user%>
+		<div id='user_#{current_user.id}'>
+		</div>
+	<%end%>
+	<%=render :partial => 'base/notification'%>
+	<%=yield%>
+	<% request.env["HTTP_REFERER"] = request.request_uri() %>
+</div>
 </div>
 </body>
 </html>

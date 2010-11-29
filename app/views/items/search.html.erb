@@ -16,17 +16,18 @@ $(function () {
 	<% end %>
 });
 </script>
-<%= render :partial => 'search_box'%><br/>
-<% if @items.first %>
-<% @count = 0%>
-<div id="result_label">
-	  <%if params[:q].eql?("")%>
-		Showing all items
-	  <%else%>
-		Results for <%=params[:q]%>
-	  <%end%>
+<div>
+<%= render :partial => 'search_box'%>
 </div>
-
+<% if @items.first %>
+<% @count = 0%><br>
+<div id="result_label">
+	<%if params[:q].eql?("")%>
+		Showing all items:
+	<%else%>
+		Results for <%=params[:q]%>
+	<%end%>
+</div>
 <div class="searched_items">
 <% for @item in @items %>
 	<% if @item %>
@@ -42,7 +43,7 @@ $(function () {
 		</div>
 		<div class="searched_item_photo">
 			<% if @item.item_photo_file_name %>
-				<%= image_tag @item.item_photo.url(:small) %>
+				<%= image_tag @item.item_photo.url(:thumb) %>
 			<% else %>
 				<%= image_tag('/images/photo_na_long.png') %>
 			<% end %>
@@ -55,7 +56,7 @@ $(function () {
 		</div>
 	</div>
 	<% @count += 1 %>
-	<% if @count % 4 == 0%>
+	<% if @count % 3 == 0%>
 		<div style="clear:both"></div>
 	<%end %>
 	<% end %>

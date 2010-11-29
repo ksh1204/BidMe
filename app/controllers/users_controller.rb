@@ -90,6 +90,22 @@ class UsersController < ApplicationController
     end
   end
   
+  def add_money
+    @user = current_user
+	@money = @user.money
+	@allowed = @user.money_refill
+	if @allowed > 0
+		@user.money = @money + 1000
+		@user.money_refill = @allowed - 1
+		@user.save
+		gflash :success => "Money Successfully Transferred to your account!"
+		redirect_to :action => 'edit', :id => @user.id
+	else
+		gflash :error => "You have depleted your money reserve."
+		redirect_to :action => 'edit', :id => @user.id
+	end
+  end
+
   def forgot
       if request.post?
         user = User.find_by_email(params[:user][:email])

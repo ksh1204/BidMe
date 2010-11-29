@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :items
 
-
+  map.add_money 'users/add_money', :controller => 'users', :action => 'add_money'
   map.edit 'users/edit', :controller => 'users', :action => 'edit'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'

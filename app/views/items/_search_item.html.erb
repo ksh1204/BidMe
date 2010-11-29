@@ -10,6 +10,7 @@ var sec = <%=@end_date.sec%>;
 var tz = 0;     // offset in hours from UTC to your timezone
 var lab = 'cd';  // id of the entry on the page where the counter is to be inserted
 var item_id = <%=@item.id%> + "";
+
 $(function () {
 	var end = new Date();
 	end = new Date(year,month,day,hour,min,sec);
@@ -17,6 +18,7 @@ $(function () {
 	$('#year').text(austDay.getFullYear());
 });
 </script>
+
 <div class="searched_item">
 	<div class="searched_item_category">
 		<%=@item.item_category.name%>

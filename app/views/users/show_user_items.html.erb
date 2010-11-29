@@ -44,7 +44,7 @@
 	<% if @watched %>
 		<% @count = 0%>
 		<div id="watched_items_header">
-			Active watched items : 
+			<u><b style="color:red;"><i>Active</b></i> watched items :  </u>
 		</div>
 		<div id="watched_items_actual">
 			<% for watched_item in @watched %>
@@ -70,6 +70,33 @@
 					<% end %>
 				<% end %>
 			<% end %>
+			<div id="closed_watched_items_header">
+			Closed watched items : 
+			</div>
+			<div id="closed_watched_items_actual">
+			<% for closed_watched_item in @watched %>
+				<% if closed_watched_item %>
+					<% item = Item.find(closed_watched_item.item_id) %>
+					<% if item.closed %>
+						<div class="closed_watched_item">
+							<div class="closed_watched_item_photo">
+								<% if item.item_photo_file_name %>
+									<%= image_tag item.item_photo.url(:thumb) %>
+								<% else %>
+									<%= image_tag('/images/default.jpg') %>
+								<% end %>
+							</div>
+							<div class="closed_watched_item_name">
+								<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
+							</div>
+						</div>
+						<% @count += 1 %>
+						<% if @count % 4 == 0%>
+							<div style="clear:both"></div>
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
 		<div style="clear:both"></div>
 	<% end %>
 </div>
@@ -77,26 +104,40 @@
 <hr class="horiz_line">
 <h3> Posted Items </h3>
 <% if @user_items.first %>
-	<div id="posted_items_page">
-		<div class="posted_items">
-		<ul>
-		<% for user_item in @user_items %>
-			<% if user_item %>
-				<% item = user_item.item %>
-				<li class="posted_item">
-					<%=link_to item.name, { :controller => 'items', :action => 'show', :id => item.id}%>
-					<% if item.closed %>
-						<small>-- closed</small>
-					<% else %>
-						<b><i style="color:red;">-- Active</b></i>
+	<div id="posted_items_page"> 
+		<div class="active_posted_items">			
+			<u><b style="color:red;"><i>Active</b>  items</i> --</u> 
+			<ul>
+				<% for user_item in @user_items %>
+					<% if user_item %>
+						<% item = user_item.item %>
+						<% if item && !item.closed %>
+							<li class="active_posted_item">
+								<%=link_to item.name, { :controller => 'items', :action => 'show', :id => item.id}%>
+							</li>
+						<% end %>
 					<% end %>
-				</li>
-			<% end %>
-		<% end %>
-		</ul>
-		<div style="clear:both"></div>
+				<% end %>
+			</ul>
+			<div style="clear:both"></div>
 		</div>
-		<div class="posted_items_paginate"><center><%= will_paginate @user_items %></center></div>
+		<div class="closed_posted_items">
+		<u>Closed items --</u> 
+			<ul>
+				<% for user_item in @user_items %>
+					<% if user_item %>
+						<% item = user_item.item %>
+						<% if item && item.closed %>
+							<li class="closed_posted_item">
+								<%=link_to item.name, { :controller => 'items', :action => 'show', :id => item.id}%>
+							</li>
+						<% end %>
+					<% end %>
+				<% end %>
+			</ul>
+			<div style="clear:both"></div>
+		</div>
+		<div style="clear:both"></div>
 	</div>
 <% else %>
 	<small>No items found</small>

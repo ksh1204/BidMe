@@ -1,7 +1,14 @@
-<center><div id="search_box">
-	<div id="box">
-	<%= form_tag :controller => "items", :action => "search" %>
-		<%= text_field_tag :q, '' %><br></div>
-		<%= submit_tag "Search"%>
+<div id="search_box">
+	<div><center>
+		<%= form_tag :controller => "items", :action => "search" %>
+		<%= text_field_tag :q, '', :id => "search_field_box" %>     
+	</center> 
+	</div>
+	<div style="float:left;padding-top:13px;">
+		<%= submit_tag "Search", :onclick=>"FreezeScreen('Please wait...');", :style => "margin-left:6px;" %>
+	</div>
 	</form>
-</div></center>
+	<div style="clear:both"></div>
+</div>
+	
+

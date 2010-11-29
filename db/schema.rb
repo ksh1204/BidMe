@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101110085324) do
+ActiveRecord::Schema.define(:version => 20101128194010) do
 
   create_table "bids", :force => true do |t|
     t.integer  "bidder_id"
@@ -97,11 +97,6 @@ ActiveRecord::Schema.define(:version => 20101110085324) do
     t.datetime "updated_at"
   end
 
-  create_table "user_ratings", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", :force => true do |t|
     t.string   "login",                      :limit => 40
     t.string   "email",                      :limit => 100
@@ -127,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20101110085324) do
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
     t.datetime "profile_photo_updated_at"
+    t.integer  "money_refill",                              :default => 5
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

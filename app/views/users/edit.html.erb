@@ -12,6 +12,9 @@
   <br/>
   <br/>
 
+  <%= link_to "Click for additional funds.", :controller => 'users', :action => 'add_money', :id => current_user.id %>
+
+
   <%= render :partial => 'profile_photo'%>
   <%=link_to_remote "Remove Photo", :url => {:action => 'remove_profile_photo'}%>
   <p>

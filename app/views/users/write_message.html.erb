@@ -2,20 +2,19 @@
 	<div id="side">
   		<%= render :partial => 'messagebox_menu' %>
     </div>
-    <div id="main">
-		<h2>New Message</h2>
+    <div id="main" style="color:black;">
+		<h2>Send Message</h2>
 		<%=form_tag :action=>'send_message'%>
-		  <%=label_tag :receiver, 'To:', :class => 'messagebox_links'%>
-		  <br/>
-		  <%=text_field_tag :receiver, (@message.receiver.login if @message.receiver)%>
-		  <br/>
+		  <%=label_tag :receiver, 'To:'%>
+		  <br>
+		  <%=text_field_tag :receiver, (@message.receiver.login if @message.receiver), :class => 'send_to_box'%>
+		  <br><br>			
+
+		  <%=label_tag :description, 'Message:'%></color>
+		  <br>
+		  <%=text_area_tag :description, nil, :id =>'message_content' %>
+		  <br>
 		
-
-		  <%=label_tag :description, 'Message:', :class => 'messagebox_links'%>
-		  <br/>
-		  <%=text_area_tag :description%>
-		  <br/>
-
 
 		  <table><tr><td style="width:5%"><%=submit_tag 'Send', :onclick=>"FreezeScreen('Please wait...');" %></td>
 

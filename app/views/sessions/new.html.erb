@@ -1,20 +1,38 @@
+<div id="login_page">
 <h1>Log In</h1>
 <small>
 <div id="login_box">
-<% form_tag session_path do -%>
-<p><%= label_tag 'login', 'Login ID :' %>
+	<table id="login_table" >
+	<% form_tag session_path do -%>
+	<tr>
+		<td id="login_id_label">
+			<%= label_tag 'login', 'Login ID :' %>
+		</td>
+		<td id="login_id_box_field">
+			<%= text_field_tag 'login', @login, :class => 'medium_box' %>
+		</td>
+		<td style="padding:5px;"></td><td style="padding:5px;"></td>
+	</tr>
+	<br>
+	<tr>
+		<td id="login_password_label">
+			<%= label_tag 'password', 'Password :' %>
+		</td>
+		<td id="login_password_box_field">
+			<%= password_field_tag 'password', nil, :class => 'medium_box' %><br><br>
+		</td>
+		<tdstyle="padding:5px;"></td><td style="padding:5px;"></td>
+	</tr>
+	
+	</table>
+
+	<div id="login_box_button">
+	<%= submit_tag 'Log in' %>
+	</div>
+</div>
 <br>
-<%= text_field_tag 'login', @login, :class => 'small_box' %></p>
+</small>	
+	<%=link_to 'Forgot ID/password?', :controller => 'users', :action => 'forgot'%>
+	<% end -%>
+</div>
 
-<p><%= label_tag 'password', 'Password :' %>
-<br>
-<%= password_field_tag 'password', nil, :class => 'small_box' %></p></small>
-<!-- Uncomment this if you want this functionality
-<p><%= label_tag 'remember_me', 'Remember me' %>
-<%= check_box_tag 'remember_me', '1', @remember_me %></p>
--->
-
-<p><%= submit_tag 'Log in' %></p></div><br>
-
-<%=link_to 'Forgot ID/password?', :controller => 'users', :action => 'forgot'%>
-<% end -%>
