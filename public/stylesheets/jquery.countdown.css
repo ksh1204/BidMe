@@ -35,15 +35,17 @@
 	width: 14%;
 }
 .countdown_section {
-	display: block;
+	display: inline;
 	float: left;
+	height:60%;
 	font-size: 75%;
 	text-align: center;
+	background: transparent;
 }
 .countdown_amount {
 	font-size: 200%;
 }
 .countdown_descr {
-	display: block;
+	display: inline;
 	width: 100%;
 }

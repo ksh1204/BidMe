@@ -998,6 +998,9 @@ margin-top: 25px;
 	color:blue;
 }
 
+.searched_item_time2{
+	
+}
 .history_item_name a {
 	color:orange;
 }
@@ -1025,8 +1028,16 @@ padding: 1.7em;
 width: 800px;
 }
 
+#around_clock{
+-moz-border-top-left-radius: 5px 5px;
+	-moz-border-top-right-radius: 5px 5px;
+	-webkit-border-top-left-radius: 5px 5px;
+	-webkit-border-top-right-radius: 5px 5px;
+
+	border: 1px solid black;
+}
 .searched_item_time{
-	color:black;;
+	color:black;
 }
 
 #show_item_left{
@@ -1054,6 +1065,7 @@ width: 800px;
 	color:yellow;
 	font-weight:bold;
 }
+
 
 #show_item_item{
 	height: 30px;
@@ -1170,11 +1182,12 @@ width: 800px;
 #result_label{
 	font-family:fantasy;
 	padding-bottom:15px;
+
 	padding-left:59px;
 	font-size:23px;
 }
 
-.searched_item_time div { float: left; width: 34px; height: 50px; 
+.searched_item_time div { float: left; width: 32px; height: 45px; 
     background: url('/images/countdownGlowing.gif') no-repeat 0px 0px; } 
 .searched_item_time div.image0 { background-position: -0px 0px; } 
 .searched_item_time div.image1 { background-position: -34px 0px; } 
