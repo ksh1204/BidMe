@@ -766,7 +766,7 @@ margin-top: 25px;
 
 .searched_item{
 	width:179px;
-	height:179px;
+	height:210px;
 	display:block;
 	float:left;
 	list-style:none;
@@ -864,7 +864,7 @@ width: 800px;
 }
 
 #show_item_seller_label{
-	
+	font-family: Georgia, serif;
 }
 
 #show_item_item{
@@ -873,7 +873,7 @@ width: 800px;
 
 #show_item_item_label{
 	float:left;
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
 	width: 100px;
 }
 
@@ -888,7 +888,7 @@ width: 800px;
 
 #show_item_price_label{
 	float:left;
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
 	width: 100px;
 }
 
@@ -903,7 +903,7 @@ width: 800px;
 
 #show_item_bin_price_label{
 	float:left;
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
 	width: 100px;
 }
 
@@ -923,7 +923,7 @@ width: 800px;
 }
 
 #show_item_time_label{
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
 	width: 100px;
 }
 
@@ -937,7 +937,7 @@ width: 800px;
 
 #show_item_desc_label{
 	float:left;
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
 	width: 100px;
 }
 
@@ -952,7 +952,7 @@ width: 800px;
 
 #show_item_photo_label{
 	float:left;
-	font-family:Impact, fantasy;
+	font-family: Georgia, serif;
 	width: 100px;
 }
 
