@@ -43,7 +43,7 @@ $(function () {
 		</div>
 		<div class="searched_item_photo">
 			<% if @item.item_photo_file_name %>
-				<%= image_tag @item.item_photo.url(:thumb) %>
+				<%= image_tag @item.item_photo.url(:small) %>
 			<% else %>
 				<%= image_tag('/images/photo_na_long.png') %>
 			<% end %>
