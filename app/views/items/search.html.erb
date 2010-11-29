@@ -51,16 +51,20 @@ $(function () {
 		<div class="searched_item_bid_price", id="search_page_<%=@item.id%>">
 			<% @highest_bid = @item.bids.last %>
 			<%= render :partial => 'searched_bid_price', :object => @highest_bid %>
-		</div><br>
-		<div id='item_time_<%=@item.id%>', style="height:20%; padding:5px; padding-bottom:15px; border: 1px solid black;-moz-border-radius: 10px; 
-	-webkit-border-radius: 10px;
+		</div>
+		<% if !@item.closed && @item.item_photo_file_name %>
+		<div id='item_time_<%=@item.id%>', style="height:20%; border: 1px solid black;-moz-border-radius: 10px; -webkit-border-radius: 10px;
 	-moz-box-shadow: 3px 3px 4px #000;
 	-webkit-box-shadow: 3px 3px 4px #000;
-	box-shadow: 3px 3px 4px #000;
-	/* For IE 8 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
-	/* For IE 5.5 - 7 */
-	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');">
+	box-shadow: 3px 3px 4px #000;">
+		<% elsif !@item.closed && !@item.item_photo_file_name %>
+			<div id='item_time_<%=@item.id%>', style="height:20%; margin-top:20px;border: 1px solid black;-moz-border-radius: 10px; -webkit-border-radius: 10px;
+		-moz-box-shadow: 3px 3px 4px #000;
+		-webkit-box-shadow: 3px 3px 4px #000;
+		box-shadow: 3px 3px 4px #000;">
+		<% else %>
+			<div id='item_time_<%=@item.id%>'>
+		<% end %>
 			<%= render :partial => 'search_time_ticker', :object => @item%> 
 		</div>
 	</div>

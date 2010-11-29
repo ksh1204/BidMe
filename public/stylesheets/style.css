@@ -151,7 +151,7 @@ body {
 #main_content{
 	margin-top:22px;
 	margin-bottom:22px;
-	background: url('/images/fruity.jpg');
+	/*background-color: grey url('/images/fruity.jpg');*/
 	top:100%;
 	width:80%;
 	min-height:100%;
@@ -783,8 +783,6 @@ float: left;
 
 #comment_right{
 float: left;
-margin-left: 100px;
-margin-top: 25px;
 }
 
 #first_button{
@@ -917,7 +915,11 @@ margin-top: 25px;
 	text-align:center;
 }
 
-.posted_item_name{
+.posted_item_name{.sbl { background: url('bl.gif') bottom left no-repeat #EDEDED; width: 30%; text-align: center; min-width: 100px; }
+.sbr { background: url('br.gif') bottom right no-repeat; }
+.stl { background: url('tl.gif') top left no-repeat; }
+.str { background: url('tr.gif') top right no-repeat; padding: 10px; } 
+.sb { padding: 2px 0px 10px 50px; background: url('b.gif') 30px top no-repeat; }
 	text-align:center;
 }
 
@@ -1220,7 +1222,11 @@ width: 800px;
 	width:130px;
 }
 
-
+.sbl { background: url('/images/bl.gif') bottom left no-repeat #EDEDED; width: 30%; text-align: center; min-width: 100px; }
+.sbr { background: url('/images/br.gif') bottom right no-repeat; }
+.stl { background: url('/images/tl.gif') top left no-repeat; }
+.str { background: url('/images/tr.gif') top right no-repeat; padding: 10px; } 
+.sb { padding: 2px 0px 10px 50px; background: url('/images/b.gif') 30px top no-repeat; }
 
 
 

@@ -100,14 +100,14 @@
 	
 	<hr class="horiz_line">
 <div id ="rating_section">
-<b>User Rating</b>
+<h3>User Rating</h3>
 <%= ratings_for @user, :dimension => :quality %>
 </div>
 <hr class="horiz_line">
 
 <% if (current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id})) && @use_items %>
 	<div id="profile_user_items_header">
-		<b>User Items</b>
+		<h3>User Items</h3>
 		<div id="profile_user_items">
 			<% @count = 0%>
 			<% for u_item in @user_items %>
@@ -138,48 +138,41 @@
 <% end %>
 
 	<div id ="comment_section">
-		<b>User Comments</b>
-		<%=form_tag :action => 'write_comment' %>
-		<%=hidden_field_tag :commentee_id, @user.id %>
-		<%=text_area_tag :description, :id => 'comments_box' %><br/>
-		<%=submit_tag "Comment"%>
-		</form>
-		<br>
+		<h3>User Comments</h3>
 		<div id="all_comments">			
 			<% if @comments.count > 0 %>
-			<% for comment in @comments %>
-				<div id='comment_<%=comment.id%>', class='comment_body'>
-					<div id='comment_left'>
-						<div id="comment_left_photo">
-							<% if @user.profile_photo_file_name %>
-							<%= image_tag @user.profile_photo.url(:thumb) %>
-							<% else %>
-							<%= image_tag('/images/default.jpg') %>
-							<% end %>
-						</div>
-						<div id="comment_left_name">
-				
-	 
-						<%= facebox_link_to comment.user.login,
-								:url => {:action => 'profile',
-						 		:username => comment.user.login}%>
+				<% for comment in @comments %>
+
+				<div class="sbl">
+					<div class="sbr">
+						<div class="stl">
+							<div class="str"><% comment.description %>
+							</div>
 						</div>
 					</div>
-					<div id='comment_right'>
-						<%= comment.description %>
-					</div>
-					<div id="clear_profile_position" style="clear:both;"></div>
+				</div>
+				<div class="sb"><%= facebox_link_to comment.user.login,
+									:url => {:action => 'profile',
+							 		:username => comment.user.login}%>
+				</div>
+				<div id="clear_profile_position" style="clear:both;"></div>
 				</div>
 				<% end %>
 			<% else %>
 				
 				<center>This user has no comments.</center>
 				
-			<% end %>
-			
+			<% end %>	
+		</div>
 		
+		<br>
+		<%=form_tag :action => 'write_comment' %>
+		<%=hidden_field_tag :commentee_id, @user.id %>
+		<%=text_area_tag :description, :id => 'comments_box' %><br/><br/>
+		<%=submit_tag "Post a Comment"%>
+		</form>
+		<br>
 	</div>
-</div>
 
 
 <hr class="horiz_line">
