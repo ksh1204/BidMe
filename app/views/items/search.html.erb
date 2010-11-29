@@ -63,6 +63,11 @@ $(function () {
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');">
 			<%= render :partial => 'search_time_ticker', :object => @item%> 
 		</div>
+		<div class="bid_link" style="background-color:orange;width:70px;margin-left:50px;border: 1px solid black;-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+	-moz-box-shadow: 3px 3px 4px #000;
+	-webkit-box-shadow: 3px 3px 4px #000;
+	box-shadow: 3px 3px 4px #000;"><%=link_to "Bid", {:controller=>'items', :action => 'show', :id => @item.id}, {:style => "color:purple"}%></div>
 	</div>
 	<% @count += 1 %>
 	<% if @count % 3 == 0%>
