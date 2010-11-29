@@ -1,0 +1,11 @@
+<div class="slide_down">
+  <h3 class='float-l'>Followers</h3>
+  <hr/>
+<ol>
+<% for follower in @user.followers %>
+	<li style="color:black;"><%=link_to follower.login, {:controller => 'users', :action => 'profile', :username=> follower.login},{:style => "color:darkblue"} %></li>
+<% end %>
+</ol>
+  <%=link_to_remote 'Close', :url => {:controller => 'users', :action => 'list_followers', :cancel => 'true'}, :html => {:class => 'float-r'}%>
+  <br class='clear'>
+</div>

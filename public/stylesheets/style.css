@@ -1220,6 +1220,10 @@ width: 800px;
 	width:130px;
 }
 
+#user_profile_followers{
+	display:hidden;
+}
+
 
 
 

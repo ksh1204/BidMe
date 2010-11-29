@@ -22,7 +22,7 @@
 		 <% else %>
 		 <b>Basic Information</b> 
 		 <% end %>
-	<hr style="margin-top:0; margin-bottom:0; width:40%"">
+	<hr style="margin-top:0; margin-bottom:0; width:40%">
 		  <div id="profile_info" >
 			
 			<div id="basic_info_col2">
@@ -97,6 +97,11 @@
 			<% end %>
 		<% end %>
 	</div>
+	<div id="user_profile_followers">
+		<% @followers = @user.followers %>
+		<%=@user.login%> has <%= link_to_remote @followers.count.to_s + " followers", :url => {:controller => 'users', :action => 'list_followers', :username => @user.login}, :html =>{:style => "color:orange"} %>
+	</div>
+	<div id="follower_list" style="display:none; width:35%"></div>
 	
 	<hr class="horiz_line">
 <div id ="rating_section">

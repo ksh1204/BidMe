@@ -1,0 +1,6 @@
+if params[:cancel]
+  page['follower_list'].slide_up
+else
+  page['follower_list'].replace_html :partial => 'users/followers', :object => @user
+  page['follower_list'].slide_down
+end
