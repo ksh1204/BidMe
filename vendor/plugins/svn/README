@@ -1,0 +1,47 @@
+Ebay_Shopping Plugin
+===================
+
+The ebay_shopping plugin is a RubyonRails library for Ebay's Shopping API (http://developer.ebay.com/products/shopping/). 
+Unlike the trading API (http://developer.ebay.com/products/trading/), the shopping API is only for retrieval of information, not
+for posting items, or bidding on them. 
+
+If you need that sort of thing, check out Cody Fauser's gem for the trading API (http://code.google.com/p/ebay/). If you don't, 
+the Shopping API is simpler, leaner, and quite a bit faster too.
+
+Ebay_Shopping was developed by Chris Taggart for Autopendium :: Stuff about old cars (http://autopendium.com), a classic car 
+community site. It's still in development, and news of updates will be posted at http://pushrod.wordpress.com
+
+Installation
+============
+
+To install, simply run the usual: script/plugin install http://ebay-shopping.googlecode.com/svn/trunk/ ebay_shopping
+
+Then from the root of your rails app run ruby vendor/plugins/ebay_shopping/install.rb. 
+
+This will copy a basic configuration file into your app's config directory. This is where
+you put your ebay settings (Ebay Application id, affiliate info, etc).
+
+Basic usage
+===========
+
+Then from your rails app, construct a new request ebay request:
+
+request = EbayShopping::Request.new(:find_items, {:query_keywords => "chevrolet camaro"}) # use "ruby-ized" version of Ebay API calls and params
+
+response = request.response
+
+response.total_items # => 7081
+
+items_for_sale = response.items
+
+items_for_sale.first.title # => "Chevrolet Camaro"
+
+items_for_sale.first.view_item_url_for_natural_search # => "http://cgi.ebay.com/Chevrolet-Camaro_W0QQitemZ290197239377QQcategoryZ6161QQcmdZViewItemQQ"
+
+items_for_sale.first.gallery_url # => "http://thumbs.ebaystatic.com/pict/290197239377.jpg"
+
+items_for_sale.first.converted_current_price.to_s # => "$38000.00"
+
+...etc
+
+For more methods and more details see the test suite, the comments with the class and method definitions, or wait for me to write more stuff.
