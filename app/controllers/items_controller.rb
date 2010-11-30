@@ -53,14 +53,30 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @diff = Time.parse(@item.created_at.to_s)+@item.time_limit-Time.now.utc
     @item.update_attribute(:closed,true)
+    @bids = @item.bids
+    @admin = User.find_by_login("admin")
+    
     render :juggernaut => {:type => :send_to_all} do |page|
-          page.replace_html :highest_bid, "Auction is closed now!"
+          page.replace_html :show_item_time, "Auction is closed now!"
           page.replace_html :bid_id, ""
-          page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
           page.replace_html "item_time_#{@item.id}", :partial => 'items/search_time_ticker', :object => @item
-          page.visual_effect :highlight, "item_time_#{@item.id}", :duration => 5
     end
     
-    redirect_to :action => 'show', :id => @item.id
-  end
+    if @bids.count > 0
+      @highest = @bids.first
+      @message = @admin.sent_messages.build(:receiver_id => @highest.bidder.id, :description => "Congratulations! You won the item <a href='/items/#{@highest.item.id}'>#{@highest.item.name}</a>")
+      @message.save
+      @unread_messages = Message.find(:all, :conditions => {:receiver_id => @highest.bidder.id, :unread => true})
+      @num_unread = @unread_messages.count
+      render :juggernaut => {:type => :send_to_client, :client_id => @highest.bidder.id} do |page|
+        page.insert_html :top, :main_content, :partial => 'base/win_auction_message', :object => @highest
+        page.visual_effect :fade, :no_message, :duration => 2
+        page.replace :inbox_link, :partial => '/users/update_inbox_link', :object => @num_unread
+        page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
+        page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
+      end
+    end
+
+     render :action => 'show', :id => @item.id
+end
 end

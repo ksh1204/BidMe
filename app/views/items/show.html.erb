@@ -11,7 +11,8 @@ $(function () {
 		var sec = <%=@end_date.sec%> + "";
 		var tz = 0;     // offset in hours from UTC to your timezone
 	end = new Date(year,month-1,day,hour-8,min,sec);
-	$('#show_item_time_time_left').countdown({until: end});
+	$('#show_item_time_time_left').countdown({until: end, expiryUrl: '/end_auction/'+id, 
+	    description: 'End Auction'});
 });
 </script>
 <div id="show_item_left">

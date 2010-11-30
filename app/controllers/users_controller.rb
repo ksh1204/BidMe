@@ -361,7 +361,7 @@ class UsersController < ApplicationController
       @user_items = UserItem.paginate :per_page => 8, :page => params[:page], :conditions => { :user_id => current_user.id }, :order => 'created_at DESC'
       @sold = Transaction.find_all_by_seller_id(current_user.id)
       @bought = Transaction.find_all_by_buyer_id(current_user.id)
-      @following = Follow.find_all_by_follower_id(current_user.id)
+      @following_users = current_user.followings
       @watched = Watch.find_all_by_watcher_id(current_user.id)
     end
 
@@ -399,20 +399,20 @@ class UsersController < ApplicationController
 		      gflash :error => "Bid price must be greater than the current price of the item!"
 		      redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
 		    elsif (@bids.first.bidder.id == current_user.id)
-			gflash :error => "Cannot outbid yourself!"
-			redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
+			    gflash :error => "Cannot outbid yourself!"
+			    redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
 		    elsif (money < price.to_f)
-			gflash :error => "You cannot afford to pay this"
-			redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
+			    gflash :error => "You cannot afford to pay this"
+			    redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
 		    else			
     		  @highest_bid = @user.bids.build(:item_id => params[:item_id], :price => params[:bid_price])
     		  @highest_bid.save
-		  @user.money = @user.money - price.to_f
-		  @user.save
+		      @user.money = @user.money - price.to_f
+		      @user.save
     		  gflash :success => "Bid success. You are now the highest bidder!"
     		  render :juggernaut => {:type => :send_to_all} do |page|
             page.replace_html :highest_bid, :partial => 'items/highest_bid_price', :object => @highest_bid
-            page.visual_effect :highlight, "highest_bid", :duration => 5
+            page.visual_effect :highlight, "highest_bid_div", :duration => 5
             page.replace_html "search_page_#{@item.id}", :partial => 'items/searched_bid_price', :object => @highest_bid
             page.visual_effect :highlight, "search_page_#{@item.id}", :duration => 5
           end
@@ -438,23 +438,23 @@ class UsersController < ApplicationController
         if price.to_f <= @item.start_price 
           gflash :error => "Bid price must be greater than the current price of the item!"
           redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
-	elsif money < price.to_f
-	   gflash :error => "Cannot afford to bid with that price!"
+	      elsif money < price.to_f
+	        gflash :error => "Cannot afford to bid with that price!"
            redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
         else
           @highest_bid = @user.bids.build(:item_id => params[:item_id], :price => params[:bid_price])
           @highest_bid.save
           @user.money = @user.money - price.to_f
-	  @user.save
+	        @user.save
     		  gflash :success => "Bid success. You are now the highest bidder!"
     		  render :juggernaut => {:type => :send_to_all } do |page|
             page.replace_html :highest_bid, :partial => 'items/highest_bid_price', :object => @highest_bid
-            page.visual_effect :highlight, "highest_bid", :duration => 5
+            page.visual_effect :highlight, "highest_bid_div", :duration => 5
             page.replace_html "search_page_#{@item.id}", :partial => 'items/searched_bid_price', :object => @highest_bid
             page.visual_effect :highlight, "search_page_#{@item.id}", :duration => 5
           end
+          redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
         end
-        redirect_to :controller => "items", :action => 'show', :id => params[:item_id]
       end
 		end
 	end
