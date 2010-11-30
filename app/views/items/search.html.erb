@@ -15,8 +15,9 @@
 		<% end %>
 	});
 </script>
+
 <div>
-	<%= render :partial => 'search_box'%>
+	<%= render :partial => 'search_box', :object => @all%>
 </div>
 <% if @items.first %>
 <% @count = 0%><br>
@@ -66,11 +67,13 @@
 		<% end %>
 			<%= render :partial => 'search_time_ticker', :object => @item%> 
 		</div>
+		<% if !@item.closed %>
 		<div class="bid_link" style="background-color:orange;width:70px;margin-left:50px;border: 1px solid black;-moz-border-radius: 10px; 
 	-webkit-border-radius: 10px;
 	-moz-box-shadow: 3px 3px 4px #000;
 	-webkit-box-shadow: 3px 3px 4px #000;
 	box-shadow: 3px 3px 4px #000;"><%=link_to "Bid", {:controller=>'items', :action => 'show', :id => @item.id}, {:style => "color:purple"}%></div>
+	    <% end %>
 	</div>
 	<% @count += 1 %>
 	<% if @count % 3 == 0%>
@@ -83,6 +86,6 @@
 <div class="search_pages"><center><%= will_paginate @items %></center></div>
 
 <% else %>
-	<center>No items found</center>
+	<center style="padding-top:30px;">No items found</center>
 <% end %>
 </div>

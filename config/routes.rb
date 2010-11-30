@@ -39,6 +39,7 @@ ActionController::Routing::Routes.draw do |map|
   map.search_index 'search', :controller => 'items', :action => 'index'
   map.bin 'bin/:id', :controller => 'users', :action => 'buy_it_now'
   map.followers 'followers', :controller => 'users', :action => 'list_followers'
+  map.items_autocomplete 'items/select', :controller => 'items', :action => 'select'
   
   map.resources :messages
   map.resources :users, :member => {:rate => :post}
