@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
   end
   
   def search
-        @items = Item.search params[:q], :page => params[:page], :per_page => 15, :conditions => {:closed => false}
+        @items = Item.search params[:q], :page => params[:page], :per_page => 15
   end
   
   def show

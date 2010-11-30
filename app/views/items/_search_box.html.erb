@@ -2,7 +2,7 @@
 	<br>
 	<div><center>
 		<%= form_tag :controller => "items", :action => "search" %>
-		<%= text_field_tag :q, '', :id => "search_field_box"%>     
+		<%= text_field_tag :q, '', :id => "search_field_box"%>
 	</center> 
 	</div>
 	<div style="float:left;padding-top:13px;">
@@ -11,7 +11,3 @@
 	</form>
 	<div style="clear:both"></div>
 </div>
-	<% form_for :item do |f| -%>
-<%= f.select(:filter_category_id, ItemCategory.find(:all, :order => "name ASC").collect {|i| [i.name, i.id]}, {:prompt => 'Filter'})%></p>
-<% end %>
-

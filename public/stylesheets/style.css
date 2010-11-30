@@ -1,10 +1,10 @@
 body {
-	background-color: #000000;
+	
 /*	background-image: url('../images/background-gradient.png');*/
 /*	background-repeat:repeat-x;aadb6d*/
 	/* Chrome, Safari:*/
 /*    	background: -webkit-gradient(linear, right top, right bottom, from(#000000), to(#FFFFFF)); */
-//	background: url('/images/background_black.jpg') repeat scroll left top; 
+	background: url('/images/background_black.jpg') repeat scroll left top; 
 	font-family:Arial, Helvetica, sans-serif;
 	margin:0;
 }
@@ -137,7 +137,7 @@ body {
 }
 
 #content{
-	background: url('/images/background_black.jpg') repeat scroll left top; 
+	background-color: transparent;
 }
 
 .header_link{

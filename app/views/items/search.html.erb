@@ -28,7 +28,7 @@
 		Results for <%=params[:q]%>
 	<%end%>
 </div>
-<div class="searched_items">
+<div class="searched_items"><% item_number = params[:filter_category_id] %><%= item_number %>
 	<% for @item in @items %>
 		<% if @item %>
 			<div class="searched_item">
