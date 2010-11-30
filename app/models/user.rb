@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   has_many :follow_followers, :class_name => "Follow", :foreign_key => "following_id"
   has_many :followers, :through => :follow_followers
   has_many :follow_followings, :class_name => "Follow", :foreign_key => "follower_id"
-  has_many :followings, :through => :follow_followings, :source => :user
+  has_many :followings, :through => :follow_followings
   
 
   validates_presence_of     :login

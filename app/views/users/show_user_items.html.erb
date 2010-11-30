@@ -2,26 +2,24 @@
 <h1> My Items </h1>
 <hr class="horiz_line">
 <h3> Items of Interest </h3>
-<% if @following %>
+<% if @following_users %>
 	<div id="followed_items_all">
-	<% for user_f in @following %>
-		<% user = User.find(user_f.following_id) %>
+	<% for user in @following_users %>
 		<div id="followed_items_user">
 		From <%= link_to user.login, {:controller => 'users', :action => 'profile', :username =>user.login} %> : 
 		</div>
 		<div id="followed_items">
-		<% items_followed = user.user_items %>
+		<% items_followed = user.posted_items %>
 		<% @count = 0%>
-		<% for user_item in items_followed %>
-			<% if user_item %>
-				<% item = Item.find(user_item.id) %>
+		<% for item in items_followed %>
+			<% if item %>
 				<% if !item.closed  && item.user == user %>
 					<div class="followed_item">
 						<div class="followed_item_photo">
 							<% if item.item_photo_file_name %>
 								<%= image_tag item.item_photo.url(:thumb) %>
 							<% else %>
-								<%= image_tag('/images/default.jpg') %>
+								<%= image_tag('/images/photo_na_long.png') %>
 							<% end %>
 						</div>
 						<div class="followed_item_name">
