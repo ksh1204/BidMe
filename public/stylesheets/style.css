@@ -1240,5 +1240,10 @@ width: 800px;
 .str { background: url('/images/tr.gif') top right no-repeat; padding: 10px; } 
 .sb { padding: 2px 0px 10px 50px; background: url('/images/b.gif') 30px top no-repeat; }
 
+#user_profile_followers{
+	display:hidden;
+}
+
+
 
 

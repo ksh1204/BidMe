@@ -491,6 +491,10 @@ class UsersController < ApplicationController
     end
     redirect_to :controller => 'items', :action => 'show', id => params[:id]
   end
+  
+  def list_followers
+    @user = User.find_by_login(params[:username])
+  end
 
 end
 
