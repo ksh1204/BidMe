@@ -19,7 +19,7 @@
 	<div id="profile_head">
 		<div id="user_profile_left" style="float: left;">
 			<div id="user_profile_login">
-			<%=@user.login%><br/>
+				<%=@user.login%><br/>
 			</div>
 			<div id="user_profile_photo">
 				<% if @user.profile_photo_file_name %>
@@ -33,19 +33,20 @@
 			</div>
 		</div>
 		<div id="user_profile_right" style="float: left;">
- 		<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) || current_user.is_admin? %>
-		 <b>Information</b> 
-        <% if (current_user.id == @user.id || current_user.is_admin?) %>
-			 (<%=link_to 'Edit', {:controller => 'users', :id => current_user.id, :action => 'edit'}%>)
-		 <% end %>
-		 <% else %>
-		 <b>Basic Information</b> 
-		 <% end %>
-	<hr style="margin-top:0; margin-bottom:0; width:40%">
-		  <div id="profile_info" >
-			
-			<div id="basic_info_col2">
-			<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
+ 			<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, 
+															 :follower_id => current_user.id}) || current_user.is_admin? %>
+				<b>Information</b> 	
+				<% if (current_user.id == @user.id || current_user.is_admin?) %>
+					 (<%=link_to 'Edit', {:controller => 'users', :id => current_user.id, :action => 'edit'}%>)
+				<% end %>
+			<% else %>
+				<b>Basic Information</b> 
+			<% end %>
+		 <hr style="margin-top:0; margin-bottom:0; width:40%">
+		 <div id="profile_info" >
+		 	<div id="basic_info_col2">
+			<% if current_user.id == @user.id || Follow.find(:first, :conditions => 
+												{:following_id => @user.id, :follower_id => current_user.id}) %>
 				<div id="name_label">
 					Name: 
 				</div>
@@ -66,10 +67,10 @@
 				<% end %>
 			</div>
 			<div id="basic_info_col3">
-				<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
+				<% if current_user.id == @user.id || Follow.find(:first, 
+								:conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
 				<div id="user_profile_name">
 					<%= @user.first_name %> <%= @user.last_name %><br/>
-
 				</div>
 				
 				<div id="user_profile_address">
@@ -118,16 +119,18 @@
 	</div>
 	<div id="user_profile_followers">
 		<% @followers = @user.followers %>
-		<%=@user.login%> has <%= link_to_remote @followers.count.to_s + " followers", :url => {:controller => 'users', :action => 'list_followers', :username => @user.login}, :html =>{:style => "color:orange"} %>
-	</div>
+		<%= link_to_remote @followers.count.to_s + " follower(s)",
+							 :url => {:controller => 'users', :action => 'list_followers', 
+							 :username => @user.login}, :html =>{:style => "color:orange"} %>
+	</di	v>
 	<div id="follower_list" style="display:none; width:35%"></div>
 	
 <% if (current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id})) && @user_items %>
 
-<hr class="horiz_line">
+	<hr class="horiz_line">
 
 	<div id="profile_user_items_header">
-		<h3>User Items</h3>
+		<h3><%=@user.login%>'s Items</h3>
 		<div id="profile_user_items">
 			<% @count = 0%>
 			<% for u_item in @user_items %>
@@ -154,9 +157,9 @@
 		</div>
 	</div>
 
-<hr class="horiz_line">
+	<hr class="horiz_line">
 
-<div id="profile_bidded_items_header">
+	<div id="profile_bidded_items_header">
 		<h3>Bidded Items</h3>
 		<div id="profile_user_items">
 			<% @count = 0%>
@@ -185,15 +188,18 @@
 							<%= render :partial => 'items/searched_bid_price', :object => @highest_bid %>
 						</div>
 						<% if !@item.closed && @item.item_photo_file_name %>
-						<div id='item_time_<%=@item.id%>', style="height:20%; border: 1px solid black;-moz-border-radius: 10px; -webkit-border-radius: 10px;
-					-moz-box-shadow: 3px 3px 4px #000;
-					-webkit-box-shadow: 3px 3px 4px #000;
-					box-shadow: 3px 3px 4px #000;">
+							<div id='item_time_<%=@item.id%>',  style="height:20%; border: 1px solid black;
+															    -moz-border-radius: 10px; -webkit-border-radius: 10px;
+																-moz-box-shadow: 3px 3px 4px #000;
+																-webkit-box-shadow: 3px 3px 4px #000;
+																box-shadow: 3px 3px 4px #000;">
 						<% elsif !@item.closed && !@item.item_photo_file_name %>
-							<div id='item_time_<%=@item.id%>', style="height:20%; margin-top:20px;border: 1px solid black;-moz-border-radius: 10px; -webkit-border-radius: 10px;
-						-moz-box-shadow: 3px 3px 4px #000;
-						-webkit-box-shadow: 3px 3px 4px #000;
-						box-shadow: 3px 3px 4px #000;">
+							<div id='item_time_<%=@item.id%>', style="height:20%; 
+																margin-top:20px;border: 1px solid black;
+																-moz-border-radius: 10px; -webkit-border-radius: 10px;
+																-moz-box-shadow: 3px 3px 4px #000;
+																-webkit-box-shadow: 3px 3px 4px #000;
+																box-shadow: 3px 3px 4px #000;">
 						<% else %>
 							<div id='item_time_<%=@item.id%>'>
 						<% end %>
@@ -204,14 +210,13 @@
 					<% if @count % 3 == 0%>
 						<div style="clear:both"></div>
 					<%end %>
-					<% end %>
+				<% end %>
 			<% end %>
 		</div>
 	</div>
-
 <% end %>
 
-<hr class="horiz_line">
+	<hr class="horiz_line">
 
 	<div id ="comment_section">
 		<h3>Comments</h3>
@@ -240,15 +245,10 @@
 				
 			<% end %>	
 		</div>
-		
-		<br>
 		<%=form_tag :action => 'write_comment' %>
 		<%=hidden_field_tag :commentee_id, @user.id %>
-		<%=text_area_tag :description, :id => 'comments_box' %><br/><br/>
+		<%=text_area_tag :description%><br/>
 		<%=submit_tag "Post a Comment"%>
 		</form>
-		<br>
 	</div>
-
-
 <hr class="horiz_line">

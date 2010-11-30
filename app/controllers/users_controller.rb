@@ -229,7 +229,7 @@ class UsersController < ApplicationController
 
     def profile
       @user = User.find_by_login(params[:username])
-	  @bids = Bid.find_all_by_bidder_id(@user.id)
+	  @bids = Bid.find_all_by_bidder_id(@user.id, :group => 'item_id')
 	  @comments = @user.user_comments
 		  respond_to do |format|
 		    format.html
