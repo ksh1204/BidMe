@@ -1,9 +1,9 @@
 <script type="text/javascript">
 	$(function () {
 		<% for item in @user_items %>
-			<% @end_date = Time.parse(item.item.created_at.to_s)+item.item.time_limit %>
+			<% @end_date = Time.parse(item.created_at.to_s)+item.time_limit %>
 			var end = new Date();
-			var id = <%=item.item.id%> + "";
+			var id = <%=item.id%> + "";
 			var year = <%=@end_date.year%> + ""
 			var month = <%=@end_date.month%> + ""; 
 			var day = <%=@end_date.day%> + "";  
@@ -134,8 +134,7 @@
 		<h3><%=@user.login%>'s Items</h3>
 		<div id="profile_user_items">
 			<% @count = 0%>
-			<% for u_item in @user_items %>
-				<% item = u_item.item %>
+			<% for item in @user_items %>
 				<% if item && item.user == @user && !item.closed %>
 					<div class="user_item">
 						<div class="user_item_photo">

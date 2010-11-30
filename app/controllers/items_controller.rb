@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_filter :login_required
+  
   def index
   end
   
@@ -26,7 +27,7 @@ class ItemsController < ApplicationController
   end
   
   def search
-    @items = Item.search params[:q], :page => params[:page], :per_page => 20, :closed => 0
+        @items = Item.search params[:q], :page => params[:page], :per_page => 15, :conditions => {:closed => false}
   end
   
   def show

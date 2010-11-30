@@ -12,7 +12,7 @@ class Item < ActiveRecord::Base
   has_attached_file :item_photo, :default_url => "/images/default.png",
   :styles => {
     :thumb=> "50x50#",
-    :small  => "150x150>",
+    :small  => "150x75>",
     :medium => "300x300>",
     :large =>   "400x400>" }
     
@@ -28,10 +28,11 @@ class Item < ActiveRecord::Base
   
   validates_presence_of     :time_limit
     
-  attr_accessible :name, :description, :bin, :bin_price, :item_category_id, :item_photo, :start_price, :time_limit, :current_price
+  attr_accessible :name, :description, :bin, :bin_price, :item_category_id, :item_photo, :start_price, :time_limit, :current_price, :closed
   
   define_index do
     indexes :name, :sortable => true
+    has closed
     set_property :delta => true
   end
 
