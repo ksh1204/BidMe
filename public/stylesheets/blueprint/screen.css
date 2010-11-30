@@ -28,6 +28,9 @@ a img {border:none;}
 	text-outline: 1px 1px grey; 
 }
 
+b {
+text-outline: 20px 20px #ccc; 
+}
 /* typography.css */
 html {font-size:100.01%;}
 body {font-size:75%;color:#000;background:#fff;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
@@ -43,7 +46,7 @@ p {margin:0 0 1.5em;}
 p img.left {float:left;margin:1.5em 1.5em 1.5em 0;padding:0;}
 p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
 a:focus, a:hover {color:blue;}
-a {color:#afafaf;text-decoration:none;}
+a {color:#f0e68c;text-decoration:none;}
 blockquote {margin:1.5em;color:#000;font-style:italic;}
 strong {font-weight:bold;}
 em, dfn {font-style:italic;}

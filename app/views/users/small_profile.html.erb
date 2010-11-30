@@ -1,0 +1,101 @@
+<div id="small_profile_head">
+		<div id="user_profile_left" style="float: left;">
+			<div id="user_profile_login">
+			<%=@user.login%><br/>
+			</div>
+			<div id="user_profile_photo">
+				<% if @user.profile_photo_file_name %>
+				<%= image_tag @user.profile_photo.url(:small) %>
+				<% else %>
+				<%= image_tag('/images/big_default.jpg') %>
+				<% end %>
+			</div>
+			<div id="user_profile_rating">
+				<%= ratings_for @user, :dimension => :quality %> <br>
+			</div>
+		</div>
+		<div id="user_profile_right" style="float: left;">
+ 		<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) || current_user.is_admin? %>
+		 <b>Information</b> 
+        <% if (current_user.id == @user.id || current_user.is_admin?) %>
+			 (<%=link_to 'Edit', {:controller => 'users', :id => current_user.id, :action => 'edit'}%>)
+		 <% end %>
+		 <% else %>
+		 <b>Basic Information</b> 
+		 <% end %>
+	<hr style="margin-top:0; margin-bottom:0; width:40%"">
+		  <div id="profile_info" >
+			
+			<div id="basic_info_col2">
+			<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
+				<div id="name_label">
+					Name: 
+				</div>
+				<div id="address_label">
+					Address: 
+				</div>
+				<div id="phone_label">
+					Phone:
+				</div>
+				<% end %>
+				<div id="email_label">
+					Email:
+				</div>
+				<% if current_user.id == @user.id %>
+					<div id="money_label">
+						Funds:
+					</div>
+				<% end %>
+			</div>
+			<div id="basic_info_col3">
+				<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
+				<div id="user_profile_name">
+					<%= @user.first_name %> <%= @user.last_name %><br/>
+
+				</div>
+				
+				<div id="user_profile_address">
+					<%= @user.address %><br/>
+				</div>
+
+				<div id="user_profile_phone">
+					<%= @user.phone %><br/>
+				</div>
+				<% end %>
+				<div id="user_profile_email">
+					<%= @user.email %><br/>
+				</div>
+				<% if current_user.id == @user.id %>
+					<div id="user_profile_money">
+						$ <%= current_user.money %> <%= link_to "(Add more)", {:controller => 'users', :action => 'add_money', :username => current_user.login} %><br/>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div id="clear_profile_position" style="clear:both;"></div>
+	</div>
+
+	<% if current_user.id != @user.id%>
+	<div id="user_profile_report">
+		<%= link_to "REPORT THIS USER", {:action => 'report_user', :username => @user.login}, {:style => "color:red"}%>
+	</div>
+	<div id="user_profile_follow">
+		<% if Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
+			<%= link_to "UNFOLLOW", :action => 'unfollow_user', :username => @user.login %>
+		<% else %>
+			<%= link_to "FOLLOW", :action => 'follow_user', :username => @user.login %>
+		<% end %>
+	</div>
+	<% end %>
+	<div id="user_profile_ban">
+		<% if current_user.is_admin? %>
+			<% if @user.is_banned %>
+				<%= link_to "UNBAN", :controller => 'admin', :action => 'unban_user', :id => @user.id %>
+			<% else %>
+				<%= link_to "BAN", :controller => 'admin', :action => 'ban_user', :id => @user.id %>
+			<% end %>
+		<% end %>
+	</div>
+</div>

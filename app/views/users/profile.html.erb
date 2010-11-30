@@ -1,4 +1,20 @@
-
+<script type="text/javascript">
+	$(function () {
+		<% for item in @user_items %>
+			<% @end_date = Time.parse(item.item.created_at.to_s)+item.item.time_limit %>
+			var end = new Date();
+			var id = <%=item.item.id%> + "";
+			var year = <%=@end_date.year%> + ""
+			var month = <%=@end_date.month%> + ""; 
+			var day = <%=@end_date.day%> + "";  
+			var hour = <%=@end_date.hour%> + "";   
+			var min = <%=@end_date.min%> + "";   
+			var sec = <%=@end_date.sec%> + "";
+		end = new Date(year,month-1,day,hour-8,min,sec);
+		$("#searched_item_time_"+id).countdown({until: end});
+		<% end %>
+	});
+</script>
 <div class="profile">
 	<div id="profile_head">
 		<div id="user_profile_left" style="float: left;">
@@ -6,11 +22,14 @@
 			<%=@user.login%><br/>
 			</div>
 			<div id="user_profile_photo">
-			<% if @user.profile_photo_file_name %>
-			<%= image_tag @user.profile_photo.url(:small) %>
-			<% else %>
-			<%= image_tag('/images/big_default.jpg') %>
-			<% end %>
+				<% if @user.profile_photo_file_name %>
+				<%= image_tag @user.profile_photo.url(:small) %>
+				<% else %>
+				<%= image_tag('/images/big_default.jpg') %>
+				<% end %>
+			</div>
+			<div id="user_profile_rating">
+				<%= ratings_for @user, :dimension => :quality %> <br>
 			</div>
 		</div>
 		<div id="user_profile_right" style="float: left;">
@@ -66,7 +85,7 @@
 				</div>
 				<% if current_user.id == @user.id %>
 					<div id="user_profile_money">
-						$ <%= current_user.money %><br/>
+						$ <%= current_user.money %> <%= link_to "(Add more)", {:controller => 'users', :action => 'add_money', :username => current_user.login} %><br/>
 					</div>
 				<% end %>
 			</div>
@@ -98,30 +117,26 @@
 		<% end %>
 	</div>
 	
-	<hr class="horiz_line">
-<div id ="rating_section">
-<h3>User Rating</h3>
-<%= ratings_for @user, :dimension => :quality %>
-</div>
+<% if (current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id})) && @user_items %>
+
 <hr class="horiz_line">
 
-<% if (current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id})) && @use_items %>
 	<div id="profile_user_items_header">
 		<h3>User Items</h3>
 		<div id="profile_user_items">
 			<% @count = 0%>
 			<% for u_item in @user_items %>
-				<% item = Item.find_by_id(u_item.item_id) %>
+				<% item = u_item.item %>
 				<% if item && item.user == @user && !item.closed %>
-					<div class="searched_item">
-						<div class="searched_item_photo">
+					<div class="user_item">
+						<div class="user_item_photo">
 							<% if item.item_photo_file_name %>
-								<%= image_tag item.item_photo.url(:small) %>
+								<%= image_tag item.item_photo.url(:thumb) %>
 							<% else %>
-								<%= image_tag('/images/default.jpg') %>
+								<%= image_tag('/images/photo_na_long.png') %>
 							<% end %>
 						</div>
-						<div class="searched_item_name">
+						<div class="user_item_name">
 							<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id} %>
 						</div>
 					</div>
@@ -134,11 +149,67 @@
 		</div>
 	</div>
 
-	<hr class="horiz_line">
+<hr class="horiz_line">
+
+<div id="profile_bidded_items_header">
+		<h3>Bidded Items</h3>
+		<div id="profile_user_items">
+			<% @count = 0%>
+			<% for bid in @bids %>
+				<% @item = Item.find_by_id(bid.item_id) %>
+				<% if @item && @item.user == @user && !@item.closed %>
+					<div class="searched_item">
+						<div class="searched_item_category">
+							<%=@item.item_category.name%>
+						</div>
+						<div class="searched_item_name">
+							<%=link_to truncate(@item.name,20,'...'), :controller => 'items', :action => 'show', :id => @item.id%>
+						</div>
+						<div class="searched_item_price">
+							$<%=@item.start_price%>
+						</div>
+						<div class="searched_item_photo">
+							<% if @item.item_photo_file_name %>
+								<%= image_tag @item.item_photo.url(:small) %>
+							<% else %>
+								<%= image_tag('/images/photo_na_long.png') %>
+							<% end %>
+						</div>
+						<div class="searched_item_bid_price", id="search_page_<%=@item.id%>">
+							<% @highest_bid = @item.bids.last %>
+							<%= render :partial => 'items/searched_bid_price', :object => @highest_bid %>
+						</div>
+						<% if !@item.closed && @item.item_photo_file_name %>
+						<div id='item_time_<%=@item.id%>', style="height:20%; border: 1px solid black;-moz-border-radius: 10px; -webkit-border-radius: 10px;
+					-moz-box-shadow: 3px 3px 4px #000;
+					-webkit-box-shadow: 3px 3px 4px #000;
+					box-shadow: 3px 3px 4px #000;">
+						<% elsif !@item.closed && !@item.item_photo_file_name %>
+							<div id='item_time_<%=@item.id%>', style="height:20%; margin-top:20px;border: 1px solid black;-moz-border-radius: 10px; -webkit-border-radius: 10px;
+						-moz-box-shadow: 3px 3px 4px #000;
+						-webkit-box-shadow: 3px 3px 4px #000;
+						box-shadow: 3px 3px 4px #000;">
+						<% else %>
+							<div id='item_time_<%=@item.id%>'>
+						<% end %>
+							<%= render :partial => 'items/search_time_ticker', :object => @item%> 
+						</div>
+					</div>
+					<% @count += 1 %>
+					<% if @count % 3 == 0%>
+						<div style="clear:both"></div>
+					<%end %>
+					<% end %>
+			<% end %>
+		</div>
+	</div>
+
 <% end %>
 
+<hr class="horiz_line">
+
 	<div id ="comment_section">
-		<h3>User Comments</h3>
+		<h3>Comments</h3>
 		<div id="all_comments">			
 			<% if @comments.count > 0 %>
 				<% for comment in @comments %>
@@ -146,16 +217,16 @@
 				<div class="sbl">
 					<div class="sbr">
 						<div class="stl">
-							<div class="str"><% comment.description %>
+							<div class="str"><%= comment.description %>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="sb"><%= facebox_link_to comment.user.login,
-									:url => {:action => 'profile',
+									:url => {:action => 'small_profile',
 							 		:username => comment.user.login}%>
 				</div>
-				<div id="clear_profile_position" style="clear:both;"></div>
+				<div id="clear_profile_position" style="clear:both;">
 				</div>
 				<% end %>
 			<% else %>

@@ -1,23 +1,22 @@
 <script type="text/javascript">
-$(function () {
-	<% for item in @items %>
-		<% @end_date = Time.parse(item.created_at.to_s)+item.time_limit %>
-		var end = new Date();
-		var id = <%=item.id%> + "";
-		var year = <%=@end_date.year%> + ""
-		var month = <%=@end_date.month%> + ""; // 1 through 12 or '*' within the next month, '0' for the current month
-		var day = <%=@end_date.day%> + "";   // day of month or + day offset
-		var hour = <%=@end_date.hour%> + "";   // 0 through 23 for the hour of the day
-		var min = <%=@end_date.min%> + "";    // 0 through 59 for minutes after the hour
-		var sec = <%=@end_date.sec%> + "";
-		var tz = 0;     // offset in hours from UTC to your timezone
-	end = new Date(year,month-1,day,hour-8,min,sec);
-	$("#searched_item_time_"+id).countdown({until: end});
-	<% end %>
-});
+	$(function () {
+		<% for item in @items %>
+			<% @end_date = Time.parse(item.created_at.to_s)+item.time_limit %>
+			var end = new Date();
+			var id = <%=item.id%> + "";
+			var year = <%=@end_date.year%> + ""
+			var month = <%=@end_date.month%> + ""; 
+			var day = <%=@end_date.day%> + "";  
+			var hour = <%=@end_date.hour%> + "";   
+			var min = <%=@end_date.min%> + "";   
+			var sec = <%=@end_date.sec%> + "";
+		end = new Date(year,month-1,day,hour-8,min,sec);
+		$("#searched_item_time_"+id).countdown({until: end});
+		<% end %>
+	});
 </script>
 <div>
-<%= render :partial => 'search_box'%>
+	<%= render :partial => 'search_box'%>
 </div>
 <% if @items.first %>
 <% @count = 0%><br>

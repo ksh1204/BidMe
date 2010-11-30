@@ -16,6 +16,7 @@
 
 #facebox .br {
   background:url(/images/facebox/br.png);
+ 
 }
 
 #facebox {
@@ -24,14 +25,17 @@
   left: 0;
   z-index: 100;
   text-align: left;
+  
 }
 
 #facebox .popup {
   position: relative;
+  
 }
 
 #facebox table {
   border-collapse: collapse;
+   background-color:grey;
 }
 
 #facebox td {
@@ -41,7 +45,7 @@
 
 #facebox .body {
   padding: 10px;
-  background: #fff;
+  background: #999;
   width: 370px;
 }
 
@@ -85,7 +89,7 @@
 }
 
 .facebox_overlayBG {
-  background-color: #000;
+  background-color:black;
   z-index: 99;
 }
 

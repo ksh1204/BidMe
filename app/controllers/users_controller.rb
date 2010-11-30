@@ -99,10 +99,10 @@ class UsersController < ApplicationController
 		@user.money_refill = @allowed - 1
 		@user.save
 		gflash :success => "Money Successfully Transferred to your account!"
-		redirect_to :action => 'edit', :id => @user.id
+		redirect_to :action => 'profile', :username => @user.login
 	else
 		gflash :error => "You have depleted your money reserve."
-		redirect_to :action => 'edit', :id => @user.id
+		redirect_to :action => 'profile', :username => @user.login
 	end
   end
 
@@ -229,14 +229,27 @@ class UsersController < ApplicationController
 
     def profile
       @user = User.find_by_login(params[:username])
+	  @bids = Bid.find_all_by_bidder_id(@user.id)
+	  @comments = @user.user_comments
+		  respond_to do |format|
+		    format.html
+        format.js { render_to_facebox }
+      @user_items = current_user.user_items
+      end
+
+      
+    end
+
+
+	def small_profile
+      @user = User.find_by_login(params[:username])
 	@comments = @user.user_comments
 		  respond_to do |format|
 		    format.html
         format.js { render_to_facebox }
       @user_items = current_user.user_items
       end
-      
-    end
+	end
     
     def remove_profile_photo
       @user = current_user
@@ -278,7 +291,7 @@ class UsersController < ApplicationController
       if !exist
         @follow = @follower.follow_followings.build(:following_id => @following.id)
         @follow.save
-        @message = @follower.sent_messages.build(:receiver_id => @following.id, :description => "You have a new follower! <a href='/profile/#{@follower.login}'>#{@follower.login}</a> is following you!")
+        @message = @follower.sent_messages.build(:receiver_id => @following.id, :description => "You have a new follower! A user with the name of <a href='/profile/#{@follower.login}'>#{@follower.login}</a> is now following you!")
         @message.save
         @unread_messages = Message.find(:all, :conditions => {:receiver_id => @following.id, :unread => true})
         @num_unread = @unread_messages.count
