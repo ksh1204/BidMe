@@ -6,11 +6,11 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
 
   has_many :user_items
-  has_many :posted_items, :through => :user_items
+  has_many :posted_items, :through => :user_items, :source => :item
 
   
   has_many :bids, :foreign_key => "bidder_id"
-  has_many :bidded_items, :through => :bids
+  has_many :bidded_items, :through => :bids, :source => :item
   
   has_many :bought_transactions, :class_name => "Transaction", :foreign_key => "buyer_id"
   has_many :bought_items, :through => :bought_transactions, :foreign_key => "item_id"

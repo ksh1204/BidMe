@@ -231,10 +231,10 @@ class UsersController < ApplicationController
       @user = User.find_by_login(params[:username])
 	  @bids = Bid.find_all_by_bidder_id(@user.id, :group => 'item_id')
 	  @comments = @user.user_comments
+	  @user_items = current_user.posted_items
 		  respond_to do |format|
 		    format.html
         format.js { render_to_facebox }
-      @user_items = current_user.user_items
       end
 
       
@@ -243,11 +243,11 @@ class UsersController < ApplicationController
 
 	def small_profile
       @user = User.find_by_login(params[:username])
-	@comments = @user.user_comments
+	    @comments = @user.user_comments
+	    @user_items = current_user.user_items
 		  respond_to do |format|
 		    format.html
         format.js { render_to_facebox }
-      @user_items = current_user.user_items
       end
 	end
     
