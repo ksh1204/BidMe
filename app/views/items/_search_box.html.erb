@@ -11,5 +11,7 @@
 	</form>
 	<div style="clear:both"></div>
 </div>
-	
+	<% form_for :item do |f| -%>
+<%= f.select(:filter_category_id, ItemCategory.find(:all, :order => "name ASC").collect {|i| [i.name, i.id]}, {:prompt => 'Filter'})%></p>
+<% end %>
 

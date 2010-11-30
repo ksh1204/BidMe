@@ -595,8 +595,10 @@ cursor: pointer;
 }
 
 .user_item{
-	width:150px;
+	width:60px;
 	float:left;
+	padding:10px;
+	padding-bottom:20px;
 }
 
 #item_photo{
