@@ -27,11 +27,7 @@ class ItemsController < ApplicationController
   end
   
   def search
-    if params[:q]
         @items = Item.search params[:q], :page => params[:page], :per_page => 15, :conditions => {:closed => false}
-    else
-        @items = Item.all
-    end
   end
   
   def show
