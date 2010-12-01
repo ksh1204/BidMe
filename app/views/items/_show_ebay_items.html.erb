@@ -5,7 +5,7 @@
 	<ol>
 		Average:<center><span style="color:purple"><%=number_to_currency(@avg,:precision => 2)%></span></center>
 		<% for price in @price_array %>
-			<li style="color:black;">$<%=number_to_currency(price,:precision => 2) %>
+			<li style="color:black;"><%=number_to_currency(price,:precision => 2) %>
 			</li>
 		<% end %>
 	</ol>

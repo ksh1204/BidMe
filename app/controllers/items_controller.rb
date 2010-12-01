@@ -29,19 +29,20 @@ class ItemsController < ApplicationController
   def search
         @items = Item.search params[:q], :page => params[:page], :per_page => 15, :conditions => {:closed => false}
         
+        if @items.first
         
-        # Create new eBay caller object.  Omit last argument to use live platform.
-        eBay = EBay::API.new($authToken, $devId, $appId, $certId, :sandbox => true) 
-        # Call "GetSuggestedCategories"
-        resp=eBay.GetSearchResults(:Query => params[:q])
-        @price_array = Array.new
-#(r.item.itemID,r.item.title,r.item.country,r.item.listingDetails.viewItemURL,r.item.sellingStatus.currentPrice)
-        resp.searchResultItemArray.each do | r |
-          @price_array << r.item.sellingStatus.currentPrice
+          # Create new eBay caller object.  Omit last argument to use live platform.
+          eBay = EBay::API.new($authToken, $devId, $appId, $certId, :sandbox => true) 
+          # Call "GetSuggestedCategories"
+          resp=eBay.GetSearchResults(:Query => params[:q])
+          @price_array = Array.new
+  #(r.item.itemID,r.item.title,r.item.country,r.item.listingDetails.viewItemURL,r.item.sellingStatus.currentPrice)
+          resp.searchResultItemArray.each do | r |
+            @price_array << r.item.sellingStatus.currentPrice
+          end
+        
+          #@ebay_items = EbayItem.find(:all, :conditions => {:keyword => params[:q]})
         end
-        
-        #@ebay_items = EbayItem.find(:all, :conditions => {:keyword => params[:q]})
-
   end
   
   def list_ebay_items
