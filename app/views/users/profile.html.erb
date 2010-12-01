@@ -86,7 +86,8 @@
 				</div>
 				<% if current_user.id == @user.id %>
 					<div id="user_profile_money">
-						$ <%= current_user.money %> <%= link_to "(Add more)", {:controller => 'users', :action => 'add_money', :username => current_user.login} %><br/>
+						$ <%= current_user.money %> <%= link_to "(Add more)", {:controller => 'users', 
+																			   :action => 'add_money', :username => current_user.login} %><br/>
 					</div>
 				<% end %>
 			</div>
@@ -122,7 +123,7 @@
 		<%= link_to_remote @followers.count.to_s + " follower(s)",
 							 :url => {:controller => 'users', :action => 'list_followers', 
 							 :username => @user.login}, :html =>{:style => "color:orange"} %>
-	</di	v>
+	</div>
 	<div id="follower_list" style="display:none; width:35%"></div>
 	
 <% if (current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id})) && @user_items %>
@@ -148,7 +149,7 @@
 						</div>
 					</div>
 					<% @count += 1 %>
-					<% if @count % 4 == 0%>
+					<% if @count % 8 == 0%>
 						<div style="clear:both"></div>
 					<%end %>
 				<% end %>
@@ -169,12 +170,12 @@
 						<div class="searched_item_category">
 							<%=@item.item_category.name%>
 						</div>
-						<div class="searched_item_name">
+						<span class="searched_item_name">
 							<%=link_to truncate(@item.name,20,'...'), :controller => 'items', :action => 'show', :id => @item.id%>
-						</div>
-						<div class="searched_item_price">
-							$<%=@item.start_price%>
-						</div>
+							<span class="searched_item_price">
+								 - $<%=@item.start_price%>
+							</span>
+						</span>
 						<div class="searched_item_photo">
 							<% if @item.item_photo_file_name %>
 								<%= image_tag @item.item_photo.url(:small) %>
@@ -233,7 +234,7 @@
 				</div>
 				<div class="sb"><%= facebox_link_to comment.user.login,
 									:url => {:action => 'small_profile',
-							 		:username => comment.user.login}%>
+							 		:username => comment.user.login}%> on <%= comment.created_at.to_s %>
 				</div>
 				<div id="clear_profile_position" style="clear:both;">
 				</div>
