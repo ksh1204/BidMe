@@ -1,14 +1,14 @@
-<div id="search_box">
+<span id="search_box">
 	<br>
-	<span>
-		
-			<%= form_tag :controller => "items", :action => "search",:multipart => true %>
+	<span style="padding-top:13px">
+			<%= form_tag :controller => "items", :action => "search" %>
 			<%= text_field_tag :q, '', :id => "search_field_box"%>
-			<%= select("item_category","", ItemCategory.find(:all, :order => "name ASC").collect {|i| [i.name, i.id]}, {:prompt => 'Select Category'}) %>
+			<%= select("item_category","", ItemCategory.find(:all, :order => "name ASC").collect {|i| [i.name, i.id]}, {:prompt => 'Select Category'})%>
 	</span>
 	<span style="float:left;padding-top:13px;">
 		<%= submit_tag "Search", :onclick=>"FreezeScreen('Please wait...');", :style => "margin-left:6px;" %>
 	</span>
-	</form>
+</span>
+
+
 	<div style="clear:both"></div>
-</div>
