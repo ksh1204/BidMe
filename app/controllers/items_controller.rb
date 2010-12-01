@@ -55,7 +55,7 @@ class ItemsController < ApplicationController
     if @diff <= 0 && !@item.status 
       @item.update_attribute(:closed,true)
       @item.update_attribute(:status,true)
-      @bids = @item.bids
+      @bids = Bid.find(:all, :conditions => {:item_id => @item.id}, :order => "price DESC")
       @admin = User.find_by_login("admin")
     
       render :juggernaut => {:type => :send_to_all} do |page|
@@ -66,16 +66,27 @@ class ItemsController < ApplicationController
     
       if @bids.count > 0
         @highest = @bids.first
-        @message = @admin.sent_messages.build(:receiver_id => @highest.bidder.id, :description => "Congratulations! You won the item <a href='/items/#{@highest.item.id}'>#{@highest.item.name}</a>")
+        @message = @admin.sent_messages.build(:receiver_id => @highest.bidder_id, :description => "Congratulations! You won the item <a href='/items/#{@highest.item.id}'>#{@highest.item.name}</a>")
+        @sold_message = @admin.sent_messages.build(:receiver_id => @item.user.id, :description => "Congratulations! You sold the item <a href='/items/#{@highest.item.id}'>#{@highest.item.name}</a>")
         @message.save
-        @unread_messages = Message.find(:all, :conditions => {:receiver_id => @highest.bidder.id, :unread => true})
+        @sold_message.save
+        @unread_messages = Message.find(:all, :conditions => {:receiver_id => @highest.bidder_id, :unread => true})
+        @seller_unread_messages = Message.find(:all, :conditions => {:receiver_id => @item.user.id, :unread => true})
+        @seller_unread = @seller_unread_messages.count
         @num_unread = @unread_messages.count
-        render :juggernaut => {:type => :send_to_client, :client_id => @highest.bidder.id} do |page|
+        render :juggernaut => {:type => :send_to_client, :client_id => @highest.bidder_id} do |page|
           page.insert_html :top, :main_content, :partial => 'base/win_auction_message', :object => @highest
           page.visual_effect :fade, :no_message, :duration => 2
           page.replace :inbox_link, :partial => '/users/update_inbox_link', :object => @num_unread
           page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @message
           page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
+        end
+        render :juggernaut => {:type => :send_to_client, :client_id => @item.user.id} do |page|
+          page.insert_html :top, :main_content, :partial => 'base/sold_item_message', :object => @highest
+          page.visual_effect :fade, :no_message, :duration => 2
+          page.replace :inbox_link, :partial => '/users/update_inbox_link', :object => @seller_unread
+          page.insert_html :top, :messages, :partial => 'base/insert_message', :object => @sold_message
+          page.visual_effect :highlight, "message_#{@sold_message.id}", :duration => 5
         end
       end
     end

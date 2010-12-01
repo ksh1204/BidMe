@@ -1,0 +1,7 @@
+<STYLE TYPE="text/css" MEDIA=screen>
+<!--
+  a  { color: red }
+-->
+</STYLE>
+
+<%= js add_gritter("Congratulations! You just sold the item <a href='/items/#{@highest.item.id}'>#{@highest.item.name}</a>",:image => :success, :title => "Congratulations!") %>

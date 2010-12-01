@@ -37,6 +37,20 @@ class UserMailer < ActionMailer::Base
     @body = "Congratulations! You just have been unbanned!"
   end
   
+  def win_auction_notification(user,t)
+    setup_email(user)
+    #t = Transaction.find(:all, :conditions => {:buyer_id => user.id}, :order => "created_at DESC")
+    @subject += "You just won #{t.item.name}"
+    @body = "http://localhost:3000/items/show/#{t.item_id}"
+  end
+  
+  def sold_item_notification(user,t)
+    setup_email(user)
+    #t = Transaction.find(:all, :conditions => {:seller_id => user.id}, :order => "created_at DESC")
+    @subject += "You just sold #{t.item.name}"
+    @body = "http://localhost:3000/items/show/#{t.item_id}"
+  end
+  
   protected
     def setup_email(user)
       @recipients  = "#{user.email}"
