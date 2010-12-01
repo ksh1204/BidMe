@@ -234,7 +234,7 @@
 				</div>
 				<div class="sb"><%= facebox_link_to comment.user.login,
 									:url => {:action => 'small_profile',
-							 		:username => comment.user.login}%>
+							 		:username => comment.user.login}%> on <%= comment.created_at.to_s %>
 				</div>
 				<div id="clear_profile_position" style="clear:both;">
 				</div>

@@ -292,7 +292,7 @@ li.comment{
 li.highlightable{
 	height:25px;
 	padding-top:5px;
-	clear:both;
+	clear:both;all_comments
 	border-bottom:1px dotted grey;
 	width:100%;
 	
@@ -1234,11 +1234,22 @@ width: 800px;
 	padding-left:35px;
 }
 
-.sbl { background: url('/images/bl.gif') bottom left no-repeat #EDEDED; width: 30%; text-align: center; min-width: 20px;word-wrap: break-word; }
-.sbr { background: url('/images/br.gif') bottom right no-repeat; }
-.stl { background: url('/images/tl.gif') top left no-repeat; }
-.str { background: url('/images/tr.gif') top right no-repeat; padding: 10px; } 
-.sb { padding: 2px 0px 10px 50px; background: url('/images/b.gif') 30px top no-repeat; }
+#all_comments {
+background:transparent;
+}
+
+.sbl { background: url('/images/bl2.gif') bottom left no-repeat #EDEDED; width: 30%;
+		text-align: center; min-width: 20px;word-wrap: break-word;
+		-moz-border-radius: 15px 15px;
+		-moz-border-radius: 15px 15px;
+		-webkit-border-radius: 15px 15px;
+		-webkit-border-radius: 15px 15px;
+
+}
+.sbr { background: url('/images/br2.gif') bottom right no-repeat; }
+.stl { background: url('/images/tl2.gif') top left no-repeat; }
+.str { background: url('/images/tr2.gif') top right no-repeat; padding: 10px; } 
+.sb { padding: 2px 0px 10px 50px; background: url('/images/b2.gif') 30px top no-repeat; }
 
 #user_profile_followers{
 	display:hidden;
