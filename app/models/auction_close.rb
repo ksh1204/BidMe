@@ -18,13 +18,6 @@ class AuctionClose          ### An abstract observer of AuctionTicker objects.
 	    transaction.item_id = item.id
 	    transaction.price = price
 	    transaction.save
-	    render :juggernaut => {:type => :send_to_all} do |page|
-            page.replace_html :highest_bid, "Auction is closed now!"
-            page.replace_html :bid_id, ""
-            page.visual_effect :highlight, "message_#{@message.id}", :duration => 5
-            page.replace_html "item_time_#{@item.id}", :partial => 'items/search_time_ticker', :object => @item
-            page.visual_effect :highlight, "item_time_#{@item.id}", :duration => 5
-      end
       end
     end
   end
