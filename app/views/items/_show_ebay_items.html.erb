@@ -1,0 +1,14 @@
+<div class="slide_down_ebay">
+	<%=link_to_remote 'Close', :url => {:controller => 'items', :action => 'list_ebay_items', :cancel => 'true'}, :html => {:class => 'float-r'}%>
+	<%@avg = @price_array.inject(0.00){ |sum, el| sum.to_f + el.to_f }.to_f / @price_array.size%>
+	<h3>Prices from other sites</h3>
+	<ol>
+		Average:<center><span style="color:purple"><%=number_to_currency(@avg,:precision => 2)%></span></center>
+		<% for price in @price_array %>
+			<li style="color:black;">$<%=number_to_currency(price,:precision => 2) %>
+			</li>
+		<% end %>
+	</ol>
+	  <%=link_to_remote 'Close', :url => {:controller => 'items', :action => 'list_ebay_items', :cancel => 'true'}, :html => {:class => 'float-r'}%>
+	  <br class='clear'>
+</div>

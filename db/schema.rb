@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101201003433) do
+ActiveRecord::Schema.define(:version => 20101201064632) do
 
   create_table "bids", :force => true do |t|
     t.integer  "bidder_id"
@@ -17,6 +17,27 @@ ActiveRecord::Schema.define(:version => 20101201003433) do
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "ebay_item", :force => true do |t|
+    t.integer  "ebay_id"
+    t.string   "title"
+    t.string   "country"
+    t.string   "view_url"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ebay_items", :force => true do |t|
+    t.integer  "ebay_id"
+    t.string   "title"
+    t.string   "country"
+    t.string   "view_url"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "keyword"
   end
 
   create_table "follows", :force => true do |t|

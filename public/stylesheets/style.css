@@ -315,6 +315,13 @@ li.highlightable a{
 	padding:10px 5px 0 5px;
 }
 
+.slide_down_ebay{
+	width: 150px;
+	border: 4px solid grey;
+	background-color: darkgrey;
+	padding:10px 5px 0 5px;
+}
+
 .float-r{
 	float:right;
 }
@@ -960,8 +967,8 @@ float: left;
 
 .searched_items{
 	float:left;
-	width:100%;
-	padding-left:55px;
+	width:730px;
+	padding-left:10px;
 }
 
 .searched_item{
@@ -1208,9 +1215,10 @@ width: 800px;
 #result_label{
 	font-family:fantasy;
 	padding-bottom:15px;
-
+	width: 400px;
 	padding-left:59px;
 	font-size:23px;
+	float:left;
 }
 
 .searched_item_time div { float: left; width: 32px; height: 45px; 
@@ -1261,6 +1269,15 @@ background:transparent;
 	-moz-box-shadow: 3px 3px 4px #000;
 	-webkit-box-shadow: 3px 3px 4px #000;
 	box-shadow: 3px 3px 4px #000;
+}
+
+#ebay_list{
+	width: 70px;
+}
+
+#search_ebay{
+	width:180px;
+	float:right;
 }
 
 
