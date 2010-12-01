@@ -1,0 +1,88 @@
+RELEASE NOTES
+-------------
+
+pending v1.2:
+
+  * Upgraded to eBay API 583
+
+  * Added support for calling the API without a user token, which is necessary
+    to ask for tokens in multiple user applications via the 
+    GetSessionID/FetchToken flow
+
+  * Added a Rakefile.  Tests can now be run by just running 'rake'.  This was
+    late in coming, I know.
+    
+v1.1:
+
+  * Upgraded to eBay API 555
+
+  * See the very important changes in v1.0 below.
+
+v1.0:
+
+  * Upgraded to eBay API 529
+
+  * I never made a tarball/gem of this release, but if you really want API 529
+    instead of the newer 555, grab the "releases/1.0" tag from the git repo.
+
+  **IMPORTANT** 
+  
+  For all but the simplest of calls to eBay's API, you will need to make
+  changes to your code if you are upgrading from previous versions of eBay4R.
+
+  There were some subtle, but very important, changes.  The version of SOAP4R
+  needed to use eBay's newer API versions changes the way we interact with
+  certain data types.  
+
+  * AmountType fields must be strings, implicit conversion from float no longer
+    occurs in SOAP4R 1.5.7+.  For example, previously you could have::
+
+      :StartPrice => 12.0
+
+    but now it must be::
+
+      :StartPrice => '12.0'
+
+  * Dependency SOAP4R 1.5.7+ has better support for arrays.  Notice how the 
+    test/tc_routing.rb test had to be changed::
+
+      -    assert_equal(resp.categoryArray.category.categoryName, "eBay Motors")
+      +    assert_equal(resp.categoryArray[0].categoryName, "eBay Motors")
+
+    When single element arrays are returned in the SOAP response, you now 
+    access them with the familiar Ruby array index, instead of following the
+    XML tree and putting "." in between each node.
+
+    Another example of before/after (from examples/add_item.rb):
+
+    Old::
+
+      resp.fees.fee.each do |fee|
+
+    New::
+
+      resp.fees.each do |fee|
+
+  * Short-hand way of creating complex data types no longer works.  I think
+    older SOAP4R's gave me this for free, but upon looking at the XML dump a
+    second time, it doesn't create the objects correctly.  Not sure if eBay's
+    API in the 4xx range silently ignored these bad values.  If anyone can get
+    this working again, send me a patch.
+
+    Old::
+
+      resp = eBay.AddItem(:Item => { :PrimaryCategory => { :CategoryID => 57882 },
+                                     ...
+                                     ...
+                                     })
+
+    New::
+
+      resp = eBay.AddItem(:Item => EBay.Item(:PrimaryCategory => EBay.Category(:CategoryID => 57882),
+                                             ...
+                                             ...
+                                             })
+
+  * SetNotificationPreferences suffers the most (of the examples) from the
+    above changes.  See examples/set_notification_preferences.rb to see how
+    it's done now.

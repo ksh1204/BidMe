@@ -28,6 +28,23 @@ class ItemsController < ApplicationController
   
   def search
         @items = Item.search params[:q], :page => params[:page], :per_page => 15, :conditions => {:closed => false}
+        
+
+        # Create new eBay caller object.  Omit last argument to use live platform.
+        eBay = EBay::API.new($authToken, $devId, $appId, $certId, :sandbox => true) 
+        # Call "GetSuggestedCategories"
+        resp=eBay.GetSearchResults(:Query => params[:q])
+        puts "*********************************************************************************"
+
+
+
+        resp.searchResultItemArray.each do | r |
+        puts r.item.sellingStatus.currentPrice
+        puts r.item.title
+        puts r.item.listingDetails.startTime
+        puts r.item.listingDetails.endTime
+        end
+
   end
   
   def show
