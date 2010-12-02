@@ -113,7 +113,7 @@ class UsersController < ApplicationController
           user.create_reset_code
           gflash :success => "Reset code sent to #{user.email}"
         else
-          gflash :success => "#{params[:user][:email]} does not exist in system"
+          gflash :error => "Email does not exist in system"
         end
         redirect_back_or_default('/')
       end

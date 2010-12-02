@@ -12,6 +12,7 @@ class AdminController < ApplicationController
   end
   
   def manage_auctions
+	@items = Item.all
   end
   
   def ban_user

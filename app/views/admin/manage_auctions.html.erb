@@ -1,0 +1,35 @@
+<div id="columns">
+	<div id="side">
+  		<%=link_to "Manage Users", :action => 'manage_users'%><br/>
+		<%=link_to "Manage Auctions", :action => 'manage_auctions'%><br/>
+		<%=link_to "Manage Item Categories", :action => 'manage_item_categories'%><br/>
+    </div>
+    <div id="main">
+				<table id="manage_users">
+				  <thead>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Category</th>
+					<th>Initial Bid</th>
+					<th>BIN</th>
+					<th>BIN Price</th>
+					<th>Time Limit</th>
+					<th>Closed</th>
+				  </thead>
+				  <tbody id="manage_users_tbody">
+					<% for @item in @items %>
+						<tr class='highlightable'>
+							<td><%=link_to @item.name, {:controller => 'items', :action => 'show', :id => @item.id}%></td>
+							<td><%=link_to truncate(@item.description,30,'...'), {:controller => 'items', :action => 'show', :id => @item.id}%></td>
+							<td><%=@item.item_category_id%></td>
+							<td><%=@item.start_price%></td>
+							<td><%=@item.bin%></td>
+							<td><%=@item.bin_price%></td>
+							<td><%=@item.time_limit%></td>
+							<td><%=@item.closed%></td>
+						</tr>
+					<% end %>
+				  </tbody>
+				</table>
+    </div>
+</div>
