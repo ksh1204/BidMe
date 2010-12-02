@@ -119,30 +119,4 @@ class ItemsController < ApplicationController
     redirect_to :action => 'show', :id => @item.id
   end
   
-  def stop
-    if current_user.is_admin?
-      @item = Item.find(params[:id])
-     
-      @item.update_attribute(:closed,true)
-      @item.update_attribute(:status,true)
-      @bids = Bid.find(:all, :conditions => {:item_id => @item.id}, :order => "price DESC")
-    
-      render :juggernaut => {:type => :send_to_all} do |page|
-            page.replace_html :show_item_time, "Auction is closed now!"
-            page.replace_html :bid_id, ""
-            page.replace_html "item_time_#{@item.id}", :partial => 'items/search_time_ticker', :object => @item
-      end
-
-  	  for @watcher in @watchers
-  		  @watcher.destroy
-  	  end
-    
-      if @bids.count > 0
-        @highest = @bids.first
-        @highest_bidder = @highest.bidder
-        @highest_bidder.money += @highest.item.price
-      end
-
-    redirect_to :action => 'show', :id => @item.id
-  end
 end
