@@ -16,9 +16,9 @@
 		  <br>
 		
 
-		  <table><tr><td style="width:5%"><%=submit_tag 'Send', :onclick=>"FreezeScreen('Please wait...');" %></td>
+		  <table><tr><td style="width:5%"><%=submit_tag 'Send', :onclick=>"FreezeScreen('Please wait...');",:class => 'button' %></td>
 
-		  <td><%= button_to "Back", request.env["HTTP_REFERER"] %></td></tr></table>
+		  <td><%= button_to "Back", request.env["HTTP_REFERER"],:class => 'button' %></td></tr></table>
 		</form>
     </div>
 </div>

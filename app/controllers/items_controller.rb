@@ -63,6 +63,18 @@ class ItemsController < ApplicationController
     end
     
   end
+  
+  def twitter
+    oauth = Twitter::OAuth.new($cons_token, $cons_secret)
+    oauth.authorize_from_access($access_token, $access_token_secret)
+
+    client = Twitter::Base.new(oauth)
+    client.friends_timeline.each  { |tweet| puts tweet.inspect }
+    client.user_timeline.each     { |tweet| puts tweet.inspect }
+    client.replies.each           { |tweet| puts tweet.inspect }
+
+    client.update('Heeeyyyyoooo from Twitter Gem!')
+  end
    
 
   def bin_check

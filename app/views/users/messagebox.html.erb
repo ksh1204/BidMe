@@ -22,7 +22,7 @@
 						<%else%>
 							<td><%= link_to message.sender.login, {:action => 'profile', :username => message.sender.login}, {:class => 'messagebox_links'} %></td>
 							<td><%= link_to truncate(message.description,30,'...'), {:action => 'show_message', :id => message.id},{:class => 'messagebox_links'} %></td>
-							<td><%= message.created_at.strftime("%b %d, %Y %I:%M %p") %></td>
+							<td class='messagebox_links'><%= message.created_at.strftime("%b %d, %Y %I:%M %p") %></td>
 						<%end%>
 					<%end%>
 				</tr>

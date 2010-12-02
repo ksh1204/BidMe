@@ -17,7 +17,7 @@
 						<%if message%>
 				    			<td><%= link_to message.receiver.login, {:action => 'profile', :username => message.receiver.login}, {:class => 'messagebox_links'} %></td>
 							<td><%= link_to truncate(message.description,40,'...'), {:action => 'show_sent_message', :id => message.id}, {:class => 'messagebox_links'} %></td>
-							<td><%= message.created_at.strftime("%b %d, %Y %I:%M %p") %></td>
+							<td class="messagebox_links"><%= message.created_at.strftime("%b %d, %Y %I:%M %p") %></td>
 						<%end%>
 				</tr>
 			<% end %>
