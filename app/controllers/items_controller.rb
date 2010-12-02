@@ -13,8 +13,7 @@ class ItemsController < ApplicationController
     @item = Item.new(params[:item])
     success = @item && @item.save
     if success && @item.errors.empty?
-      @item.time_limit += @item.time_limit_hours*3600+@item.time_limit_minutes*60
-      @item.save
+      @item.update_attribute(:time_limit, @item.time_limit+@item.time_limit_hours*3600+@item.time_limit_minutes*60)
       @user_item = current_user.user_items.build(:item_id => @item.id)
       @user_item.save
       session[:bin_checked] = nil
