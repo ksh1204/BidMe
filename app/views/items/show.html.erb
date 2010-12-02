@@ -11,10 +11,14 @@ $(function () {
 		var sec = <%=@end_date.sec%> + "";
 		var tz = 0;     // offset in hours from UTC to your timezone
 	end = new Date(year,month-1,day,hour-8,min,sec);
-	$('#show_item_time_time_left').countdown({until: end, expiryUrl: '/end_auction/'+id, 
-	    description: 'End Auction'});
+	$('#show_item_time_time_left').countdown({until: end, expiryUrl: '/end_auction/'+id});
 });
 </script>
+<STYLE TYPE="text/css" MEDIA=screen>
+<!--
+  #main_content { background:lightgreen; }
+-->
+</STYLE>
 <div id="show_item_left">
 <div id="show_item_seller">
 	<div id="show_item_seller_label"></div>
@@ -41,7 +45,7 @@ $(function () {
 	<% if @item.bin  && !@item.closed%>
 		<div id="show_item_bin_price_label">Buy It Now</div>
 		<div id="show_item_bin_price_price">$<%=@item.bin_price%></div>
-		<div id="show_item_bin_button"><%=button_to "Buy", :controller => 'users', :action => "buy_it_now", :id => @item.id%></div>
+		<div id="show_item_bin_button"><%=button_to "Buy", {:controller => 'users', :action => "buy_it_now", :id => @item.id},{:class => 'button'}%></div>
 	<% end %>
 </div>
 <% if @diff > 0 && !@item.closed %>
@@ -51,12 +55,12 @@ $(function () {
 </div>
 <div id='bid_id'>
 	<%= form_tag :controller => "users", :action => "bid" %>
-		<%= text_field_tag :bid_price %>
+		<%= text_field_tag :bid_price, "",{:class => 'input', :style => "height:20px;margin-bottom:15px;"} %>
 		<%= hidden_field_tag :item_id, @item.id %>
-		<%= submit_tag "Bid!"%>
+		<%= submit_tag "Bid!", {:class => 'button', :style => ""}%>
 	</form>
 </div>
-<div id='highest_bid'>
+<div id='highest_bid' style="margin-bottom:10px;">
 	<%= render :partial => "highest_bid_price", :object => @highest_bid %>
 </div>
 <% else %>

@@ -157,7 +157,7 @@ body {
 	
 	background: url('/images/gray_background.jpg') repeat scroll left top; 
 	top:100%;
-	width:80%;
+	width:83%;
 	min-height:40%;
 	color:white;
 	text-shadow: black 0.1em 0.1em 0.2em;	
@@ -1118,14 +1118,38 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 }
 
 #show_item_right{
-	width:450px;
+	background:ivory;
+	width:650px;
 	float:left;
+	padding-left:5px;
+	padding-right:5px;
+	padding-bottom:15px;
+	-moz-border-radius: 1px; 
+	-webkit-border-radius: 15px;
+	-moz-box-shadow: 2px 2px 3px #000;
+	-webkit-box-shadow: 2px 2px 3px #000;
+	box-shadow: 2px 2px 3px #000;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 #show_item_middle{
 	width:200px;
 	float:left;
-	padding-right: 20px;
+	padding-left:5px;
+	margin-right: 20px;
+	background:ivory;
+	-moz-border-radius: 1px; 
+	-webkit-border-radius: 15px;
+	-moz-box-shadow: 2px 2px 3px #000;
+	-webkit-box-shadow: 2px 2px 3px #000;
+	box-shadow: 2px 2px 3px #000;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 #show_item_seller{
@@ -1146,7 +1170,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 #show_item_item_label{
 	float:left;
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;
 	width: 100px;
 }
@@ -1154,16 +1178,18 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 #show_item_item_name{
 	font-family:Comic Sans, Comic Sans MS, cursive;
 	width:600px;
+	color:black;
 }
 
 #show_item_price{
 	height: 30px;
+	color:black;
 }
 
 #show_item_price_label{
 	float:left;
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;
 	width: 100px;
 }
@@ -1171,16 +1197,18 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 #show_item_price_price{
 	font-family:Comic Sans, Comic Sans MS, cursive;
 	width:300px;
+	color:black;
 }
 
 #show_item_bin_price{
 	height: 30px;
+	color:black;
 }
 
 #show_item_bin_price_label{
 	float:left;
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;
 	width: 100px;
 }
@@ -1188,23 +1216,26 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 #show_item_bin_price_price{
 	font-family:Comic Sans, Comic Sans MS, cursive;
 	width:50px;
+	color:black;
 	float:left;
 }
 
 #show_item_bin_button{
 	float: right;
 	width:30px;
+	margin-right:10px;
 }
 
 #show_item_time{
 	height: 100px;
+	color:black;
 }
 
 #show_item_time_label{
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;
-	width: 100px;
+	width: 150px;
 }
 
 #show_item_time_time_left{
@@ -1218,7 +1249,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 #show_item_desc_label{
 	float:left;
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;
 	width: 100px;
 }
@@ -1226,6 +1257,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 #show_item_desc_desc{
 	font-family:Comic Sans, Comic Sans MS, cursive;
 	width:600px;
+	color:black;
 }
 
 #show_item_photo{
@@ -1235,7 +1267,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 #show_item_photo_label{
 	float:left;
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;	
 	width: 100px;
 }
@@ -1249,6 +1281,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 	float:left;
 	font-family:Oldtown, fantasy;
 	color:white;
+	margin-top:10px;
 }
 
 #result_label{
@@ -1327,6 +1360,33 @@ background:transparent;
 	color:#3399FF;
 }
 
+/*.input {
+    border: 1px solid #006;
+    background: #ffc;
+}
+.input:hover {
+    border: 1px solid #f00;
+    background: #ff6;
+}*/
+.button {
+    border: none;
+    background: url('/images/up.png') no-repeat top left;
+    padding: 2px 8px;
+}
+.button:hover {
+    border: none;
+    background: url('/images/pressed.png') no-repeat top left;
+    padding: 2px 8px;
+}
+/*label {
+    display: block;
+    width: 150px;
+    float: left;
+    margin: 2px 4px 6px 4px;
+    text-align: right;
+}
+br { clear: left; }
+*/
 
 
 
