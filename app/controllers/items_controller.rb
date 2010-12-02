@@ -11,9 +11,9 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(params[:item])
-    @item.time_limit += params[:time_limit_hours].to_i*3600+params[:time_limit_minutes].to_i*60
     success = @item && @item.save
     if success && @item.errors.empty?
+      @item.time_limit += @item.time_limit_hours*3600+@item.time_limit_minutes*60
       @user_item = current_user.user_items.build(:item_id => @item.id)
       @user_item.save
       session[:bin_checked] = nil
