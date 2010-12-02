@@ -1,4 +1,3 @@
-
 <hr class="horiz_line">
 <h3> Account History </h3>
 <div id='account_history'>
@@ -7,19 +6,12 @@
 			<% if @sold.count > 0 %>
 			<small>Sold Items:</small>
 			<% end %>
-		</div><% count = 0 %>
+		</div>
 		<% for sold_transac in @sold %>
 		<div class="history_item_name">
-			 <% count = count + 1 %>
-			 <% if count > 14 %>
-				<%=link_to "Show more...", { :controller => 'users', :action => 'show_history_items_page'}%>
-				</div>
-				<% break %>
-			 <% end %>
 			 <%sold_item = Item.find(sold_transac.item_id) %>
 			 <%=link_to sold_item.name, {:controller => 'items', :action => 'show',
-										 :id => sold_item.id}%> -- $<%=sold_transac.price%><br>
-		</div>
+										 :id => sold_item.id}%> -- $<%=sold_transac.price%><br></div>
 		<% end %>
 	</div><br>
 	<div id='bought_transac'>
@@ -27,23 +19,13 @@
 			<% if @bought.count > 0 %>
 			<small>Bought Items:</small>
 			<% end %>
-		</div><% count = 0 %>
+		</div>
 		<% for bought_transac in @bought %>
 		 <div class="history_item_name">
-			 <% count = count + 1 %>
-			 <% if count > 14 %>
-				<%=link_to "Show more...", { :controller => 'users', :action => 'show_history_items_page'}%>
-				</div>
-				<% break %>
-			 <% end %>
 			 <%bought_item = Item.find(bought_transac.item_id) %>
 			 <%=link_to bought_item.name, {:controller => 'items', :action => 'show',
-										   :id => bought_item.id}%> -- $<%=bought_transac.price%><br>
-		</div>
-
+										   :id => bought_item.id}%> -- $<%=bought_transac.price%><br></div>
 		 <% end %>
 	</div>
 </div>
 
-
-<hr class="horiz_line">

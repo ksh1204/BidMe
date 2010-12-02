@@ -3,6 +3,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :items
 
+  map.show_history_items_page 'users/show_history_items_page', :controller => 'users', :action => 'show_history_items_page'
+  map.show_user_items_page 'users/show_posted_items_page', :controller => 'users', :action => 'show_posted_items_page'
   map.add_money 'users/add_money', :controller => 'users', :action => 'add_money'
   map.edit 'users/edit', :controller => 'users', :action => 'edit'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'

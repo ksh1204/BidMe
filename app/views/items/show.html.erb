@@ -41,17 +41,7 @@ $(function () {
 	<div id="show_item_price_label">Initial Bid :</div>
 	<div id="show_item_price_price">$<%=@item.start_price%></div>
 </div>
-<div id="show_item_watch">
-		<div id="show_item_item_watch">
-				<% if Watch.find(:first, :conditions => {:watcher_id => current_user.id, :item_id => @item.id}) %>
-					<%= link_to "Unwatch this item.", {:controller => 'users', :action => 'unwatch_item',
-											 :id => @item.id, :watcher_id => current_user.id} %>
-				<% else %>
-					<%= link_to "Watch this item.", :controller => 'users',
-													:action => 'watch_item', :id => @item.id, :watcher_id => current_user.id %>
-				<% end %>
-		</div>
-</div><br>
+
 <div id="show_item_bin_price">
 	<% if @item.bin  && !@item.closed%>
 		<div id="show_item_bin_price_label">Buy It Now :</div>
@@ -76,11 +66,24 @@ $(function () {
 </div>
 <% else %>
 <div id='highest_bid'>
-	<div style="color:red;font-weight:bold">Auction is closed!</div>
+	<div style="color:red;font-weight:bold">Auction is closed!<br><br></div>
 </div>
 <% end %>
 </div>
 <div id="show_item_right">
+	<% if !@item.closed %>
+		<div id="show_item_watch">
+				<div id="show_item_item_watch">
+						<% if Watch.find(:first, :conditions => {:watcher_id => current_user.id, :item_id => @item.id}) %>
+							<%= link_to "Unwatch this item.", {:controller => 'users', :action => 'unwatch_item',
+													 :id => @item.id, :watcher_id => current_user.id} %>
+						<% else %>
+							<%= link_to "Watch this item.", :controller => 'users',
+															:action => 'watch_item', :id => @item.id, :watcher_id => current_user.id %>
+						<% end %>
+				</div>
+		</div><br>
+	<% end %>
 	<span id="show_item_item">
 			<span id="show_item_item_label">Name :</span>
 			<span id="show_item_item_name"><h2><%=@item.name%></h2></span>

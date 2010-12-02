@@ -365,6 +365,16 @@ class UsersController < ApplicationController
       @watched = Watch.find_all_by_watcher_id(current_user.id)
     end
 
+	def show_posted_items_page
+      @user_items = UserItem.paginate :per_page => 8, :page => params[:page], :conditions => { :user_id => current_user.id }, :order => 'created_at DESC'
+    end
+
+	def show_history_items_page
+      @sold = Transaction.find_all_by_seller_id(current_user.id)
+      @bought = Transaction.find_all_by_buyer_id(current_user.id)
+    end
+
+
 		def write_comment
 			@user = current_user
 			@commentee = User.find(params[:commentee_id])

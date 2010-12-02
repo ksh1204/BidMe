@@ -1,0 +1,40 @@
+<h3> Posted Items </h3>
+<% if @user_items.first %>
+	<div id="posted_items_page"> 
+		<div class="active_posted_items">			
+			<u><b style="color:red;"><i>Active</b>  items</i> --</u> 
+			<ul>
+				<% for user_item in @user_items %>
+					<% if user_item %>
+						<% item = user_item.item %>
+						<% if item && !item.closed %>
+							<li class="active_posted_item">
+								<%=link_to item.name, { :controller => 'items', :action => 'show', :id => item.id}%>
+							</li>
+						<% end %>
+					<% end %>
+				<% end %>
+			</ul>
+			<div style="clear:both"></div>
+		</div>
+		<div class="closed_posted_items">
+		<u>Closed items --</u> 
+			<ul>
+				<% for user_item in @user_items %>
+					<% if user_item %>
+						<% item = user_item.item %>
+						<% if item && item.closed %>
+							<li class="closed_posted_item">
+								<%=link_to item.name, { :controller => 'items', :action => 'show', :id => item.id}%>
+							</li>
+						<% end %>
+					<% end %>
+				<% end %>
+			</ul>
+			<div style="clear:both"></div>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+<% else %>
+	<small>No items found</small>
+<% end %>
