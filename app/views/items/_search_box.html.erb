@@ -6,7 +6,7 @@
 			<%= select("item_category","", ItemCategory.find(:all, :order => "name ASC").collect {|i| [i.name, i.id]}, {:prompt => 'All Categories'})%>
 	</span>
 	<span style="float:left;padding-top:13px;">
-		<%= submit_tag "Search", :onclick=>"FreezeScreen('Please wait...');", :style => "margin-left:6px;" %>
+		<%= submit_tag "Search", :class => 'button',:onclick=>"FreezeScreen('Please wait...');", :style => "margin-left:6px;" %>
 	</span>
 </span>
 
