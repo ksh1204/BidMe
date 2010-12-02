@@ -386,17 +386,18 @@ cursor: pointer;
 }
 
 #columns {
-  background: #080808;
+  background: transparent;
   -moz-border-radius: 10px; 
   -webkit-border-radius: 10px;
 }
 
 #main {
+
   margin-left: 13em;
   margin-top: 5px;
   padding-top: 4ex;
   padding-left: 2em;
-  background: white;
+  background: transparent;
    -moz-border-radius: 10px; 
   -webkit-border-radius: 10px;
 }
@@ -420,6 +421,12 @@ cursor: pointer;
 	height:200px;
 }
 
+
+#small_profile_head{
+	height:200px;
+	
+}
+
 #profile_head_photo{
 	width: 30%;
 	float:left;
@@ -439,6 +446,12 @@ cursor: pointer;
 	width: 20%;
 }
 
+
+#basic_info_col1{
+	float:left;
+	width: 20%;
+}
+
 #basic_info_col2{
 	float:left;
 	width: 10%;
@@ -450,6 +463,14 @@ cursor: pointer;
 	margin-left: 16px;
 }
 
+
+#small_basic_info_col3{
+	float:left;
+	width:70%;
+	margin-left: 16px;
+}
+
+
 #user_profile_photo{
 	position: relative;
 	padding-top: 2px;
@@ -458,7 +479,24 @@ cursor: pointer;
 	padding-bottom: 2px;
 }
 
+
+#small_user_profile_photo{
+	position: relative;
+	padding-top: 2px;
+	padding-left: 2px;
+	padding-right: 1px;
+	padding-bottom: 2px;
+}
+
 #user_profile_login{
+	text-align:left
+	float: left;
+	font-family:"Lucida Console";
+	font-size: 1.0cm;
+}
+
+
+#small_user_profile_login{
 	text-align:left
 	float: left;
 	font-family:"Lucida Console";
@@ -498,6 +536,12 @@ cursor: pointer;
 	width: 500px;
 }
 
+#small_user_profile_right{
+	border: 5px;
+	margin-top: 70px;
+	margin-left: 20px;
+	width: 500px;
+}
 
 .small_box{
 	width: 15%;

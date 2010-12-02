@@ -1,20 +1,20 @@
 <div id="small_profile_head">
-		<div id="user_profile_left" style="float: left;">
-			<div id="user_profile_login">
+		<div id="small_user_profile_left" style="float: left;">
+			<div id="small_user_profile_login">
 			<%=@user.login%><br/>
 			</div>
-			<div id="user_profile_photo">
+			<div id="small_user_profile_photo">
 				<% if @user.profile_photo_file_name %>
 				<%= image_tag @user.profile_photo.url(:small) %>
 				<% else %>
 				<%= image_tag('/images/big_default.jpg') %>
 				<% end %>
 			</div>
-			<div id="user_profile_rating">
+			<div id="small_user_profile_rating">
 				<%= ratings_for @user, :dimension => :quality %> <br>
 			</div>
 		</div>
-		<div id="user_profile_right" style="float: left;">
+		<div id="small_user_profile_right" style="float: left;">
  		<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) || current_user.is_admin? %>
 		 <b>Information</b> 
         <% if (current_user.id == @user.id || current_user.is_admin?) %>
@@ -24,9 +24,9 @@
 		 <b>Basic Information</b> 
 		 <% end %>
 	<hr style="margin-top:0; margin-bottom:0; width:40%"">
-		  <div id="profile_info" >
+		  <div id="small_profile_info" >
 			
-			<div id="basic_info_col2">
+			<div id="small_basic_info_col2">
 			<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
 				<div id="name_label">
 					Name: 
@@ -47,7 +47,7 @@
 					</div>
 				<% end %>
 			</div>
-			<div id="basic_info_col3">
+			<div id="small_basic_info_col3">
 				<% if current_user.id == @user.id || Follow.find(:first, :conditions => {:following_id => @user.id, :follower_id => current_user.id}) %>
 				<div id="user_profile_name">
 					<%= @user.first_name %> <%= @user.last_name %><br/>
