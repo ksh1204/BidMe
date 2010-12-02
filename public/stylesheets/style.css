@@ -507,7 +507,20 @@ cursor: pointer;
 
 
 .small_box{
-	width: 15%;
+	width: 285px;
+	-moz-border-radius: 1px; 
+	-webkit-border-radius: 1px;
+	-moz-box-shadow: 2px 2px 3px #000;
+	-webkit-box-shadow: 2px 2px 3px #000;
+	box-shadow: 2px 2px 3px #000;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+.small_box_price{
+	width: 50px;
 	-moz-border-radius: 1px; 
 	-webkit-border-radius: 1px;
 	-moz-box-shadow: 2px 2px 3px #000;
@@ -1056,12 +1069,38 @@ float: left;
 	color:red;
 }
 
-#infoBar {
-background: url('/images/bg_info_bar.jpg') no-repeat 50% 50%;
-height: 3em;
+#infoBar h2{
+	background: white;
+	margin: 0px auto;
+	height: 2em;
+	width: 845px;
+	margin-bottom: 10px;
+	-moz-border-radius: 1px; 
+	-webkit-border-radius: 10px;
+	-moz-box-shadow: 2px 2px 3px #000;
+	-webkit-box-shadow: 2px 2px 3px #000;
+	box-shadow: 2px 2px 3px #000;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+.searched_items_index{
+background-color:white;
 margin: 0px auto;
 padding: 1.7em;
 width: 800px;
+height: 310px;
+-moz-border-radius: 1px; 
+-webkit-border-radius: 10px;
+-moz-box-shadow: 2px 2px 3px #000;
+-webkit-box-shadow: 2px 2px 3px #000;
+box-shadow: 2px 2px 3px #000;
+/* For IE 8 */
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+/* For IE 5.5 - 7 */
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 #around_clock{
@@ -1279,6 +1318,15 @@ background:transparent;
 	width:180px;
 	float:right;
 }
+
+.index_search_pages span{
+	color:black;
+}
+
+.index_search_pages a{
+	color:#3399FF;
+}
+
 
 
 

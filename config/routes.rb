@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   map.followers 'followers', :controller => 'users', :action => 'list_followers'
   map.items_autocomplete 'items/select', :controller => 'items', :action => 'select'
   map.ebay_items 'ebay_items', :controller => 'items', :action => 'list_ebay_items'
+  map.twitter 'twitter', :controller => 'items', :action => 'twitter'
   
   map.resources :messages
   map.resources :users, :member => {:rate => :post}
