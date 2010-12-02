@@ -82,14 +82,14 @@
 				<% for user_item in @user_items %>
 					<% if user_item %>
 						<% item = user_item.item %>
-						<% if item && !item.closed %>
+						<% if item && !item.closed %>		
+							<% count1 = count + 1 %>
 							<li class="active_posted_item">
 								<%=link_to item.name, { :controller => 'items', :action => 'show', :id => item.id}%>
 							</li>
 						<% end %>
 					<% end %>
-					<% count = count + 1 %>
-					<% if count > 14 %>
+					<% if count > 4 %>
 						<%=link_to "Show more...", { :controller => 'users', :action => 'show_posted_items_page'}%>
 						<% break %>
 					<% end %>
@@ -104,13 +104,13 @@
 					<% if user_item %>
 						<% item = user_item.item %>
 						<% if item && item.closed %>
+							<% count = count + 1 %>
 							<li class="closed_posted_item">
 								<%=link_to item.name, { :controller => 'items', :action => 'show', :id => item.id}%>
 							</li>
 						<% end %>
 					<% end %>
-					<% count = count + 1 %>
-					<% if count > 14 %>
+					<% if count > 4 %>
 						<%=link_to "Show more...", { :controller => 'users', :action => 'show_posted_items_page'}%>
 						<% break %>
 					<% end %>

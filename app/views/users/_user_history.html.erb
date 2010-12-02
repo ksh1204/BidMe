@@ -11,7 +11,7 @@
 		<% for sold_transac in @sold %>
 		<div class="history_item_name">
 			 <% count = count + 1 %>
-			 <% if count > 14 %>
+			 <% if count > 4 %>
 				<%=link_to "Show more...", { :controller => 'users', :action => 'show_history_items_page'}%>
 				</div>
 				<% break %>
@@ -31,7 +31,7 @@
 		<% for bought_transac in @bought %>
 		 <div class="history_item_name">
 			 <% count = count + 1 %>
-			 <% if count > 14 %>
+			 <% if count > 4 %>
 				<%=link_to "Show more...", { :controller => 'users', :action => 'show_history_items_page'}%>
 				</div>
 				<% break %>

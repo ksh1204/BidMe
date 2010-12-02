@@ -2,32 +2,16 @@
 <h1>Log In</h1>
 <small>
 <div id="login_box">
-	<table id="login_table" >
 	<% form_tag session_path do -%>
-	<tr>
-		<td id="login_id_label">
-			<%= label_tag 'login', 'Login ID :' %>
-		</td>
-		<td id="login_id_box_field">
-			<%= text_field_tag 'login', @login, :class => 'medium_box' %>
-		</td>
-		<td style="padding:5px;"></td><td style="padding:5px;"></td>
-	</tr>
-	<br>
-	<tr>
-		<td id="login_password_label">
+		<%= label_tag 'login', 'Login ID :' %>
+		<%= text_field_tag 'login', @login, :class => 'medium_box' %>
+		<div id="login_password">
 			<%= label_tag 'password', 'Password :' %>
-		</td>
-		<td id="login_password_box_field">
-			<%= password_field_tag 'password', nil, :class => 'medium_box' %><br><br>
-		</td>
-	</tr>
-	
-	</table>
-
-	<div id="login_box_button">
-	<%= submit_tag 'Log in' %>
-	</div>
+			<%= password_field_tag 'password', nil, :class => 'medium_box' %>
+		</div>	
+		<div id="login_box_button">
+			<%= submit_tag 'Log in'%>
+		</div>
 </div>
 <br>
 </small>	
