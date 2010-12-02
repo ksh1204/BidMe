@@ -70,23 +70,23 @@ $(function () {
 <% end %>
 </div>
 <div id="show_item_right">
-<div id="show_item_item">
-	<div id="show_item_item_label">Name</div>
-	<div id="show_item_item_name"><%=@item.name%></div>
-</div>
-<div id="show_item_desc">
-	<div id="show_item_desc_label">Description</div>
-	<div id="show_item_desc_desc"><pre><%=@item.description%></pre></div>
-</div>
-<div id="show_item_photo">
-	<div id="show_item_photo_label">Photo</div>
-	<div id="show_item_photo_photo">
-		<% if @item.item_photo_file_name %>
-			<%=image_tag @item.item_photo.url(:large)%>
-		<% else %>
-			<%=image_tag('/images/photo_na_long.png')%>
-		<% end %>
+	<div id="show_item_item">
+		<div id="show_item_item_label">Name</div>
+		<div id="show_item_item_name"><b><%=@item.name%></b></div>
 	</div>
-</div>
+	<div id="show_item_desc">
+		<div id="show_item_desc_label">Description</div>
+		<div id="show_item_desc_desc"><pre><%=@item.description%></pre></div>
+	</div>
+	<div id="show_item_photo">
+		<div id="show_item_photo_label">Photo</div>
+		<div id="show_item_photo_photo">
+			<% if @item.item_photo_file_name %>
+				<%=image_tag @item.item_photo.url(:large)%>
+			<% else %>
+				<%=image_tag('/images/photo_na_long.png')%>
+			<% end %>
+		</div>
+	</div>
 </div>
 

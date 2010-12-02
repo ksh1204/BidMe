@@ -1,12 +1,11 @@
 <%= error_messages_for :user %>
 <% form_for :user do |f| -%>
-<h2>Request link to reset password:</h2>
+<h1>Request link to reset password:</h1>
 <br>
-<div id='forgot_p'>
-	<div id='forgot_e_label'>
-		Email: <%= f.text_field :email %>
-	</div><br>
+<span id='forgot_p'>
+	<span id='forgot_e_label'>
+		Email : <%= f.text_field :email %>
+	</span><br><br>
 		<%= submit_tag 'Submit' %>
-
+</span>
 <% end -%>
-</div>
