@@ -571,7 +571,20 @@ cursor: pointer;
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
+#login_box_button{
+	padding-top:10px;
+	padding-bottom:1000px;
+}
 
+#login_box{
+	padding-top:15px;
+	padding-right:25px;
+	padding-bottom:10px;
+}
+
+#login_password{
+	padding-top:10px;
+}
 
 .send_to_box{
 	width: 30%;
@@ -795,7 +808,7 @@ width: 650px;
  	width: 300px;
  	border: 1px solid grey;
  	padding: 10px;
-	color:black;
+	color:white;
 	word-wrap: break-word;
 	-moz-border-radius: 4px; 
 	-webkit-border-radius: 4px;
@@ -1367,7 +1380,7 @@ background:transparent;
 }
 .sbr { background: url('/images/br2.gif') bottom right no-repeat; }
 .stl { background: url('/images/tl2.gif') top left no-repeat; }
-.str { background: url('/images/tr2.gif') top right no-repeat; padding: 10px; } 
+.str { background: url('/images/tr2.gif') top right no-repeat; padding: 10px; color:black; font-weight:600; } 
 .sb { padding: 2px 0px 10px 50px; background: url('/images/b2.gif') 30px top no-repeat; }
 
 #user_profile_followers{
