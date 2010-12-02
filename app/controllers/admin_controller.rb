@@ -54,6 +54,6 @@ class AdminController < ApplicationController
         @highest_bidder.money += @highest.item.price
       end
 
-    redirect_to :action => 'show', :id => @item.id
+    redirect_to :controller => 'items', :action => 'show', :id => @item.id
   end
 end
