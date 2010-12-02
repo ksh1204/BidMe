@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(params[:item])
+    @item.time_limit += params[:time_limit_hours].to_i*3600+params[:time_limit_minutes].to_i*60
     success = @item && @item.save
     if success && @item.errors.empty?
       @user_item = current_user.user_items.build(:item_id => @item.id)
@@ -27,7 +28,26 @@ class ItemsController < ApplicationController
   end
   
   def search
-        @items = Item.search params[:q], :page => params[:page], :per_page => 15
+        @items = Item.search params[:q], :page => params[:page], :per_page => 15, :conditions => {:closed => false}
+        
+        if @items.first && params[:q] != ""
+        
+          # Create new eBay caller object.  Omit last argument to use live platform.
+          eBay = EBay::API.new($authToken, $devId, $appId, $certId, :sandbox => true) 
+          # Call "GetSearchResults"
+          resp=eBay.GetSearchResults(:Query => params[:q])
+          @price_array = Array.new
+  #(r.item.itemID,r.item.title,r.item.country,r.item.listingDetails.viewItemURL,r.item.sellingStatus.currentPrice)
+          resp.searchResultItemArray.each do | r |
+            @price_array << r.item.sellingStatus.currentPrice
+          end
+        
+          #@ebay_items = EbayItem.find(:all, :conditions => {:keyword => params[:q]})
+        end
+  end
+  
+  def list_ebay_items
+    @price_array = params[:ebay]
   end
   
   def show

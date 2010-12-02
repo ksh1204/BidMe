@@ -157,7 +157,7 @@ body {
 	
 	background: url('/images/gray_background.jpg') repeat scroll left top; 
 	top:100%;
-	width:80%;
+	width:83%;
 	min-height:40%;
 	color:white;
 	text-shadow: black 0.1em 0.1em 0.2em;	
@@ -177,25 +177,6 @@ body {
 
 }
 
-
-div#main_content div#recently_viewed {
-    padding-top: 10px;
-    margin-top: 25px;
-    border-top: 1px solid #92B75B;
-}
-
-
-div#main_content div#recently_viewed ul {
-    list-style-type: none; 
-    margin-left:0px; 
-    padding-left: 0px; 
-    font-size: 90%;
-}    
-
-div#main_content div#recently_viewed ul li{
-    float: left; 
-    margin-right: 15px;
-}
 
 .box{
 	background-color:#92b75b;
@@ -310,6 +291,13 @@ li.highlightable a{
 }
 
 .slide_down{
+	border: 4px solid grey;
+	background-color: darkgrey;
+	padding:10px 5px 0 5px;
+}
+
+.slide_down_ebay{
+	width: 150px;
 	border: 4px solid grey;
 	background-color: darkgrey;
 	padding:10px 5px 0 5px;
@@ -544,7 +532,20 @@ cursor: pointer;
 }
 
 .small_box{
-	width: 15%;
+	width: 285px;
+	-moz-border-radius: 1px; 
+	-webkit-border-radius: 1px;
+	-moz-box-shadow: 2px 2px 3px #000;
+	-webkit-box-shadow: 2px 2px 3px #000;
+	box-shadow: 2px 2px 3px #000;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+.small_box_price{
+	width: 50px;
 	-moz-border-radius: 1px; 
 	-webkit-border-radius: 1px;
 	-moz-box-shadow: 2px 2px 3px #000;
@@ -641,6 +642,7 @@ cursor: pointer;
 	width:60px;
 	float:left;
 	padding:10px;
+	margin-right:50px;
 	padding-bottom:20px;
 }
 
@@ -1004,8 +1006,8 @@ float: left;
 
 .searched_items{
 	float:left;
-	width:100%;
-	padding-left:55px;
+	width:730px;
+	padding-left:10px;
 }
 
 .searched_item{
@@ -1093,12 +1095,42 @@ float: left;
 	color:red;
 }
 
-#infoBar {
-background: url('/images/bg_info_bar.jpg') no-repeat 50% 50%;
-height: 3em;
+#infoBar h2{
+	background: white;
+	margin: 0px auto;
+	height: 2em;
+	width: 845px;
+	margin-bottom: 10px;
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px;
+	-moz-box-shadow: 3px 3px 1px #ccc;
+	-webkit-box-shadow: 3px 3px 1px #ccc;
+	box-shadow: 3px 3px 1px #ccc;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+.searched_items_index{
+background-color:white;
 margin: 0px auto;
 padding: 1.7em;
 width: 800px;
+height: 310px;
+-moz-border-radius: 15px; 
+-webkit-border-radius: 15px;
+-moz-border-radius: 15px; 
+-webkit-border-radius: 15px;
+-moz-box-shadow: 3px 3px 1px #ccc;
+-webkit-box-shadow: 3px 3px 1px #ccc;
+box-shadow: 3px 3px 1px #ccc;
+/* For IE 8 */
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+/* For IE 5.5 - 7 */
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 #around_clock{
@@ -1116,14 +1148,43 @@ width: 800px;
 }
 
 #show_item_right{
-	width:450px;
+	background:ivory;
+	width:650px;
 	float:left;
+	padding-left:5px;
+	padding-right:5px;
+	padding-bottom:15px;
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px;
+	-moz-box-shadow: 3px 3px 1px #ccc;
+	-webkit-box-shadow: 3px 3px 1px #ccc;
+	box-shadow: 3px 3px 1px #ccc;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 #show_item_middle{
 	width:200px;
 	float:left;
-	padding-right: 20px;
+	padding-left:5px;
+	padding-right:5px;
+	margin-right: 20px;
+	background:ivory;
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px;
+	-moz-box-shadow: 3px 3px 1px #ccc;
+	-webkit-box-shadow: 3px 3px 1px #ccc;
+	box-shadow: 3px 3px 1px #ccc;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 #show_item_seller{
@@ -1144,7 +1205,7 @@ width: 800px;
 #show_item_item_label{
 	float:left;
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;
 	width: 100px;
 }
@@ -1152,16 +1213,18 @@ width: 800px;
 #show_item_item_name{
 	font-family:Comic Sans, Comic Sans MS, cursive;
 	width:600px;
+	color:black;
 }
 
 #show_item_price{
 	height: 30px;
+	color:black;
 }
 
 #show_item_price_label{
 	float:left;
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;
 	width: 100px;
 }
@@ -1169,16 +1232,18 @@ width: 800px;
 #show_item_price_price{
 	font-family:Comic Sans, Comic Sans MS, cursive;
 	width:300px;
+	color:black;
 }
 
 #show_item_bin_price{
 	height: 30px;
+	color:black;
 }
 
 #show_item_bin_price_label{
 	float:left;
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;
 	width: 100px;
 }
@@ -1186,23 +1251,26 @@ width: 800px;
 #show_item_bin_price_price{
 	font-family:Comic Sans, Comic Sans MS, cursive;
 	width:50px;
+	color:black;
 	float:left;
 }
 
 #show_item_bin_button{
 	float: right;
 	width:30px;
+	margin-right:10px;
 }
 
 #show_item_time{
 	height: 100px;
+	color:black;
 }
 
 #show_item_time_label{
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;
-	width: 100px;
+	width: 150px;
 }
 
 #show_item_time_time_left{
@@ -1216,7 +1284,7 @@ width: 800px;
 #show_item_desc_label{
 	float:left;
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;
 	width: 100px;
 }
@@ -1224,6 +1292,7 @@ width: 800px;
 #show_item_desc_desc{
 	font-family:Comic Sans, Comic Sans MS, cursive;
 	width:600px;
+	color:black;
 }
 
 #show_item_photo{
@@ -1233,7 +1302,7 @@ width: 800px;
 #show_item_photo_label{
 	float:left;
 	font-family: Georgia, serif;
-	color:yellow;
+	color:orangered;
 	font-weight:bold;	
 	width: 100px;
 }
@@ -1247,14 +1316,16 @@ width: 800px;
 	float:left;
 	font-family:Oldtown, fantasy;
 	color:white;
+	margin-top:10px;
 }
 
 #result_label{
 	font-family:fantasy;
 	padding-bottom:15px;
-
+	width: 400px;
 	padding-left:59px;
 	font-size:23px;
+	float:left;
 }
 
 .searched_item_time div { float: left; width: 32px; height: 45px; 
@@ -1306,6 +1377,51 @@ background:transparent;
 	-webkit-box-shadow: 3px 3px 4px #000;
 	box-shadow: 3px 3px 4px #000;
 }
+
+#ebay_list{
+	width: 70px;
+}
+
+#search_ebay{
+	width:180px;
+	float:right;
+}
+
+.index_search_pages span{
+	color:black;
+}
+
+.index_search_pages a{
+	color:#3399FF;
+}
+
+/*.input {
+    border: 1px solid #006;
+    background: #ffc;
+}
+.input:hover {
+    border: 1px solid #f00;
+    background: #ff6;
+}*/
+.button {
+    border: none;
+    background: url('/images/up.png') no-repeat top left;
+    padding: 2px 8px;
+}
+.button:hover {
+    border: none;
+    background: url('/images/pressed.png') no-repeat top left;
+    padding: 2px 8px;
+}
+/*label {
+    display: block;
+    width: 150px;
+    float: left;
+    margin: 2px 4px 6px 4px;
+    text-align: right;
+}
+br { clear: left; }
+*/
 
 
 

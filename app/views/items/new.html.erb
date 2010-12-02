@@ -12,16 +12,18 @@
 <%= f.select(:item_category_id, ItemCategory.find(:all, :order => "name ASC").collect {|i| [i.name, i.id]}, {:prompt => 'Select Category'})%></p>
 
 <p><%= f.label :start_price, 'Initial bid : ' %><br/>
-<%= f.text_field :start_price, :class => 'small_box'%></p>
+<%= f.text_field :start_price, :class => 'small_box_price'%></p>
 
 <p><%= f.label :time_limit, 'Time limit : ' %><br/>
-<%= f.text_field :time_limit, :class => 'small_box' %></p>
+<%= text_field_tag :time_limit_hours,'' ,:class => 'small_box_price',:style => "margin-top:0"%> Hours
+<%= text_field_tag :time_limit_minuts,'' ,:class => 'small_box_price',:style => "margin-top:0"%> Minutes
+<%= f.text_field :time_limit, :class => 'small_box_price' ,:style => "margin-top:0"%> Seconds</p>
 
 <p><%= f.label :bin, 'Buy It Now :' %>
 <%= f.check_box :bin, :onchange => remote_function(:url => {:action => 'bin_check'})%></p>
 
-<p id="bin_price", style="display:block;display:none;"><%= f.label :bin_price, 'BIN Price : '%><br />
-<%= f.text_field :bin_price, :class => 'small_box' %></p>
+<p id="bin_price", style="display:block;display:none;"><%= f.label :bin_price, 'BIN Price : '%>
+<%= f.text_field :bin_price, :class => 'small_box_price',:style => "margin-top:0" %></p>
 
 <p>
   <%= f.label :item_photo, 'Item image : ' %><br />

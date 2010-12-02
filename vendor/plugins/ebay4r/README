@@ -1,0 +1,427 @@
+=================
+Welcome to eBay4R
+=================
+
+:Author: Garry Dolley
+:Date: 03-28-2008
+:Version: v1.1
+:eBay API: 583
+
+eBay4R is a Ruby wrapper for eBay's Web Services SOAP API (v583). Emphasis is
+on ease of use and small footprint.
+
+Please report bugs and other problems, see "Author" section at the bottom.
+
+Current release can be downloaded from:
+
+http://rubyforge.org/projects/ebay4r
+
+The latest code is available at both RubyForge and GitHub:
+
+  * git://rubyforge.org/ebay4r.git
+  * git://github.com/up_the_irons/ebay4r.git
+
+
+Requirements
+------------
+
+* SOAP4R library v1.5.7 or newer.  The specific version I'm using for testing
+  is soap4r-1.5.7.90.20070921.
+
+
+Optionals
+---------
+
+* RubyGems
+
+
+Installation
+------------
+
+tar/gzip
+~~~~~~~~
+
+Just unzip the archive anywhere you like, and see "Getting Started" below 
+(you will need to add the ebay4r/lib path to your $RUBYLIB environment
+variable)
+
+RubyGems
+~~~~~~~~
+
+* To install a gem you already downloaded::
+  
+    gem install ebay-<version>.gem
+
+* For the latest release with no fuss (previous download not required)::
+  
+    gem install -r ebay
+
+Git
+~~~
+
+You can download the latest and greatest code using Git, just type::
+
+  git clone git://github.com/up_the_irons/ebay4r.git
+
+
+Important Note about Using eBay4R and Ruby on Rails
+---------------------------------------------------
+
+If you installed SOAP4R as a gem you must put the following two lines at the
+very top of your config/environment.rb::
+
+  require 'rubygems'
+  gem 'soap4r'
+
+This must be done before Rails starts auto-loading things.
+
+Additionally, you have to put those two lines in *every* Rails app you have
+on your machine, even if it doesn't use SOAP4R!  This is, allegedly, because
+ActiveSupport (in dependency.rb) wrongly loads the SOAP4R included with Ruby
+instead of your Gem.  More details can be found here:
+
+  http://dev.ctor.org/soap4r/ticket/433
+
+If you get this error, or similar, in every Rails app::
+
+  [...]/activesupport-1.4.2/lib/active_support/dependencies.rb:477:in `const_missing': uninitialized constant XSD::NS::KNOWN_TAG (NameError?)
+
+you've hit this problem.
+
+
+Getting Started
+---------------
+
+If you installed eBay4R from a tarball or git repo, you will want to add the
+ebay4r/lib directory to your Ruby include path ($RUBYLIB).  Then put
+
+::
+
+  require 'eBayAPI'
+ 
+at the top of your programs.
+
+If you installed eBay4R with RubyGems, you don't have to add anything to
+Ruby's include path, just put
+
+::
+
+  require 'rubygems'
+  gem 'ebay'
+
+at the top of your programs.
+
+Examples
+--------
+
+Look at the examples/ directory.  Edit the file myCredentials.rb and insert
+the appropriate values.  Then you can run any of the example programs.
+
+Hello, World!
+~~~~~~~~~~~~~
+
+The simplest eBay API call is "GeteBayOfficialTime".  Here's how to call it
+with eBay4R::
+
+  require 'rubygems'
+  gem 'ebay'
+
+  # Put your credentials in this file
+  load('myCredentials.rb')
+
+  # Create new eBay caller object.  Omit last argument to use live platform.
+  eBay = EBay::API.new($authToken, $devId, $appId, $certId, :sandbox => true)
+
+  resp = eBay.GeteBayOfficialTime
+
+  puts "Hello, World!"
+  puts "The eBay time is now: #{resp.timestamp}"
+
+  # Wasn't that easy?!
+
+Adding an Item
+~~~~~~~~~~~~~~
+
+This is a more complex example that performs a real (useful) function::
+
+  require 'rubygems'
+  gem 'ebay'
+
+  load('myCredentials.rb')
+
+  eBay = EBay::API.new($authToken, $devId, $appId, $certId, :sandbox => true)
+
+  # Notice how we nest hashes to mimic the XML structure of an AddItem request
+  resp = eBay.AddItem(:Item => EBay.Item(:PrimaryCategory => EBay.Category(:CategoryID => 57882),
+                                         :Title => 'Mouse Pad',
+                                         :Description => 'A really cool mouse pad, you know you want it...',
+                                         :Location => 'On Earth',
+                                         :StartPrice => '12.0',
+                                         :Quantity => 1,
+                                         :ListingDuration => "Days_7",
+                                         :Country => "US",
+                                         :Currency => "USD",
+                                         :PaymentMethods => ["VisaMC", "PersonalCheck"]))
+
+  puts "New Item #" + resp.itemID + " added."
+
+
+Don't worry too much about EBay.Item and EBay.Category calls for now, they are
+explained in the "Creating Complex Data Types" section below.
+
+
+Format of Requests
+~~~~~~~~~~~~~~~~~~
+
+If ``eBay`` is your caller object, then you can issue any eBay API call
+by doing::
+
+  eBay.<call_name>( ... hash of named-arguments ... )
+
+For example, to issue the GetItem call for Item #4503432058 and return all
+information, you do::
+
+  eBay.GetItem(:DetailLevel => 'ReturnAll', :ItemID => '4503432058')
+
+or to see your last invoice using the GetAccount call, you do::
+
+  eBay.GetAccount(:AccountHistorySelection => 'LastInvoice')
+
+See the "eBay Web Services SOAP API Guide" for acceptable parameters and values
+for each API call.  This guide can be downloaded at eBay's 
+`SOAP Development Center <http://developer.ebay.com/soap/>`_.
+
+Creating Complex Data Types
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A number of elements in eBay's schema are XML Schema simple types.  For
+example, CategoryID, Title, and Description are all strings.  But many 
+elements, like Item and Seller, are of types "ItemType" and "SellerType", 
+respectively.  These are complex data types, meaning they are structures
+composed of collections of simple types.
+
+"How do I make a complex type object?", you ask.  Simple::
+
+  EBay.<element_name>( ... hash of named-arguments ... )
+
+creates a new `<element_name>` element of type ``<element_name>Type``.  For
+example,
+
+::
+
+  EBay.Item(:Title => 'Mouse Pad', :Description => '...')
+
+creates a new ``ItemType`` object.  Please note, these factory methods are class
+methods of module EBay, so the upper-case "E" in "EBay" is not a typo.  A
+more common way to see this is::
+
+  EBay::Item( ... )
+
+The only difference is if you do not pass any arguments to the factory method
+and do not explicitly put empty parentheses (), Ruby will assume it is a 
+constant, not a method.
+
+Setting XML Attributes
+~~~~~~~~~~~~~~~~~~~~~~
+
+The symbol you use to set an XML attribute on an element is::
+
+  :xmlattr_<attribute_name>
+
+For example, to create a <Label> element (corresponding to eBay's LabelType)
+with an attribute of "visible" equal to "true", you would do::
+
+  EBay.Label(:Name => "some string", :xmlattr_visible => true)
+
+
+Format of Responses
+~~~~~~~~~~~~~~~~~~~
+
+There is a one-to-one correspondence between the XML returned by eBay and the
+way you access the values contained therein using the response object returned
+by the call.  For example, let's say you issued a "GetItem" call::
+  
+  resp = eBay.GetItem(:DetailLevel => 'ReturnAll', :ItemID => '4503432058')
+
+and eBay returned the following XML (abbreviated where appropriate)::
+
+  <?xml version="1.0" encoding="UTF-8"?>
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+                    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Body>
+    <GetItemResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+     <Timestamp>2005-12-09T09:40:41.602Z</Timestamp>
+     <Ack>Success</Ack>
+     <Version>437</Version>
+     <Build>e437_core_Bundled_2119808_R1</Build>
+     <Item>
+      ...
+
+      <AutoPay>false</AutoPay>
+      <BuyerProtection>ItemIneligible</BuyerProtection>
+      <BuyItNowPrice currencyID="USD">0.0</BuyItNowPrice>
+      <Country>US</Country>
+      <Currency>USD</Currency>
+      <Description>Fund. of Physics, 5th, by Halliday, Resnick, Walker</Description>
+      <Escrow>None</Escrow>
+      <GiftIcon>0</GiftIcon>
+      ...
+
+      <ShipToLocations>US</ShipToLocations>
+      <ShipToLocations>CA</ShipToLocations>
+     </Item>
+    </GetItemResponse>
+   </soapenv:Body>
+  </soapenv:Envelope>
+
+
+The "resp" object is of type
+  
+  SOAP::Mapping::Object
+
+and contains all the XML elements between ``<GetItemResponse> ... </GetItemResponse>``.
+
+So, if you want to print the item description, just do::
+
+  puts resp.item.description
+
+and you will see::
+  
+  "Fund. of Physics, 5th, by Halliday, Resnick, Walker"
+
+Repeated XML elements automatically become arrays of the same name, so to see
+all the locations this item can ship to, just do::
+
+  resp.item.shipToLocations.each { |loc| puts loc }
+
+and you will see::
+
+  US
+  CA
+
+It's that easy! (Are any Java or C# developers reading this?  Don't be
+jealous... ;)
+
+A Note about Case
+~~~~~~~~~~~~~~~~~
+
+Astute readers (all of you, right?) will notice that the first letter of every
+element contained within the response object is lower-case, even though in the
+XML it is upper-case.  This is currently the way things are and you will have
+to remember to lower the first character in your code.  
+
+Ruby's convention is that only classes, modules, and constants begin with 
+upper-case letters.  The author of the SOAP4R library (which contains 
+wsdl2ruby.rb) respected this convention, and as a result, the eBay.rb 
+file I use (generated from eBay's WSDL) has this mapping.
+
+I haven't come up with any Ruby magic to dynamically allow upper-case first
+characters to work also, so if you happen to want to take a crack at it and
+get it working, please send me your patches (see "Author" section at the 
+bottom).
+
+Please note, the opposite does _not_ apply.  That is, you can *submit* a call
+using either case of the first character, and your arguments can also have
+either case letter first.  For example, this::
+
+  resp = eBay.GetItem(:DetailLevel => 'ReturnAll', :ItemID => '4503432058')
+
+is the same as::
+
+  resp = eBay.getItem(:detailLevel => 'ReturnAll', :itemID => '4503432058')
+
+
+Debugging
+---------
+
+If "eBay" is your eBay caller object, as in::
+
+  eBay = EBay::API.new( ... )
+
+You can see XML wiredumps by doing::
+
+  eBay.debug = true
+
+before you issue any eBay API calls.  This is useful to see the raw XML of
+what eBay is sending back to you.
+
+
+Files
+-----
+
+contrib/
+  Extras contributed by the community (myself included)
+
+examples/
+  Examples of eBay API calls using this library. You will want to check out
+  these examples before making your own calls.
+
+lib/eBayAPI.rb
+  The heart of this library
+
+lib/eBayDriver.rb
+  Autogenerated by wsdl2ruby.rb
+
+lib/eBay.rb
+  Autogenerated by wsdl2ruby.rb
+
+lib/RequesterCredentialsHandler.rb
+  Helper for generating the eBay Authentication header for each call
+
+test/
+  Unit and functional tests
+
+
+To Do
+-----
+
+* Add many more examples
+* Add more unit and functional tests
+
+
+Author
+------
+
+Garry C. Dolley
+
+gdolley [at] NOSPAM- ucla.edu
+
+AIM: garry97531
+
+IRC: up_the_irons in #ram, #git, #caboose on Freenode (and usually many other
+channels)
+
+
+Formatting
+----------
+
+I've dropped RDoc formatting for this README.  Headings never looked like
+headings to me, which was annoying.
+
+This README is formatted in reStructredText [RST]_.  It has the best
+correlation between what a document looks like as plain text vs. its
+formatted output (HTML, LaTeX, etc...).  What I like best is, markup doesn't
+look like markup, even though it is.
+
+.. [RST] http://docutils.sourceforge.net/rst.html
+
+Copyright
+---------
+
+Copyright (c) 2005,2006,2007,2008 Garry C. Dolley
+
+eBay4R is free software; you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later 
+version.
+
+eBay4R is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+eBay4R; if not, write to the Free Software Foundation, Inc., 51 Franklin
+Street, Fifth Floor, Boston, MA  02110-1301, USA
+

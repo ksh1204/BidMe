@@ -29,6 +29,12 @@
 			Results for <%=params[:q]%>
 		<%end%>
 	</div>
+	<% if params[:q] != ''%>
+	<div id="search_ebay">
+		<%= link_to_remote "Show prices from other sites", :url => {:controller => 'items', :action => 'list_ebay_items', :ebay => @price_array}, :html =>{:style => "color:orange"} %>
+		<div id="ebay_list" style="display:none;"></div>
+	</div>
+	<% end %>
 	<div class="searched_items">
 		<% for @item in @items %>
 			<% if @item %>
@@ -154,5 +160,5 @@
 <% else %>
 	<center style="padding-top:30px;">No items found</center>
 <% end %>
-	
+
 

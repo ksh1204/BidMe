@@ -1,7 +1,99 @@
+<script type="text/javascript">
+	$(function () {
+		<% for item in @items %>
+			<% @end_date = Time.parse(item.created_at.to_s)+item.time_limit %>
+			var end = new Date();
+			var id = <%=item.id%> + "";
+			var year = <%=@end_date.year%> + ""
+			var month = <%=@end_date.month%> + ""; 
+			var day = <%=@end_date.day%> + "";  
+			var hour = <%=@end_date.hour%> + "";   
+			var min = <%=@end_date.min%> + "";   
+			var sec = <%=@end_date.sec%> + "";
+		end = new Date(year,month-1,day,hour-8,min,sec);
+		$("#searched_item_time_"+id).countdown({until: end});
+		<% end %>
+	});
+</script>
+
 <h1>Welcome To BidMe</h1>
 
 <div id='infoBar'>
-	<h2>Live Auctions</h2>
+	<h2><center>Live Auctions</center></h2>
+	<div class="searched_items_index">
+		<% @count = 0%><br/>
+		<% for @item in @items %>
+			<% if @item %>
+						<div class="searched_item">
+							<div class="searched_item_category">
+								<%=@item.item_category.name%>
+							</div>
+							<div class="searched_item_name">
+								<%=link_to truncate(@item.name,20,'...'), :controller => 'items', :action => 'show', :id => @item.id%>
+							</div>
+							<div class="searched_item_price">
+								$<%=@item.start_price%>
+							</div>
+							<div class="searched_item_photo">
+								<% if @item.item_photo_file_name %>
+									<%= image_tag @item.item_photo.url(:small) %>
+								<% else %>
+									<%= image_tag('/images/photo_na_long.png') %>
+								<% end %>
+							</div>
+							<div class="searched_item_bid_price", id="search_page_<%=@item.id%>">
+								<% @highest_bid = @item.bids.last %>
+								<%= render :partial => '/items/searched_bid_price', :object => @highest_bid %>
+							</div>
+							<% if !@item.closed && @item.item_photo_file_name %>
+								<div id='item_time_<%=@item.id%>', style="height:20%; border: 1px solid black;
+																	-moz-border-radius: 10px; -webkit-border-radius: 10px;
+																	-moz-box-shadow: 3px 3px 4px #000;
+																	-webkit-box-shadow: 3px 3px 4px #000;
+																	box-shadow: 3px 3px 4px #000;">
+							<% elsif !@item.closed && !@item.item_photo_file_name %>
+								<div id='item_time_<%=@item.id%>', style="height:20%; margin-top:20px;
+										 border: 1px solid black;-moz-border-radius: 10px; -webkit-border-radius: 10px;
+										-moz-box-shadow: 3px 3px 4px #000;
+										-webkit-box-shadow: 3px 3px 4px #000;
+										box-shadow: 3px 3px 4px #000;">
+							<% else %>
+								<div id='item_time_<%=@item.id%>'>
+							<% end %>
+								<%= render :partial => 'items/search_time_ticker', :object => @item%> 
+								</div>
+
+							<% if !@item.closed %>
+								<% if current_user %>
+								<div class="bid_link" style="background-color:orange;width:70px;margin-left:50px;border: 1px solid black;
+															-moz-border-radius: 10px; 
+															-webkit-border-radius: 10px;
+															-moz-box-shadow: 3px 3px 4px #000;
+															-webkit-box-shadow: 3px 3px 4px #000;
+															box-shadow: 3px 3px 4px #000;">
+									<%=link_to "Bid", {:controller=>'items', :action => 'show', :id => @item.id}, {:style => "color:purple"}%>
+								</div>
+								<% else %>
+								<div class="bid_link" style="background-color:green;width:70px;margin-left:50px;border: 1px solid black;
+															-moz-border-radius: 10px; 
+															-webkit-border-radius: 10px;
+															-moz-box-shadow: 3px 3px 4px #000;
+															-webkit-box-shadow: 3px 3px 4px #000;
+															box-shadow: 3px 3px 4px #000;">
+									<%=link_to "Login", {:controller=>'sessions', :action => 'new'}, {:style => "color:white"}%>
+								</div>
+								<% end %>
+							<% end %>
+						</div>
+						<% @count += 1 %>
+						<% if @count % 3 == 0%>
+							<div style="clear:both"></div>
+						<%end %>
+			<% end %>
+		<% end %>
+	<br/>
+	<div style="clear:both"></div>
+	<div class="index_search_pages"><center><%= will_paginate @items %></center>
 </div>
 
 <div id="table">

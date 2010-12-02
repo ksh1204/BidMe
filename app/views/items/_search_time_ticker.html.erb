@@ -1,4 +1,4 @@
-<% if @item.closed%>
+<% if @item.closed || Time.parse(@item.created_at.to_s)+@item.time_limit-Time.now.utc <= 0 %>
 	<br/>
 	<div style='color:red;font-weight:bold'>Closed</div>
 <%else%>

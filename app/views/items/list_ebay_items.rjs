@@ -1,0 +1,6 @@
+if params[:cancel]
+  page['ebay_list'].slide_up
+else
+  page['ebay_list'].replace_html :partial => 'items/show_ebay_items', :object => @price_array
+  page['ebay_list'].slide_down
+end

@@ -1,4 +1,7 @@
 # Be sure to restart your server when you modify this file
+$:.unshift File.join(File.dirname(__FILE__), "../", "lib")
+require 'eBayAPI'
+#load('myCredentials.rb')
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
