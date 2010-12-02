@@ -178,25 +178,6 @@ body {
 }
 
 
-div#main_content div#recently_viewed {
-    padding-top: 10px;
-    margin-top: 25px;
-    border-top: 1px solid #92B75B;
-}
-
-
-div#main_content div#recently_viewed ul {
-    list-style-type: none; 
-    margin-left:0px; 
-    padding-left: 0px; 
-    font-size: 90%;
-}    
-
-div#main_content div#recently_viewed ul li{
-    float: left; 
-    margin-right: 15px;
-}
-
 .box{
 	background-color:#92b75b;
 	overflow:hidden;
@@ -1075,11 +1056,13 @@ float: left;
 	height: 2em;
 	width: 845px;
 	margin-bottom: 10px;
-	-moz-border-radius: 1px; 
-	-webkit-border-radius: 10px;
-	-moz-box-shadow: 2px 2px 3px #000;
-	-webkit-box-shadow: 2px 2px 3px #000;
-	box-shadow: 2px 2px 3px #000;
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px;
+	-moz-box-shadow: 3px 3px 1px #ccc;
+	-webkit-box-shadow: 3px 3px 1px #ccc;
+	box-shadow: 3px 3px 1px #ccc;
 	/* For IE 8 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
 	/* For IE 5.5 - 7 */
@@ -1092,11 +1075,13 @@ margin: 0px auto;
 padding: 1.7em;
 width: 800px;
 height: 310px;
--moz-border-radius: 1px; 
--webkit-border-radius: 10px;
--moz-box-shadow: 2px 2px 3px #000;
--webkit-box-shadow: 2px 2px 3px #000;
-box-shadow: 2px 2px 3px #000;
+-moz-border-radius: 15px; 
+-webkit-border-radius: 15px;
+-moz-border-radius: 15px; 
+-webkit-border-radius: 15px;
+-moz-box-shadow: 3px 3px 1px #ccc;
+-webkit-box-shadow: 3px 3px 1px #ccc;
+box-shadow: 3px 3px 1px #ccc;
 /* For IE 8 */
 -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
 /* For IE 5.5 - 7 */
@@ -1124,11 +1109,13 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 	padding-left:5px;
 	padding-right:5px;
 	padding-bottom:15px;
-	-moz-border-radius: 1px; 
+	-moz-border-radius: 15px; 
 	-webkit-border-radius: 15px;
-	-moz-box-shadow: 2px 2px 3px #000;
-	-webkit-box-shadow: 2px 2px 3px #000;
-	box-shadow: 2px 2px 3px #000;
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px;
+	-moz-box-shadow: 3px 3px 1px #ccc;
+	-webkit-box-shadow: 3px 3px 1px #ccc;
+	box-shadow: 3px 3px 1px #ccc;
 	/* For IE 8 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
 	/* For IE 5.5 - 7 */
@@ -1139,13 +1126,16 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 	width:200px;
 	float:left;
 	padding-left:5px;
+	padding-right:5px;
 	margin-right: 20px;
 	background:ivory;
-	-moz-border-radius: 1px; 
+	-moz-border-radius: 15px; 
 	-webkit-border-radius: 15px;
-	-moz-box-shadow: 2px 2px 3px #000;
-	-webkit-box-shadow: 2px 2px 3px #000;
-	box-shadow: 2px 2px 3px #000;
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px;
+	-moz-box-shadow: 3px 3px 1px #ccc;
+	-webkit-box-shadow: 3px 3px 1px #ccc;
+	box-shadow: 3px 3px 1px #ccc;
 	/* For IE 8 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
 	/* For IE 5.5 - 7 */

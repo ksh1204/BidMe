@@ -55,7 +55,7 @@ $(function () {
 </div>
 <div id='bid_id'>
 	<%= form_tag :controller => "users", :action => "bid" %>
-		<%= text_field_tag :bid_price, "",{:class => 'input', :style => "height:20px;margin-bottom:15px;"} %>
+		<%= text_field_tag :bid_price, "",{:class => 'input', :style => "width:70px;height:20px;margin-bottom:15px;"} %>
 		<%= hidden_field_tag :item_id, @item.id %>
 		<%= submit_tag "Bid!", {:class => 'button', :style => ""}%>
 	</form>
