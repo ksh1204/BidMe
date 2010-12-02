@@ -87,8 +87,7 @@ $(function () {
 	<% if !@item.closed && current_user.is_admin? %>
 		<div id="show_item_watch">
 				<div id="show_item_item_watch">
-							<%= link_to "Stop this item.", {:controller => 'admin', :action => 'stop',
-													 :id => @item.id} %>					
+					<%= link_to "Stop this item.", {:controller => 'admin', :action => 'stop', :id => @item.id} %>					
 				</div>
 		</div><br>
 	<% end %>

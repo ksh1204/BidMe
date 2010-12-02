@@ -32,9 +32,8 @@ class AdminController < ApplicationController
   end
 
   def stop
-    if current_user.is_admin?
       @item = Item.find(params[:id])
-     
+	  @watchers = Watch.find(:all, :conditions => { :item_id => @item.id } )
       @item.update_attribute(:closed,true)
       @item.update_attribute(:status,true)
       @bids = Bid.find(:all, :conditions => {:item_id => @item.id}, :order => "price DESC")
