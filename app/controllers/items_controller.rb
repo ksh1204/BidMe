@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
   def search
         @items = Item.search params[:q], :page => params[:page], :per_page => 15, :conditions => {:closed => false}
         
-        if @items.first && params[:q] != ''
+        if @items.first && params[:q] != ""
         
           # Create new eBay caller object.  Omit last argument to use live platform.
           eBay = EBay::API.new($authToken, $devId, $appId, $certId, :sandbox => true) 
