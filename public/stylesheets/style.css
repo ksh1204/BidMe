@@ -1216,6 +1216,10 @@ filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Colo
 	color:black;
 }
 
+#show_item_item_watch{
+	float:left;
+}
+
 #show_item_price{
 	height: 30px;
 	color:black;

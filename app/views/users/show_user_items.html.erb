@@ -42,7 +42,7 @@
 	<% if @watched %>
 		<% @count = 0%>
 		<div id="watched_items_header">
-			<u><b style="color:red;"><i>Active</b></i> watched items :  </u>
+			<u><b style="color:red;"><i>Watched</b></i> items :  </u>
 		</div>
 		<div id="watched_items_actual">
 			<% for watched_item in @watched %>
@@ -58,33 +58,6 @@
 								<% end %>
 							</div>
 							<div class="watched_item_name">
-								<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
-							</div>
-						</div>
-						<% @count += 1 %>
-						<% if @count % 4 == 0%>
-							<div style="clear:both"></div>
-						<% end %>
-					<% end %>
-				<% end %>
-			<% end %>
-			<div id="closed_watched_items_header">
-			Closed watched items : 
-			</div>
-			<div id="closed_watched_items_actual">
-			<% for closed_watched_item in @watched %>
-				<% if closed_watched_item %>
-					<% item = Item.find(closed_watched_item.item_id) %>
-					<% if item.closed %>
-						<div class="closed_watched_item">
-							<div class="closed_watched_item_photo">
-								<% if item.item_photo_file_name %>
-									<%= image_tag item.item_photo.url(:thumb) %>
-								<% else %>
-									<%= image_tag('/images/default.jpg') %>
-								<% end %>
-							</div>
-							<div class="closed_watched_item_name">
 								<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
 							</div>
 						</div>

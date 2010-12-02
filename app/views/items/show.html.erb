@@ -38,24 +38,35 @@ $(function () {
 
 <div id="show_item_middle">
 <div id="show_item_price">
-	<div id="show_item_price_label">Initial Bid</div>
+	<div id="show_item_price_label">Initial Bid :</div>
 	<div id="show_item_price_price">$<%=@item.start_price%></div>
 </div>
+<div id="show_item_watch">
+		<div id="show_item_item_watch">
+				<% if Watch.find(:first, :conditions => {:watcher_id => current_user.id, :item_id => @item.id}) %>
+					<%= link_to "Unwatch this item.", {:controller => 'users', :action => 'unwatch_item',
+											 :id => @item.id, :watcher_id => current_user.id} %>
+				<% else %>
+					<%= link_to "Watch this item.", :controller => 'users',
+													:action => 'watch_item', :id => @item.id, :watcher_id => current_user.id %>
+				<% end %>
+		</div>
+</div><br>
 <div id="show_item_bin_price">
 	<% if @item.bin  && !@item.closed%>
-		<div id="show_item_bin_price_label">Buy It Now</div>
+		<div id="show_item_bin_price_label">Buy It Now :</div>
 		<div id="show_item_bin_price_price">$<%=@item.bin_price%></div>
 		<div id="show_item_bin_button"><%=button_to "Buy", {:controller => 'users', :action => "buy_it_now", :id => @item.id},{:class => 'button'}%></div>
 	<% end %>
 </div>
 <% if @diff > 0 && !@item.closed %>
 <div id="show_item_time">
-	<div id="show_item_time_label">Time Remaining</div>
+	<div id="show_item_time_label">Time Remaining :</div>
 	<div id="show_item_time_time_left"></div>
 </div>
 <div id='bid_id'>
 	<%= form_tag :controller => "users", :action => "bid" %>
-		<%= text_field_tag :bid_price, "",{:class => 'input', :style => "width:70px;height:20px;margin-bottom:15px;"} %>
+		<span id="show_item_price_price">$</span><%= text_field_tag :bid_price, "",{:class => 'input', :style => "width:70px;height:20px;margin-bottom:15px;"} %>
 		<%= hidden_field_tag :item_id, @item.id %>
 		<%= submit_tag "Bid!", {:class => 'button', :style => ""}%>
 	</form>
@@ -70,16 +81,16 @@ $(function () {
 <% end %>
 </div>
 <div id="show_item_right">
-	<div id="show_item_item">
-		<div id="show_item_item_label">Name</div>
-		<div id="show_item_item_name"><b><%=@item.name%></b></div>
-	</div>
+	<span id="show_item_item">
+			<span id="show_item_item_label">Name :</span>
+			<span id="show_item_item_name"><h2><%=@item.name%></h2></span>
+	</span>
 	<div id="show_item_desc">
-		<div id="show_item_desc_label">Description</div>
+		<div id="show_item_desc_label">Description :</div>
 		<div id="show_item_desc_desc"><pre><%=@item.description%></pre></div>
 	</div>
 	<div id="show_item_photo">
-		<div id="show_item_photo_label">Photo</div>
+		<div id="show_item_photo_label">Photo :</div>
 		<div id="show_item_photo_photo">
 			<% if @item.item_photo_file_name %>
 				<%=image_tag @item.item_photo.url(:large)%>

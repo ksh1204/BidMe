@@ -9,21 +9,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101201064632) do
+ActiveRecord::Schema.define(:version => 20101202065349) do
 
   create_table "bids", :force => true do |t|
     t.integer  "bidder_id"
     t.integer  "item_id"
-    t.float    "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "ebay_item", :force => true do |t|
-    t.integer  "ebay_id"
-    t.string   "title"
-    t.string   "country"
-    t.string   "view_url"
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -60,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20101201064632) do
     t.float    "start_price"
     t.boolean  "bin",                     :default => false
     t.float    "bin_price"
-    t.integer  "time_limit"
+    t.integer  "time_limit",              :default => 300
     t.string   "item_photo_file_name"
     t.string   "item_photo_content_type"
     t.integer  "item_photo_file_size"
@@ -71,6 +61,8 @@ ActiveRecord::Schema.define(:version => 20101201064632) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "status",                  :default => false
+    t.integer  "time_limit_hours",        :default => 0
+    t.integer  "time_limit_minutes",      :default => 0
   end
 
   create_table "messages", :force => true do |t|
