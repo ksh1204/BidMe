@@ -28,6 +28,20 @@
       if (innerPane) innerPane.innerHTML = msg;
    }
    </script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+
+
+
+  setTimeout(function() {
+          $("#flash_error").hide('blind', {}, 500)
+      }, 5000);
+
+      setTimeout(function() {
+              $("#flash_notice").hide('blind', {}, 500)
+          }, 5000);
+    });
+  </script>
 
 
   
@@ -59,6 +73,8 @@
 		</div>
 	</div>
 	<div id='main_content' class='content'>
+		<%= render :partial=> 'base/flash_error' unless flash[:error].blank?%>
+		<%= render :partial=> 'base/flash_notice' unless flash[:notice].blank?%>
 	<%if current_user%>
 		<div id='user_#{current_user.id}'>
 		</div>
