@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
-
+  # this function handles session expiry of the user
+  # if inactive for 30 minutes
   def session_expiry
     unless session[:expires_at].nil?
       @time_left = (session[:expires_at] - Time.now).to_i

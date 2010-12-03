@@ -2,6 +2,7 @@
 <h1> My Items </h1>
 <div id="user_items_whole">
 <hr class="horiz_line">
+<<<<<<< HEAD
 	<h3> Items of Interest </h3>
 	<% if @following_users %>
 		<div id="followed_items_all">
@@ -17,6 +18,63 @@
 					<% if !item.closed  && item.user == user %>
 						<div class="followed_item">
 							<div class="followed_item_photo">
+=======
+<h3> Items of Interest </h3>
+<% if @following_users %>
+	<div id="followed_items_all">
+	<% for user in @following_users %>
+		<div id="followed_items_user">
+		From <%= link_to user.login, {:controller => 'users', :action => 'profile', :username =>user.login} %> : 
+		</div>
+		<div id="followed_items">
+		<% items_followed = user.posted_items %>
+		<% if items_followed.count > 0 %>
+		<% @count = 0%>
+		<% for item in items_followed %>
+			<% if item %>
+				<% if !item.closed  && item.user == user %>
+					<div class="followed_item">
+						<div class="followed_item_photo">
+							<% if item.item_photo_file_name %>
+								<%= image_tag item.item_photo.url(:thumb) %>
+							<% else %>
+								<%= image_tag('/images/photo_na_long.png') %>
+							<% end %>
+						</div>
+						<div class="followed_item_name">
+							<%=link_to item.name, {:controller => 'items', :action => 'show', :id => item.id}%>
+						</div>
+					</div>
+					<% @count += 1 %>
+					<% if @count % 4 == 0%>
+						<div style="clear:both"></div>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+		</div><div style="clear:both"></div>
+		<% else %>
+			<small style="margin-left:35px;">This user hasn't posted any items</small>
+		<% end %>
+		
+	<% end %>
+	</div>
+	<br/>
+<% end %>
+<div id="watched_items_all">
+	<% if @watched %>
+		<% @count = 0%>
+		<div id="watched_items_header">
+			<u><b style="color:red;"><i>Watched</b></i> items :  </u>
+		</div>
+		<div id="watched_items_actual">
+			<% for watched_item in @watched %>
+				<% if watched_item %>
+					<% item = Item.find(watched_item.item_id) %>
+					<% if !item.closed %>
+						<div class="watched_item">
+							<div class="watched_item_photo">
+>>>>>>> d9c122c072c536c59d8bf5beaa2109f1f3c47e34
 								<% if item.item_photo_file_name %>
 									<%= image_tag item.item_photo.url(:thumb) %>
 								<% else %>
