@@ -88,7 +88,7 @@
 						<% if user_item %>
 							<% item = user_item.item %>
 							<% if item && !item.closed %>		
-								<% count1 = count + 1 %>
+								<% count = count + 1 %>
 								<li class="active_posted_item">
 									<%=link_to item.name, { :controller => 'items', :action => 'show', :id => item.id}%>
 								</li>

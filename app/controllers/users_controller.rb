@@ -514,8 +514,7 @@ class UsersController < ApplicationController
 
 	# Function to handle showing posted items
 	def show_posted_items_page
-  	@user_items = UserItem.paginate :per_page => 8, :page => params[:page], 
-									:conditions => { :user_id => current_user.id }, :order => 'created_at DESC'
+  	@user_items = current_user.posted_items
   end
 
 	# Function to handle showing history items

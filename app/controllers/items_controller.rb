@@ -41,10 +41,15 @@ class ItemsController < ApplicationController
 	# Search function
   def search
 		# search for items that are not closed according to ":q"
-		@items = Item.search params[:q], :page => params[:page], :per_page => 15, :conditions => {:closed => false}
+		if params[:item_category]
+		@items = Item.search params[:q], :page => params[:page], :per_page => 15, :with => {:closed => false, :item_category_id => params[:item_category]}
+		else
+		@items = Item.search params[:q], :page => params[:page], :per_page => 15, :with => {:closed => false}
+		end
         
 		# if search box is not empty, i.e. user actually searched for something
 		# do eBay stuff
+		if params[:q]
 		if @items.first && params[:q] != ""
 			# Create new eBay caller object.  Omit last argument to use live platform.
       eBay = EBay::API.new($authToken, $devId, $appId, $certId, :sandbox => true) 
@@ -54,6 +59,7 @@ class ItemsController < ApplicationController
       resp.searchResultItemArray.each do | r |
 	      @price_array << r.item.sellingStatus.currentPrice
 			end
+		end
 		end
   end
 

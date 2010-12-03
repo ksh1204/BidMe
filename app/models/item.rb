@@ -20,7 +20,7 @@ class Item < ActiveRecord::Base
   validates_length_of       :name,    :within => 3..40
   
   validates_presence_of     :description
-  validates_length_of       :description,    :within => 3..500
+  validates_length_of       :description,    :within => 3..1500
   
   validates_presence_of     :item_category_id
   
@@ -39,6 +39,7 @@ class Item < ActiveRecord::Base
   define_index do
     indexes :name, :sortable => true
     has closed
+	has item_category_id
     set_property :delta => true
   end
 
