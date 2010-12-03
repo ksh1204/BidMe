@@ -154,10 +154,9 @@ body {
 #main_content{
 	margin-top:22px;
 	margin-bottom:22px;
-	
 	background: url('/images/gray_background.jpg') repeat scroll left top; 
 	top:100%;
-	width:83%;
+	width:1000px;
 	min-height:40%;
 	color:white;
 	text-shadow: black 0.1em 0.1em 0.2em;	
@@ -174,7 +173,6 @@ body {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
 	/* For IE 5.5 - 7 */
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
-
 }
 
 
@@ -1460,6 +1458,14 @@ background:transparent;
 br { clear: left; }
 */
 
+#new_item{
+	padding-left:15px;
+}
+
+
+#user_items_whole{
+	padding-left:15px;
+}
 
 
 
