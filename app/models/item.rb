@@ -30,9 +30,9 @@ class Item < ActiveRecord::Base
   validates_presence_of     :time_limit_hours
   validates_presence_of     :time_limit_minutes
   
-  validates_numericality_of :time_limit_hours, :only_integer => true, :less_than => 100
-  validates_numericality_of :time_limit_minutes, :only_integer => true, :less_than => 100
-  validates_numericality_of :time_limit, :only_integer => true, :less_than => 100
+  validates_numericality_of :time_limit_hours, :only_integer => true
+  validates_numericality_of :time_limit_minutes, :only_integer => true
+  validates_numericality_of :time_limit, :only_integer => true
     
   attr_accessible :name, :description, :bin, :bin_price, :item_category_id, :item_photo, :start_price, :time_limit_hours, :time_limit_minutes, :time_limit, :current_price, :closed
   
