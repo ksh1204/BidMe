@@ -10,6 +10,7 @@
 		</div>
 		<div id="followed_items">
 		<% items_followed = user.posted_items %>
+		<% if items_followed.count > 0 %>
 		<% @count = 0%>
 		<% for item in items_followed %>
 			<% if item %>
@@ -34,9 +35,13 @@
 			<% end %>
 		<% end %>
 		</div><div style="clear:both"></div>
+		<% else %>
+			<small style="margin-left:35px;">This user hasn't posted any items</small>
+		<% end %>
 		
 	<% end %>
 	</div>
+	<br/>
 <% end %>
 <div id="watched_items_all">
 	<% if @watched %>
