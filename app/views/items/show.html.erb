@@ -14,11 +14,7 @@ $(function () {
 	$('#show_item_time_time_left').countdown({until: end, expiryUrl: '/end_auction/'+id});
 });
 </script>
-<STYLE TYPE="text/css" MEDIA=screen>
-<!--
-  #main_content { background:lightgreen; }
--->
-</STYLE>
+
 <div id="show_item_left">
 <div id="show_item_seller">
 	<div id="show_item_seller_label"></div>
@@ -56,7 +52,7 @@ $(function () {
 </div>
 <div id='bid_id'>
 	<%= form_tag :controller => "users", :action => "bid" %>
-		<span id="show_item_price_price">$</span><%= text_field_tag :bid_price, "",{:class => 'input', :style => "width:70px;height:20px;margin-bottom:15px;"} %>
+		<span id="show_item_price_price">$</span><%= text_field_tag :bid_price, "",{:class => 'input', :style => "width:70px;height:20px;margin-bottom:0px;"} %>
 		<%= hidden_field_tag :item_id, @item.id %>
 		<%= submit_tag "Bid!", {:class => 'button', :style => ""}%>
 	</form>

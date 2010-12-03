@@ -1,8 +1,8 @@
 <div id="search_box">
 	<br>
-	<%= select("item_category","", ItemCategory.find(:all, :order => "name ASC").collect {|i| [i.name, i.id]}, {:prompt => 'All Categories'})%>
 	<div style="padding-top:13px">
 			<%= form_tag :controller => "items", :action => "search" %>
+			<%= select("item_category","", ItemCategory.find(:all, :order => "name ASC").collect {|i| [i.name, i.id]}, {:prompt => 'All Categories'})%>
 			<%= text_field_tag :q, '', :id => "search_field_box"%>
 	</div>
 	<div style="float:left;padding-top:13px;">
