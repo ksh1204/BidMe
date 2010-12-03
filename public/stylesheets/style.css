@@ -629,13 +629,13 @@ cursor: pointer;
 
 
 #search_field_box{
-	width: 50%;
+	width: 350px;
 	height: 30px;
 	float:left;
 	
 	font-size: 18px;
 	margin-top: 10px;
-	margin-left: 160px;
+	/*margin-left: 160px;*/
 	-moz-border-radius: 5px; 
 	-webkit-border-radius: 5px;
 	-moz-box-shadow: 4px 4px 5px #000;
@@ -1441,6 +1441,14 @@ background:transparent;
 }
 br { clear: left; }
 */
+
+#item_category_{
+	margin-top:25px;
+	margin-left:250px;
+	width:120px;
+	height:30px;
+	float:left;
+}
 
 
 
