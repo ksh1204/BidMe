@@ -7,7 +7,7 @@ class AuctionClose          ### An abstract observer of AuctionTicker objects.
       item.update_attribute(:closed,true)
       highest_bid = item.bids.sort_by {|b| -b.price}.first
       if highest_bid
-	      bidder_id = highest_bid.bidder_id
+	    bidder_id = highest_bid.bidder_id
   	    price = highest_bid.price
   	    user = item.user
   	    user.money = user.money + price
