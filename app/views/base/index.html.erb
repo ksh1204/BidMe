@@ -1,5 +1,6 @@
 <script type="text/javascript">
 	$(function () {
+		<% if @items.first %>
 		<% for item in @items %>
 			<% @end_date = Time.parse(item.created_at.to_s)+item.time_limit %>
 			var end = new Date();
@@ -12,6 +13,7 @@
 			var sec = <%=@end_date.sec%> + "";
 		end = new Date(year,month-1,day,hour-8,min,sec);
 		$("#searched_item_time_"+id).countdown({until: end});
+		<% end %>
 		<% end %>
 	});
 </script>
@@ -93,7 +95,9 @@
 		<% end %>
 	<br/>
 	<div style="clear:both"></div>
+	<% if @items.first %>
 	<div class="index_search_pages"><center><%= will_paginate @items %></center>
+	<% end %>
 </div>
 
 <div id="table">
