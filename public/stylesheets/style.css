@@ -823,6 +823,24 @@ width: 650px;
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
+
+#message_content_sent {
+ 	width: 300px;
+ 	border: 1px solid grey;
+ 	padding: 10px;
+	color:black;
+	word-wrap: break-word;
+	-moz-border-radius: 4px; 
+	-webkit-border-radius: 4px;
+	-moz-box-shadow:  inset 1px 1px 6px #000;
+	-webkit-box-shadow: inset 1px 1px 6px #000;
+	box-shadow:  inset 1px 1px 6px #000;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
 #message_button{
 	padding: 5px;	
 	padding-top: 10px;
