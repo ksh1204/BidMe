@@ -12,10 +12,9 @@
 
 		  <%=label_tag :description, 'Message:'%></color>
 		  <br>
-		  <%=text_area_tag :description, nil, :id =>'message_content' %>
+			 <%=text_area_tag :description, nil, :id =>'message_content_sent' %>
 		  <br>
 		
-
 		  <table><tr><td style="width:5%"><%=submit_tag 'Send', :onclick=>"FreezeScreen('Please wait...');",:class => 'button' %></td>
 
 		  <td><%= button_to "Back", request.env["HTTP_REFERER"],:class => 'button' %></td></tr></table>
