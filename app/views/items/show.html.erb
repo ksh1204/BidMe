@@ -39,7 +39,7 @@ $(function () {
 </div>
 
 <div id="show_item_bin_price">
-	<% if @item.bin  && !@item.closed%>
+	<% if @item.bin  && !@item.closed && @item.bin_price%>
 		<div id="show_item_bin_price_label">Buy It Now :</div>
 		<div id="show_item_bin_price_price">$<%=@item.bin_price%></div>
 		<div id="show_item_bin_button"><%=button_to "Buy", {:controller => 'users', :action => "buy_it_now", :id => @item.id},{:class => 'button'}%></div>

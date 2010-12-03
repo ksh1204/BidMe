@@ -25,7 +25,7 @@
 	<div class="searched_items_index">
 		<% @count = 0%><br/>
 		<% for @item in @items %>
-			<% if @item %>
+			<% if @item  && !@item.closed%>
 						<div class="searched_item">
 							<div class="searched_item_category">
 								<%=@item.item_category.name%>

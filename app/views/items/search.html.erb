@@ -39,7 +39,7 @@
 	<% end %>
 	<div class="searched_items">
 		<% for @item in @items %>
-			<% if @item %>
+			<% if @item && !@item.closed%>
 				<% if params[:item_category][0] != "" %>
 					<% if (@item.item_category.id == params[:item_category][0].to_i) %>
 						<div class="searched_item">
