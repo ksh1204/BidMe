@@ -627,13 +627,13 @@ cursor: pointer;
 
 
 #search_field_box{
-	width: 50%;
+	width: 350px;
 	height: 30px;
 	float:left;
 	
 	font-size: 18px;
 	margin-top: 10px;
-	margin-left: 160px;
+	/*margin-left: 160px;*/
 	-moz-border-radius: 5px; 
 	-webkit-border-radius: 5px;
 	-moz-box-shadow: 4px 4px 5px #000;
@@ -1458,6 +1458,7 @@ background:transparent;
 br { clear: left; }
 */
 
+<<<<<<< HEAD
 #new_item{
 	padding-left:15px;
 }
@@ -1466,6 +1467,16 @@ br { clear: left; }
 #user_items_whole{
 	padding-left:15px;
 }
+=======
+#item_category_{
+	margin-top:10px;
+	margin-left:250px;
+	width:120px;
+	height:30px;
+	float:left;
+}
+
+>>>>>>> 6ebd707f25af99db6220d1ee8137f65cf284b8cd
 
 
 
