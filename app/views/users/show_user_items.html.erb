@@ -15,7 +15,7 @@
 		<% for item in items_followed %>
 			<% if item %>
 				<% if !item.closed  && item.user == user %>
-					<div class="followed_item">
+					<div class="followed_item">	
 						<div class="followed_item_photo">
 							<% if item.item_photo_file_name %>
 								<%= image_tag item.item_photo.url(:thumb) %>

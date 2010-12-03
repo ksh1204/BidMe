@@ -81,9 +81,9 @@ $(function () {
 		</div><br>
 	<% end %>
 	<% if !@item.closed && current_user.is_admin? %>
-		<div id="show_item_watch">
-				<div id="show_item_item_watch">
-					<%= link_to "Stop this item.", {:controller => 'admin', :action => 'stop', :id => @item.id} %>					
+		<div id="show_item_stop">
+				<div id="show_item_item_stop">
+					<%= button_to "Stop", {:controller => 'admin', :action => 'stop', :id => @item.id}, {:class => 'button', :style => "color:royalblue;"} %>					
 				</div>
 		</div><br>
 	<% end %>

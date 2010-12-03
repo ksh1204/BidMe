@@ -56,4 +56,9 @@ class AdminController < ApplicationController
 
     redirect_to :controller => 'items', :action => 'show', :id => @item.id
   end
+  
+  def delete_comment
+    @comment = UserComment.find(params[:id])
+    @comment.destroy
+  end
 end

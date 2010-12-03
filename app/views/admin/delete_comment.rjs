@@ -1,0 +1,2 @@
+id = dom_id(@comment)
+page[id].slide_up(1000)

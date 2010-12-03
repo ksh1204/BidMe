@@ -12,7 +12,7 @@ require "observer"
         loop do
           @diff = Time.parse(@item.created_at.to_s)+@item.time_limit-Time.now.utc
           if @item.closed
-	    return
+	            return
           end
           if @diff <= 0
             changed                 # notify observers

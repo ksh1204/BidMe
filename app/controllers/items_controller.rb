@@ -80,9 +80,14 @@ class ItemsController < ApplicationController
       @admin = User.find_by_login("admin")
     
       render :juggernaut => {:type => :send_to_all} do |page|
-            page.replace_html :show_item_time, "Auction is closed now!"
+            page.replace_html :show_item_time, ""
             page.replace_html :bid_id, ""
+            page.replace_html :highest_bid, "Auction is closed!"
+            page.replace_html :show_item_bin_button, ""
+            page.replace_html :show_item_watch, ""
+            page.replace_html :show_item_stop, ""
             page.replace_html "item_time_#{@item.id}", :partial => 'items/search_time_ticker', :object => @item
+            page.visual_effect :highlight, "item_time_#{@item.id}", :duration => 5
       end
 
 	  for @watcher in @watchers

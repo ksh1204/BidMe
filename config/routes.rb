@@ -44,6 +44,7 @@ ActionController::Routing::Routes.draw do |map|
   map.items_autocomplete 'items/select', :controller => 'items', :action => 'select'
   map.ebay_items 'ebay_items', :controller => 'items', :action => 'list_ebay_items'
   map.stop 'stop/:id', :controller => 'admin', :action => 'stop'
+  map.delete_comment 'delete_comment/:id', :controller => 'admin', :action => 'delete_comment'
   
   map.resources :messages
   map.resources :users, :member => {:rate => :post}

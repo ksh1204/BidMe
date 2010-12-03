@@ -223,7 +223,7 @@
 		<div id="all_comments">			
 			<% if @comments.count > 0 %>
 				<% for comment in @comments %>
-
+				<div id=<%=dom_id(comment)%>>
 				<div class="sbl">
 					<div class="sbr">
 						<div class="stl">
@@ -235,8 +235,12 @@
 				<div class="sb"><%= facebox_link_to comment.user.login,
 									:url => {:action => 'small_profile',
 							 		:username => comment.user.login}%> on <%= comment.created_at.to_s %>
+							<% if current_user.is_admin? %>
+								<%=link_to_remote 'Delete', :confirm => "Delete this comment?", :url => {:controller => 'admin', :action => 'delete_comment', :id => comment.id}%>
+							<% end %>
 				</div>
 				<div id="clear_profile_position" style="clear:both;">
+				</div>
 				</div>
 				<% end %>
 			<% else %>
