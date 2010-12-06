@@ -20,7 +20,7 @@ $(function () {
 	<div id="show_item_seller_label"></div>
 	<div id="show_item_seller_photo">
 		<% if @item.user.profile_photo_file_name %>
-		<%= image_tag @user.profile_photo.url(:small) %>
+		<%= image_tag @item.user.profile_photo.url(:thumb) %>
 		<% else %>
 		<%= image_tag('/images/default.jpg') %>
 		<% end %>
